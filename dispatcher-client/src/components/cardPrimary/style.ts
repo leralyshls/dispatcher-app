@@ -29,6 +29,7 @@ export const ArticleImg = styled.img`
   object-fit: cover;
   object-position: 25% 0%;
   border-radius: 1.25rem 0 0 1.25rem;
+  border-right: 1px solid ${COLORS.secondary};
 `;
 
 export const Article = styled(FlexColumn)`
