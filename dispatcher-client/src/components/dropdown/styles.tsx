@@ -10,17 +10,27 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 import { COLORS } from '../../utils/colors';
 import dropdownArrow from '../../assets/svgs/dropdownArrow.svg';
+import { DropdownProps } from './Dropdown';
+
+export const DropdownContainer = styled('div')`
+  ${(props: DropdownProps) => `
+    max-width: ${props.isInSearchBox ? 'fit-content' : '10.93rem'};
+    max-height: 10.5em;
+    border-radius: ${!props.isInSearchBox && '0.625rem'};
+    margin-right: ${props.isInSearchBox && '0.625rem'};
+    border-left: ${props.isInSearchBox && `1px solid ${COLORS.lightPurple}`};
+  `}
+`;
 
 const StyledButton = styled('button')`
-  font-family: Roboto, sans-serif;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: 3.36em;
-  min-width: 10.93rem;
+  font-family: Roboto, sans-serif;
   background: ${COLORS.white};
   border: none;
-  border-radius: 0.625rem;
-  margin: 0.5em;
   padding: 0.93em;
   text-align: left;
   color: ${COLORS.purple};
@@ -33,14 +43,15 @@ const StyledButton = styled('button')`
   &.${selectUnstyledClasses.expanded} {
     &::after {
       content: url(${dropdownArrow});
-      transform: 'rotate(90deg)';
+      transform: rotate(90deg);
     }
   }
 
   &::after {
     content: url(${dropdownArrow});
     float: right;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease-out;
+    margin-left: 1rem;
   }
 `;
 
@@ -90,12 +101,11 @@ export const StyledOption = styled(OptionUnstyled)`
   }
 
   &:hover:not(.${optionUnstyledClasses.selected}) {
-    background-color: ${COLORS.lightPurple};
+    color: ${COLORS.bluishBlack};
   }
 
   &.${optionUnstyledClasses.highlighted} {
     background-color: ${COLORS.lightPurple};
-    color: ${COLORS.bluishBlack};
   }
 
   &.${optionUnstyledClasses.disabled} {

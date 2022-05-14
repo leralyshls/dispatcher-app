@@ -19,9 +19,19 @@ let arrStrings = [
   'Target name5',
 ];
 
+let searchBoxOptions = ['Top Headlines', 'Everything'];
+
 export const Regular = Template.bind({});
 Regular.args = {
   ...Regular.args,
   placeholder: 'Sources',
   options: arrStrings,
+  isInSearchBox: false,
+};
+
+export const InSearchBox = Template.bind({});
+InSearchBox.args = {
+  ...InSearchBox.args,
+  options: searchBoxOptions,
+  isInSearchBox: true,
 };
