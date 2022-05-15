@@ -12,15 +12,3 @@ const Template: ComponentStory<typeof DatePickerComponent> = (args) => (
 );
 
 export const DatePickerExample = Template.bind({});
-// Primary.args = {
-//   ...Primary.args,
-//   children: 'Primary',
-//   color: 'primary',
-// };
-
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   ...Secondary.args,
-//   children: 'Secondary',
-//   color: 'secondary',
-// };
