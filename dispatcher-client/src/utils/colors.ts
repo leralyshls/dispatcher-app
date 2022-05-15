@@ -7,4 +7,5 @@ export const COLORS = {
   lightGrey: '#f8f8ff',
   white: '#ffffff',
   bluishBlack: '#14142B',
+  areaChartBlue: '#00B9FF',
 };
