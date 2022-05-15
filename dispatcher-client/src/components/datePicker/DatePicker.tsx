@@ -5,6 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ReactComponent as DateIcon } from '../../assets/svgs/date.svg';
 import { DatesFilterContainer } from './styles';
+import { COLORS } from '../../utils/colors';
 
 const DatePickerComponent: React.FC = () => {
   const [value, setValue] = React.useState<Date | null>(null);
@@ -37,6 +38,7 @@ const DatePickerComponent: React.FC = () => {
                 placeholder: 'Dates',
                 readOnly: true,
                 disableUnderline: true,
+                sx: { color: COLORS.purple, cursor: 'pointer' },
               }}
               onClick={() => setOpen(true)}
             />

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { DatePicker } from '@mui/x-date-pickers';
 import { COLORS } from '../../utils/colors';
 import { FlexRow } from '../../styles/sharedStyles';
 
@@ -12,6 +11,6 @@ export const DatesFilterContainer = styled(FlexRow)`
   background: ${COLORS.white};
   border: none;
   border-radius: 0.625rem;
-  padding: 0.93em;
+  padding: 0.93em 1.2em 0.93em 0.93em;
   cursor: pointer;
 `;
