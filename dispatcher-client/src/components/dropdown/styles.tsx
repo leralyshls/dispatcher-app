@@ -41,7 +41,7 @@ const StyledButton = styled('button')`
   &.${selectUnstyledClasses.expanded} {
     &::after {
       content: url(${dropdownArrow});
-      transform: rotate(90deg);
+      transform: rotate(180deg);
     }
   }
   &::after {
