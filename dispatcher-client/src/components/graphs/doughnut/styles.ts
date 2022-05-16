@@ -29,11 +29,15 @@ export const StyledLI = styled(FlexRow)`
 
 export const StyledListContainer = styled(FlexRow)`
   ${width}
-  font-size: 0.875rem;
+  font-size: 0.93rem;
   justify-content: space-between;
 `;
 
-export const StyledSpan = styled.span`
+export const GreySpan = styled.span`
   color: ${COLORS.doughnutGrey};
+  font-size: 0.93rem;
+`;
+export const BlueSpan = styled.span`
+  color: ${COLORS.bluishBlack};
   font-size: 0.875rem;
 `;

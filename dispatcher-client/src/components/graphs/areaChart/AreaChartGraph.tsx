@@ -1,6 +1,5 @@
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
 import { COLORS } from '../../../utils/colors';
-import { areaChartMock } from '../graphsMockData';
 
 interface areaProps {
   data: { name: string; value: number }[];
@@ -10,7 +9,7 @@ const AreaChartGraph = ({ data }: areaProps) => {
   return (
     <ResponsiveContainer width='100%' height='80%'>
       <AreaChart
-        data={areaChartMock}
+        data={data}
         margin={{
           top: 10,
           right: 0,

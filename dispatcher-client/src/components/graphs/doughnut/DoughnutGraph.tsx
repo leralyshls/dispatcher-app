@@ -7,7 +7,13 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { COLORS } from '../../../utils/colors';
-import { StyledUL, StyledLI, StyledSpan, StyledListContainer } from './styles';
+import {
+  StyledUL,
+  StyledLI,
+  BlueSpan,
+  GreySpan,
+  StyledListContainer,
+} from './styles';
 
 interface doughnutProps {
   data: {
@@ -27,10 +33,10 @@ const DoughnutGraph = ({ data }: doughnutProps) => {
           return (
             <StyledLI color={entry.color} key={entry.value}>
               <StyledListContainer>
-                <span className='font-mullish'>{entry.value}</span>
-                <StyledSpan className='font-mullish'>
+                <BlueSpan className='font-mullish'>{entry.value}</BlueSpan>
+                <GreySpan className='font-mullish'>
                   {(entry.payload.percent * 100).toFixed(0)}%
-                </StyledSpan>
+                </GreySpan>
               </StyledListContainer>
             </StyledLI>
           );

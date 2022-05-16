@@ -5,9 +5,9 @@ import {
   FlexColumn,
   FlexRow,
 } from '../../styles/sharedStyles';
+import { CardProps } from './CardSecondary';
 
 export const CardSecondaryStyled = styled(CardSharedStyle)`
-
   max-width: 25.75rem;
   width: 100%;
   max-height: 23.75rem;
@@ -42,5 +42,6 @@ export const BodyContainer = styled(FlexRow)`
   width: 100%;
   height: 100%;
   justify-content: center;
-  align-items: flex-end;
+  align-items: ${(props: CardProps) =>
+    props.children.props.type === 'area' ? 'flex-end' : 'center'};
 `;
