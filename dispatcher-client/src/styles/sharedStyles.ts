@@ -18,7 +18,11 @@ export const CardSharedStyle = styled(FlexRow)`
   box-shadow: 0px 2rem 4rem rgba(0, 0, 0, 0.05);
 `;
 
-export const TextDetailes = styled.p`
-  color: ${COLORS.purple};
-  opacity: 0.5;
+export const filterSharedStyles = `
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  background: ${COLORS.white};
+  border: none;
+  cursor: pointer;
 `;
