@@ -1,17 +1,16 @@
-import React from 'react';
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
-import CardSecondary from '../../CardSecondary/CardSecondary';
 import { COLORS } from '../../../utils/colors';
+import { areaChartMock } from '../graphsMockData';
 
-interface lineProps {
+interface areaProps {
   data: { name: string; value: number }[];
 }
 
-const AreaChartGraph = ({ data }: lineProps) => {
+const AreaChartGraph = ({ data }: areaProps) => {
   return (
     <ResponsiveContainer width='100%' height='80%'>
       <AreaChart
-        data={data}
+        data={areaChartMock}
         margin={{
           top: 10,
           right: 0,

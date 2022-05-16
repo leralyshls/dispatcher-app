@@ -7,6 +7,7 @@ import {
 } from '../../styles/sharedStyles';
 
 export const CardSecondaryStyled = styled(CardSharedStyle)`
+
   max-width: 25.75rem;
   width: 100%;
   max-height: 23.75rem;

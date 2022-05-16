@@ -24,3 +24,8 @@
   --color-dropdown-hover: #dfe0eb69;
   --color-bluish-black: #14142b;
 }
+
+.font-mullish {
+  font-family: 'Mulish', 'Roboto', sans-serif;
+  font-weight: 400;
+}
