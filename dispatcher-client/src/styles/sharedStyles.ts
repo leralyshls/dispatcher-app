@@ -11,7 +11,8 @@ export const FlexRow = styled.div`
   flex-direction: row;
 `;
 
-export const CardSharedStyle = styled(FlexRow)`
+export const CardSharedStyle = styled.div`
+  display: flex;
   border-radius: 1.25rem;
   background-color: ${COLORS.white};
   border: 1px solid ${COLORS.secondary};
