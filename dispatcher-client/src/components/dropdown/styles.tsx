@@ -11,6 +11,7 @@ import { styled } from '@mui/system';
 import { COLORS } from '../../utils/colors';
 import dropdownArrow from '../../assets/svgs/dropdownArrow.svg';
 import { DropdownProps } from './Dropdown';
+import { filterSharedStyles } from '../../styles/sharedStyles';
 
 export const DropdownContainer = styled('div')`
   ${(props: DropdownProps) => `
@@ -23,30 +24,23 @@ export const DropdownContainer = styled('div')`
 `;
 
 const StyledButton = styled('button')`
+  ${filterSharedStyles};
   height: 100%;
   width: 100%;
   border-radius: inherit;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  font-family: Roboto, sans-serif;
-  background: ${COLORS.white};
-  border: none;
   padding: 0.93em;
   text-align: left;
   color: ${COLORS.purple};
-  cursor: pointer;
 
   &.${selectUnstyledClasses.focusVisible} {
     outline: 3px solid ${COLORS.secondary};
   }
-
   &.${selectUnstyledClasses.expanded} {
     &::after {
       content: url(${dropdownArrow});
-      transform: rotate(90deg);
+      transform: rotate(180deg);
     }
   }
-
   &::after {
     content: url(${dropdownArrow});
     float: right;
@@ -95,23 +89,18 @@ export const StyledOption = styled(OptionUnstyled)`
   color: ${COLORS.purple};
   padding: 1em;
   line-height: 1rem;
-
   &:last-of-type {
     border-bottom: none;
   }
-
   &:hover:not(.${optionUnstyledClasses.selected}) {
     color: ${COLORS.bluishBlack};
   }
-
   &.${optionUnstyledClasses.highlighted} {
     background-color: ${COLORS.lightPurple};
   }
-
   &.${optionUnstyledClasses.disabled} {
     color: ${COLORS.secondary};
   }
-
   &.${optionUnstyledClasses.selected} {
     background-color: ${COLORS.lightPurple};
   }
