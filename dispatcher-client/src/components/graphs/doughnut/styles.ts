@@ -6,17 +6,17 @@ interface liProps {
   color: string;
 }
 
-const width = 'width: 100%;';
+const width100 = 'width: 100%;';
 
 export const StyledUL = styled(FlexColumn)`
-  ${width}
+  ${width100}
   height: 8rem;
   list-style: none;
   justify-content: space-evenly;
 `;
 
 export const StyledLI = styled(FlexRow)`
-  ${width}
+  ${width100}
   padding: 0 2rem;
   &:before {
     width: 2em;
@@ -28,7 +28,7 @@ export const StyledLI = styled(FlexRow)`
 `;
 
 export const StyledListContainer = styled(FlexRow)`
-  ${width}
+  ${width100}
   font-size: 0.93rem;
   justify-content: space-between;
 `;
