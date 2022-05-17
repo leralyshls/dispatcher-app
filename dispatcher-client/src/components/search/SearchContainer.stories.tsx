@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import SearchContainer from './SearchContainer';
+import { filters } from '../../mockData/filterStrings';
 
 export default {
   title: 'SearchContainer',
@@ -12,3 +13,6 @@ const Template: ComponentStory<typeof SearchContainer> = (args) => (
 );
 
 export const SearchExample = Template.bind({});
+SearchExample.args = {
+  ...SearchExample.args,
+};

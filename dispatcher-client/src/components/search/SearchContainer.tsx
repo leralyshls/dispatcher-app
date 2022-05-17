@@ -2,13 +2,17 @@ import React from 'react';
 import { SearchBox } from './styles';
 import InputComponent from '../input/InputComponent';
 import Dropdown from '../dropdown/Dropdown';
+import { filters } from '../../mockData/filterStrings';
 
 const SearchContainer: React.FC = () => {
-  const options = ['Top Headlines', 'Everything'];
   return (
     <SearchBox>
       <InputComponent />
-      <Dropdown options={options} isInSearchBox />
+      <Dropdown
+        options={filters.search}
+        isInSearchBox
+        placeholder={filters.search[0]}
+      />
     </SearchBox>
   );
 };
