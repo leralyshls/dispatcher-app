@@ -1,28 +1,9 @@
-import { sources } from './allSources';
+import { sources } from '../../mockData/allSources';
 
-export const filters = {
-  search: ['Top Headlines', 'Everything'],
-  everything: {
-    filterBy: ['Sort by', 'Dates', 'Sources', 'Language'],
-    language: [
-      'Arabic',
-      'German',
-      'English',
-      'Spanish',
-      'French',
-      'Hebrew',
-      'Italian',
-      'Dutch',
-      'Norwegian',
-      'Portuguese',
-      'Chinese',
-    ],
-    sources: sources,
-    sourtBy: ['Relevancy', 'Popularity', 'Published at'],
-  },
-  topHeadlines: {
-    filterBy: ['Country', 'Category', 'Sources'],
-    country: [
+export const topHeadlinesStrings = [
+  {
+    name: 'Country',
+    options: [
       'United Arab Emirates',
       'Argentina',
       'Austria',
@@ -78,8 +59,10 @@ export const filters = {
       'Venezuela',
       'Zambia',
     ],
-    sources: sources,
-    category: [
+  },
+  {
+    name: 'Category',
+    options: [
       'Business',
       'Entertainment',
       'General',
@@ -89,4 +72,5 @@ export const filters = {
       'Technology',
     ],
   },
-};
+  { name: 'Sources', options: sources },
+];

@@ -17,7 +17,7 @@ Regular.args = {
   ...Regular.args,
   placeholder: filters.everything.filterBy[3],
   options: filters.everything.language,
-  isInSearchBox: false,
+  isinsearchbox: false,
 };
 
 export const InSearchBox = Template.bind({});
@@ -25,5 +25,5 @@ InSearchBox.args = {
   ...InSearchBox.args,
   placeholder: filters.search[0],
   options: filters.search,
-  isInSearchBox: true,
+  isinsearchbox: true,
 };

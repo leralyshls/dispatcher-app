@@ -4,7 +4,7 @@ import { COLORS } from '../../utils/colors';
 
 export const StyledHeader = styled(FlexRow)`
   width: 100vw;
-  display: fixed;
+  position: fixed;
   background: ${COLORS.darkPurple};
   height: 4.625rem;
   align-items: center;

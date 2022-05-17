@@ -1,11 +1,14 @@
 import React from 'react';
-import Logo from './components/logo/Logo';
-function App() {
+import AppHeader from './components/appHeader/AppHeader';
+import Dashboard from './components/dashboard/Dashboard';
+
+const App: React.FC = () => {
   return (
-    <div>
-      <Logo />
-    </div>
+    <>
+      <AppHeader />
+      <Dashboard />
+    </>
   );
-}
+};
 
 export default App;

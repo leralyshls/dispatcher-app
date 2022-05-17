@@ -10,7 +10,7 @@ const SearchContainer: React.FC = () => {
       <InputComponent />
       <Dropdown
         options={filters.search}
-        isInSearchBox
+        isinsearchbox
         placeholder={filters.search[0]}
       />
     </SearchBox>

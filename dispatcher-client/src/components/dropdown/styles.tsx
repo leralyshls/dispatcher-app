@@ -15,11 +15,11 @@ import { filterSharedStyles } from '../../styles/sharedStyles';
 
 export const DropdownContainer = styled('div')`
   ${(props: DropdownProps) => `
-    max-width: ${props.isInSearchBox ? 'fit-content' : '10.93rem'};
+    width: ${props.isinsearchbox ? 'fit-content' : '10.93rem'};
     max-height: 10.5em;
-    border-radius: ${!props.isInSearchBox && '0.625rem'};
-    margin-right: ${props.isInSearchBox && '0.625rem'};
-    border-left: ${props.isInSearchBox && `1px solid ${COLORS.lightPurple}`};
+    border-radius: ${!props.isinsearchbox && '0.625rem'};
+    margin-right: ${props.isinsearchbox ? 0.625 : 1.25}rem;
+    border-left: ${props.isinsearchbox && `1px solid ${COLORS.lightPurple}`};
   `}
 `;
 
