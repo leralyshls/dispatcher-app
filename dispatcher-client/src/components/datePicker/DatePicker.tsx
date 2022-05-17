@@ -17,7 +17,6 @@ const DatePickerComponent: React.FC = () => {
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         disableFuture
-        minDate={new Date('2022-01-01')}
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
