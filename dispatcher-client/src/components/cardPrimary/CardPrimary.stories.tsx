@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CardPrimary from './CardPrimary';
-import data from '../../mockData/everyting.json';
+import data from '../../mockData/everything.json';
 
 const { urlToImage, title, publishedAt, source, content } = data.articles[0];
 
