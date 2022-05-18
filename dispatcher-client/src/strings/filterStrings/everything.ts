@@ -3,7 +3,11 @@ import { sources } from '../../mockData/allSources';
 export const everythingStrings = [
   {
     name: 'Sort by',
-    options: ['Relevancy', 'Popularity', 'Published at'],
+    options: [
+      { name: 'Relevancy', id: 'relevancy' },
+      { name: 'Popularity', id: 'popularity' },
+      { name: 'publishedAt' },
+    ],
   },
   {
     name: 'Dates',
@@ -12,17 +16,19 @@ export const everythingStrings = [
   {
     name: 'Language',
     options: [
-      'Arabic',
-      'German',
-      'English',
-      'Spanish',
-      'French',
-      'Hebrew',
-      'Italian',
-      'Dutch',
-      'Norwegian',
-      'Portuguese',
-      'Chinese',
+      { name: 'Arabic', id: 'ar' },
+      { name: 'German', id: 'de' },
+      { name: 'English', id: 'en' },
+      { name: 'Spanish', id: 'es' },
+      { name: 'French', id: 'fr' },
+      { name: 'Hebrew', id: 'he' },
+      { name: 'Italian', id: 'it' },
+      { name: 'Dutch', id: 'nl' },
+      { name: 'Norwegian', id: 'no' },
+      { name: 'Portuguese', id: 'pt' },
+      { name: 'Russian', id: 'ru' },
+      { name: 'Swedish', id: 'sv' },
+      { name: 'Chinese', id: 'zh' },
     ],
   },
 ];

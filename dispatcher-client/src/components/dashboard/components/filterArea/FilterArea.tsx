@@ -6,13 +6,13 @@ import { topHeadlinesStrings } from '../../../../strings/filterStrings/topHeadli
 const FilterArea: React.FC = () => {
   return (
     <FilterDiv>
-      {topHeadlinesStrings.map((item, index) => (
+      {/* {topHeadlinesStrings.map((item, index) => (
         <Dropwdown
           key={`top-filter-${item.name}`}
           options={item.options}
           placeholder={item.name}
         />
-      ))}
+      ))} */}
     </FilterDiv>
   );
 };
