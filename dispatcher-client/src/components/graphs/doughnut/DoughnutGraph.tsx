@@ -23,13 +23,13 @@ interface doughnutProps {
 }
 
 const DoughnutGraph = ({ data }: doughnutProps) => {
-  const label = 'Sum';
+  const totalValues = data.reduce((prev, current) => prev + current.value, 0);
 
   const renderLegend = (...args: any) => {
     const { payload } = args[0];
     return (
       <StyledUL>
-        {payload.slice(0, 4).map((entry: any, index: number) => {
+        {payload.map((entry: any, index: number) => {
           return (
             <StyledLI color={entry.color} key={entry.value}>
               <StyledListContainer>
@@ -55,7 +55,7 @@ const DoughnutGraph = ({ data }: doughnutProps) => {
           paddingAngle={0}
           dataKey='value'
         >
-          <Label value={label} position='center' />
+          <Label value={totalValues} position='center' />
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
