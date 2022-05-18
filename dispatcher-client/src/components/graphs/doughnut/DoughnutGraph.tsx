@@ -21,8 +21,7 @@ interface DoughnutProps {
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
-  const totalValues = data.reduce((prev, current) => prev + current.value, 0);
-
+  const totalSources = data.length;
   const renderLegend = (...args: any) => {
     const { payload } = args[0];
     return (
@@ -53,7 +52,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           paddingAngle={0}
           dataKey='value'
         >
-          <Label value={totalValues} position='center' />
+          <Label value={totalSources} position='center' />
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}

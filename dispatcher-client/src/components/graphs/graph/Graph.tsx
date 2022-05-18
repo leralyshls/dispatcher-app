@@ -1,17 +1,17 @@
 import AreaChartGraph from '../areaChart/AreaChartGraph';
 import DoughnutGraph from '../doughnut/DoughnutGraph';
 
-export interface GraphItemProps {
+export interface GraphItem {
   name: string;
   value: number;
 }
 
-export interface graphProps {
+export interface GraphProps {
   type: string;
-  data: GraphItemProps[];
+  data: GraphItem[];
 }
 
-const Graph = ({ type, data }: graphProps) => {
+const Graph = ({ type, data }: GraphProps) => {
   return (
     <>
       {type === 'area' ? (
