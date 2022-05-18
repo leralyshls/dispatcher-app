@@ -1,11 +1,12 @@
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
 import { COLORS } from '../../../utils/colors';
+import { GraphItem } from '../graph/Graph';
 
-interface areaProps {
-  data: { name: string; value: number }[];
+interface AreaProps {
+  data: GraphItem[];
 }
 
-const AreaChartGraph = ({ data }: areaProps) => {
+const AreaChartGraph = ({ data }: AreaProps) => {
   return (
     <ResponsiveContainer width='100%' height='80%'>
       <AreaChart

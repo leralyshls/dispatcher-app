@@ -14,15 +14,13 @@ import {
   GreySpan,
   StyledListContainer,
 } from './styles';
+import { GraphItem } from '../graph/Graph';
 
-interface doughnutProps {
-  data: {
-    name: string;
-    value: number;
-  }[];
+interface DoughnutProps {
+  data: GraphItem[];
 }
 
-const DoughnutGraph = ({ data }: doughnutProps) => {
+const DoughnutGraph = ({ data }: DoughnutProps) => {
   const totalValues = data.reduce((prev, current) => prev + current.value, 0);
 
   const renderLegend = (...args: any) => {
