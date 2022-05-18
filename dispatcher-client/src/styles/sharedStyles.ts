@@ -18,3 +18,21 @@ export const CardSharedStyle = styled.div`
   border: 1px solid ${COLORS.secondary};
   box-shadow: 0px 2rem 4rem rgba(0, 0, 0, 0.05);
 `;
+
+export const filterSharedStyles = `
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  background: ${COLORS.white};
+  border: none;
+  cursor: pointer;
+`;
+
+export const dropdownSharedStyles = `
+  font-size: 0.75rem;
+  background: ${COLORS.white};
+  border-radius: 0.625rem;
+  color: ${COLORS.purple};
+  overflow: overlay;
+  box-shadow: 0px 2rem 4rem rgba(0, 0, 0, 0.05);
+`;
