@@ -4,15 +4,17 @@ import {
   SearchesHeader,
   SearchesTitle,
   SearchesList,
-  SearchesLi,
+  SearchesItem,
   SearchesText,
   StyledClearIcon,
 } from './styles';
 import Button from '../button/MainButton';
-import { filters } from '../../mockData/filterStrings';
 
-const RecentSearches: React.FC = () => {
-  const recentSearchesArr = filters.topHeadlines.category;
+export interface RecentSearchesProps {
+  history: string[];
+}
+
+const RecentSearches = ({ history }: RecentSearchesProps) => {
   return (
     <SearchesContainer>
       <SearchesHeader>
@@ -20,13 +22,13 @@ const RecentSearches: React.FC = () => {
         <Button>Clear</Button>
       </SearchesHeader>
       <SearchesList>
-        {recentSearchesArr.map((el) => (
-          <SearchesLi>
+        {history.map((el) => (
+          <SearchesItem>
             <SearchesText>{el}</SearchesText>
             <Button>
               <StyledClearIcon />
             </Button>
-          </SearchesLi>
+          </SearchesItem>
         ))}
       </SearchesList>
     </SearchesContainer>

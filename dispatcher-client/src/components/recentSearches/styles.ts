@@ -30,7 +30,7 @@ export const SearchesList = styled.ul`
   list-style: none;
 `;
 
-export const SearchesLi = styled(FlexRow)`
+export const SearchesItem = styled(FlexRow)`
   justify-content: space-between;
   align-items: center;
 `;
