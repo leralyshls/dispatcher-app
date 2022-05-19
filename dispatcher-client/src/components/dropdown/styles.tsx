@@ -11,7 +11,10 @@ import { styled } from '@mui/system';
 import { COLORS } from '../../utils/colors';
 import dropdownArrow from '../../assets/svgs/dropdownArrow.svg';
 import { DropdownProps } from './Dropdown';
-import { filterSharedStyles } from '../../styles/sharedStyles';
+import {
+  filterSharedStyles,
+  dropdownSharedStyles,
+} from '../../styles/sharedStyles';
 
 export const DropdownContainer = styled('div')`
   ${(props: DropdownProps) => `
@@ -50,17 +53,12 @@ const StyledButton = styled('button')`
 `;
 
 const StyledListbox = styled('ul')`
-  font-size: 0.75rem;
+  ${dropdownSharedStyles}
   padding: 0.45em 0;
   margin: 0.5em 0;
   min-width: 10.93rem;
   max-height: 10.5em;
-  background: ${COLORS.white};
-  border-radius: 0.75em;
-  color: ${COLORS.purple};
-  overflow: overlay;
   outline: 0px;
-  box-shadow: 0px 2rem 4rem rgba(0, 0, 0, 0.05);
   ::-webkit-scrollbar {
     width: 0.5em;
   }
