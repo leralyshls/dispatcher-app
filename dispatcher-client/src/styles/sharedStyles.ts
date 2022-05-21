@@ -17,7 +17,6 @@ export const CardSharedStyle = styled.div`
   border-radius: 1.25rem;
   background-color: ${COLORS.white};
   border: 1px solid ${COLORS.secondary};
-  box-shadow: 0px 2rem 4rem rgba(0, 0, 0, 0.05);
 `;
 
 export const filterSharedStyles = `
@@ -34,5 +33,5 @@ export const dropdownSharedStyles = `
   border-radius: 0.625rem;
   color: ${COLORS.purple};
   overflow: overlay;
-  box-shadow: 0px 2rem 4rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 `;

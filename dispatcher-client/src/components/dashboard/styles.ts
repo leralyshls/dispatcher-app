@@ -16,6 +16,6 @@ export const DashboardContent = styled(FlexColumn)`
 `;
 
 export const MainContent = styled(FlexRow)`
-  min-height: calc(100vh - 10rem);
+  height: 60vw;
   gap: 0.94rem;
 `;

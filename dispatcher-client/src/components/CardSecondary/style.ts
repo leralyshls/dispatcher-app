@@ -9,28 +9,25 @@ import { CardProps } from './CardSecondary';
 
 export const CardSecondaryStyled = styled(CardSharedStyle)`
   width: 100%;
-  height: 21.46vw;
+  height: 19.69vw;
   flex-direction: column;
   justify-content: space-between;
   padding: 1.56rem 0 1rem;
+  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
 `;
 
 export const TitleContainer = styled(FlexColumn)`
-  width: 100%;
-  height: 15%;
-  justify-content: space-evenly;
   margin-left: 1.56rem;
 `;
 
 export const SecondaryCardTitle = styled.h5`
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 1.25vw, 1.5rem);
   color: ${COLORS.bluishBlack};
+  margin-bottom: 0.4rem;
 `;
 
 export const Underline = styled.div`
-  min-width: 1.25rem;
   width: 1.25rem;
-  min-height: 0.19rem;
   height: 0.19rem;
   border-radius: 0.625rem;
   background: ${COLORS.purple};

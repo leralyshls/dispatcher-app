@@ -5,9 +5,7 @@ import { COLORS } from '../../../../utils/colors';
 export const CardsContainer = styled(FlexColumn)`
   width: 70.35%;
   overflow-y: auto;
-  max-height: calc(44.17vw + 1rem);
   padding-right: 0.93rem;
-  gap: 1.5rem;
 
   ::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -22,6 +20,6 @@ export const CardsContainer = styled(FlexColumn)`
   }
   ::-webkit-scrollbar-track {
     visibility: hidden;
-    margin-block: 0.25rem;
+    margin: 0.25rem 0 1.5rem;
   }
 `;
