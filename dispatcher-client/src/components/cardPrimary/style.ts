@@ -9,13 +9,12 @@ import {
 export const CardPrimaryStyled = styled(CardSharedStyle)`
   flex-direction: row;
   width: 100%;
-  max-width: 61.75rem;
   height: 15.125rem;
 `;
 
 export const CardImgContainer = styled.div`
   flex: 1;
-  min-width: 15.25rem;
+  max-width: 15.25rem;
   height: 100%;
 `;
 
@@ -27,7 +26,7 @@ export const ArticleImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 25% 0%;
+  object-position: 50% 0%;
   border-radius: 1.25rem 0 0 1.25rem;
   border-right: 1px solid ${COLORS.secondary};
 `;

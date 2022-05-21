@@ -63,14 +63,52 @@ export const topHeadlinesStrings = [
   {
     name: 'Category',
     options: [
-      'Business',
-      'Entertainment',
-      'General',
-      'Health',
-      'Science',
-      'Sports',
-      'Technology',
+      { name: 'Business', id: 'business' },
+      { name: 'Entertainment', id: 'entertainment' },
+      { name: 'General', id: 'general' },
+      { name: 'Health', id: 'health' },
+      { name: 'Science', id: 'science' },
+      { name: 'Sports', id: 'sports' },
+      { name: 'Technology', id: 'technology' },
     ],
   },
   { name: 'Sources', options: sources },
+];
+
+export const everythingStrings = [
+  {
+    name: 'Sort by',
+    options: [
+      { name: 'Relevancy', id: 'relevancy' },
+      { name: 'Popularity', id: 'popularity' },
+      { name: 'publishedAt' },
+    ],
+  },
+  {
+    name: 'Dates',
+  },
+  { name: 'Sources', options: sources },
+  {
+    name: 'Language',
+    options: [
+      { name: 'Arabic', id: 'ar' },
+      { name: 'German', id: 'de' },
+      { name: 'English', id: 'en' },
+      { name: 'Spanish', id: 'es' },
+      { name: 'French', id: 'fr' },
+      { name: 'Hebrew', id: 'he' },
+      { name: 'Italian', id: 'it' },
+      { name: 'Dutch', id: 'nl' },
+      { name: 'Norwegian', id: 'no' },
+      { name: 'Portuguese', id: 'pt' },
+      { name: 'Russian', id: 'ru' },
+      { name: 'Swedish', id: 'sv' },
+      { name: 'Chinese', id: 'zh' },
+    ],
+  },
+];
+
+export const searchInStrings = [
+  { name: 'Top Headlines', id: 'top-headlines' },
+  { name: 'Everything', id: 'everything' },
 ];

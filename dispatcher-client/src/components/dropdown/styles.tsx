@@ -18,11 +18,11 @@ import {
 
 export const DropdownContainer = styled('div')`
   ${(props: DropdownProps) => `
-    width: ${props.isinsearchbox ? 'fit-content' : '10.93rem'};
-    max-height: 10.5em;
-    border-radius: ${!props.isinsearchbox && '0.625rem'};
-    margin-right: ${props.isinsearchbox ? 0.625 : 1.25}rem;
-    border-left: ${props.isinsearchbox && `1px solid ${COLORS.lightPurple}`};
+    width: ${props.insearchbox ? 'fit-content' : '10.93rem'};
+    height: 2.94rem;
+    border-radius: ${!props.insearchbox && '0.625rem'};
+    margin-right: ${props.insearchbox && 0.625}rem;
+    border-left: ${props.insearchbox && `1px solid ${COLORS.lightPurple}`};
   `}
 `;
 
@@ -33,7 +33,6 @@ const StyledButton = styled('button')`
   border-radius: inherit;
   padding: 0.93em;
   text-align: left;
-  color: ${COLORS.purple};
 
   &.${selectUnstyledClasses.focusVisible} {
     outline: 3px solid ${COLORS.secondary};
@@ -59,6 +58,7 @@ const StyledListbox = styled('ul')`
   min-width: 10.93rem;
   max-height: 10.5em;
   outline: 0px;
+  background: ${COLORS.white};
   ::-webkit-scrollbar {
     width: 0.5em;
   }
@@ -74,7 +74,7 @@ const StyledListbox = styled('ul')`
     opacity: 1;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(90, 90, 137, 0.5);
+    background: ${COLORS.greyPlaceholder};
   }
 `;
 
@@ -92,15 +92,16 @@ export const StyledOption = styled(OptionUnstyled)`
   }
   &:hover:not(.${optionUnstyledClasses.selected}) {
     color: ${COLORS.bluishBlack};
+    background: ${COLORS.lightPurple};
   }
   &.${optionUnstyledClasses.highlighted} {
-    background-color: ${COLORS.lightPurple};
+    background: ${COLORS.lightPurple};
   }
   &.${optionUnstyledClasses.disabled} {
     color: ${COLORS.secondary};
   }
   &.${optionUnstyledClasses.selected} {
-    background-color: ${COLORS.lightPurple};
+    background: ${COLORS.lightPurple};
   }
   &.${optionUnstyledClasses.disabled} {
     color: ${COLORS.purple};

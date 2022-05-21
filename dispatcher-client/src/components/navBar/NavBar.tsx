@@ -1,16 +1,17 @@
 import SearchContainer from '../search/SearchContainer';
 import Logo from '../logo/Logo';
-import { StyledHeader, LogoBox } from './styles';
+import { StyledNav, LogoBox } from './styles';
+import React from 'react';
 
-const AppHeader: React.FC = () => {
+const NavBar: React.FC = () => {
   return (
-    <StyledHeader>
+    <StyledNav>
       <LogoBox>
         <Logo />
       </LogoBox>
       <SearchContainer />
-    </StyledHeader>
+    </StyledNav>
   );
 };
 
-export default AppHeader;
+export default NavBar;

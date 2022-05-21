@@ -4,14 +4,17 @@ import { SelectOption } from '@mui/base/SelectUnstyled';
 
 export interface DropdownProps {
   placeholder?: string;
-  options: string[];
-  isinsearchbox?: boolean;
+  options: { name: string; id: string }[];
+  insearchbox?: any;
 }
 
-const Dropwdown = ({ placeholder, options, isinsearchbox }: DropdownProps) => {
+const Dropwdown = ({ placeholder, options, insearchbox }: DropdownProps) => {
   const [value, setValue] = useState<string | null | undefined>(placeholder);
   return (
-    <DropdownContainer options={options} isinsearchbox={isinsearchbox}>
+    <DropdownContainer
+      options={options}
+      insearchbox={insearchbox ? insearchbox.toString() : undefined}
+    >
       <CustomSelect
         value={value ? value : placeholder}
         onChange={setValue}
@@ -20,8 +23,12 @@ const Dropwdown = ({ placeholder, options, isinsearchbox }: DropdownProps) => {
         }
       >
         {options.map((option) => (
-          <StyledOption key={option} value={option} className='font-mullish'>
-            {option}
+          <StyledOption
+            key={option.id}
+            value={option.name}
+            className='font-mulish'
+          >
+            {option.name}
           </StyledOption>
         ))}
       </CustomSelect>

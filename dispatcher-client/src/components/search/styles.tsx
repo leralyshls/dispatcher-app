@@ -9,7 +9,5 @@ export const SearchBox = styled(FlexRow)`
   background: ${COLORS.white};
   padding: 1rem 0 1rem 1.125rem;
   height: 3.125rem;
-  max-height: 3.125rem;
-  width: 26.45rem;
-  min-width: 26.4rem;
+  width: max(26.45rem, 22%);
 `;

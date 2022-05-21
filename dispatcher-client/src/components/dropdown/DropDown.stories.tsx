@@ -1,7 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Dropdown from './Dropdown';
-import { filters } from '../../mockData/filterStrings';
+import {
+  topHeadlinesStrings,
+  searchInStrings,
+} from '../../strings/filterStrings/filterStrings';
 
 export default {
   title: 'Dropdown',
@@ -15,15 +18,15 @@ const Template: ComponentStory<typeof Dropdown> = (args) => (
 export const Regular = Template.bind({});
 Regular.args = {
   ...Regular.args,
-  placeholder: filters.everything.filterBy[3],
-  options: filters.everything.language,
-  isinsearchbox: false,
+  placeholder: topHeadlinesStrings[0].name,
+  options: topHeadlinesStrings[0].options,
+  insearchbox: false,
 };
 
 export const InSearchBox = Template.bind({});
 InSearchBox.args = {
   ...InSearchBox.args,
-  placeholder: filters.search[0],
-  options: filters.search,
-  isinsearchbox: true,
+  placeholder: searchInStrings[0].name,
+  options: searchInStrings,
+  insearchbox: true,
 };

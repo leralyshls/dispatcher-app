@@ -1,5 +1,5 @@
 import React from 'react';
-import PageTitle from './pageTitle';
+import PageTitle from './PageTitle';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
@@ -14,8 +14,8 @@ const Template: ComponentStory<typeof PageTitle> = (args) => (
 export const TopHeadlines = Template.bind({});
 TopHeadlines.args = {
   ...TopHeadlines.args,
-  country: 'Israel',
+  firstVisit: true,
 };
 
 export const TotalResults = Template.bind({});
-TotalResults.args = { ...TotalResults.args, total: 33 };
+TotalResults.args = { ...TotalResults.args, firstVisit: false };

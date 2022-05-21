@@ -1,5 +1,7 @@
 import { sources } from './allSources';
 
+export const countryFirstVisit = 'Israel';
+
 export const filters = {
   search: ['Top Headlines', 'Everything'],
   everything: {

@@ -30,8 +30,8 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           return (
             <StyledLI color={entry.color} key={entry.value}>
               <StyledListContainer>
-                <BlueSpan className='font-mullish'>{entry.value}</BlueSpan>
-                <GreySpan className='font-mullish'>
+                <BlueSpan className='font-mulish'>{entry.value}</BlueSpan>
+                <GreySpan className='font-mulish'>
                   {(entry.payload.percent * 100).toFixed(0)}%
                 </GreySpan>
               </StyledListContainer>

@@ -9,6 +9,7 @@ export const FlexColumn = styled.div`
 export const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
 `;
 
 export const CardSharedStyle = styled.div`
@@ -20,12 +21,11 @@ export const CardSharedStyle = styled.div`
 `;
 
 export const filterSharedStyles = `
-  font-family: Roboto, sans-serif;
   font-size: 0.875rem;
-  box-sizing: border-box;
   background: ${COLORS.white};
   border: none;
   cursor: pointer;
+  color: ${COLORS.purple};
 `;
 
 export const dropdownSharedStyles = `

@@ -18,7 +18,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   title: title,
   urlToImage: urlToImage,
-  dateString: publishedAt,
+  publishedAt: publishedAt,
   source: { name: source.name },
   content: content,
 };
