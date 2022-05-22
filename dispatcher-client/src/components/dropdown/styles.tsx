@@ -14,6 +14,7 @@ import { DropdownProps } from './Dropdown';
 import {
   filterSharedStyles,
   dropdownSharedStyles,
+  fontFamilyMulish,
 } from '../../styles/sharedStyles';
 
 export const DropdownContainer = styled('div')`
@@ -79,6 +80,7 @@ const StyledListbox = styled('ul')`
 `;
 
 export const StyledOption = styled(OptionUnstyled)`
+  ${fontFamilyMulish}
   font-size: 0.75rem;
   list-style: none;
   padding: 8px;

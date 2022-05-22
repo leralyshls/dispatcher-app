@@ -35,7 +35,8 @@ export const Underline = styled.div`
 
 export const BodyContainer = styled(FlexRow)`
   height: 100%;
-  justify-content: center;
+  justify-content: ${(props: CardProps) =>
+    props.children.props.type === 'doughnut' ? 'space-between' : 'center'};
   align-items: ${(props: CardProps) =>
     props.children.props.type === 'area' ? 'flex-end' : 'center'};
 `;

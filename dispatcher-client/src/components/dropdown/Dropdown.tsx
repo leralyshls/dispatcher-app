@@ -23,11 +23,7 @@ const Dropwdown = ({ placeholder, options, insearchbox }: DropdownProps) => {
         }
       >
         {options.map((option) => (
-          <StyledOption
-            key={option.id}
-            value={option.name}
-            className='font-mulish'
-          >
+          <StyledOption key={option.id} value={option.name}>
             {option.name}
           </StyledOption>
         ))}

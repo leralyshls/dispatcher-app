@@ -5,6 +5,7 @@ import {
   Cell,
   Label,
   ResponsiveContainer,
+  Tooltip,
 } from 'recharts';
 import { COLORS } from '../../../utils/colors';
 import {
@@ -15,12 +16,25 @@ import {
   StyledListContainer,
 } from './styles';
 import { GraphItem } from '../graph/Graph';
+import useWindowSize from '../../../utils/hooks/useWindowSize';
+import { SCREENS } from '../../../utils/screenSizes';
 
 interface DoughnutProps {
   data: GraphItem[];
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
+  const size = useWindowSize();
+
+  const grapfSizes = {
+    outerRadiusDesktop: '80%',
+    outerRadiusLaptop: '60%',
+    innerRadiusDesktop: '70%',
+    innerRadiusLaptop: '50%',
+    marginTopDesktop: -10,
+    marginTopLaptop: -30,
+  };
+
   const totalSources = data.length;
   const renderLegend = (...args: any) => {
     const { payload } = args[0];
@@ -30,10 +44,8 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           return (
             <StyledLI color={entry.color} key={entry.value}>
               <StyledListContainer>
-                <BlueSpan className='font-mulish'>{entry.value}</BlueSpan>
-                <GreySpan className='font-mulish'>
-                  {(entry.payload.percent * 100).toFixed(0)}%
-                </GreySpan>
+                <BlueSpan>{entry.value}</BlueSpan>
+                <GreySpan>{(entry.payload.percent * 100).toFixed(0)}%</GreySpan>
               </StyledListContainer>
             </StyledLI>
           );
@@ -44,11 +56,18 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
-      <PieChart>
+      <PieChart
+        margin={{
+          top: 5,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        }}
+      >
         <Pie
           data={data}
-          innerRadius={60}
-          outerRadius={70}
+          outerRadius={65}
+          innerRadius={55}
           paddingAngle={0}
           dataKey='value'
         >
@@ -61,6 +80,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           ))}
         </Pie>
         <Legend verticalAlign='bottom' content={renderLegend} />
+        <Tooltip />
       </PieChart>
     </ResponsiveContainer>
   );
