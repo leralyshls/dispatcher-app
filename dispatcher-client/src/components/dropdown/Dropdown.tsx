@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 
+export interface Option {
+  name: string;
+  id: string;
+}
+
 export interface DropdownProps {
   placeholder?: string;
-  options: { name: string; id: string }[];
+  options: Option[];
   insearchbox?: any;
 }
 

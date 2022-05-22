@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import SearchContainer from './SearchContainer';
+import SearchBox from './SearchBox';
 import { filters } from '../../mockData/filterStrings';
 
 export default {
-  title: 'SearchContainer',
-  component: SearchContainer,
-} as ComponentMeta<typeof SearchContainer>;
+  title: 'SearchBox',
+  component: SearchBox,
+} as ComponentMeta<typeof SearchBox>;
 
-const Template: ComponentStory<typeof SearchContainer> = (args) => (
-  <SearchContainer {...args} />
+const Template: ComponentStory<typeof SearchBox> = (args) => (
+  <SearchBox {...args} />
 );
 
 export const SearchExample = Template.bind({});

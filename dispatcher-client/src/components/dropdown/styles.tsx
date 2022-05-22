@@ -14,16 +14,15 @@ import { DropdownProps } from './Dropdown';
 import {
   filterSharedStyles,
   dropdownSharedStyles,
-  fontFamilyMulish,
 } from '../../styles/sharedStyles';
 
 export const DropdownContainer = styled('div')`
-  ${(props: DropdownProps) => `
-    width: ${props.insearchbox ? 'fit-content' : '10.93rem'};
+  ${({ insearchbox }: DropdownProps) => `
+    width: ${insearchbox ? 'fit-content' : '10.93rem'};
     height: 2.94rem;
-    border-radius: ${!props.insearchbox && '0.625rem'};
-    margin-right: ${props.insearchbox && 0.625}rem;
-    border-left: ${props.insearchbox && `1px solid ${COLORS.lightPurple}`};
+    border-radius: ${!insearchbox && '0.625rem'};
+    margin-right: ${insearchbox && 0.625}rem;
+    border-left: ${insearchbox && `1px solid ${COLORS.lightPurple}`};
   `}
 `;
 
@@ -80,7 +79,6 @@ const StyledListbox = styled('ul')`
 `;
 
 export const StyledOption = styled(OptionUnstyled)`
-  ${fontFamilyMulish}
   font-size: 0.75rem;
   list-style: none;
   padding: 8px;

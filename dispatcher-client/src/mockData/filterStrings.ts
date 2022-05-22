@@ -20,7 +20,7 @@ export const filters = {
       'Chinese',
     ],
     sources: sources,
-    sourtBy: ['Relevancy', 'Popularity', 'Published at'],
+    sortBy: ['Relevancy', 'Popularity', 'Published at'],
   },
   topHeadlines: {
     filterBy: ['Country', 'Category', 'Sources'],

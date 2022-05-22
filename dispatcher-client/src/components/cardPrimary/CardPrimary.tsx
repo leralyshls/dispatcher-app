@@ -22,15 +22,14 @@ export interface CardProps {
 
 const CardPrimary = (props: CardProps) => {
   const { urlToImage, title, source, content, publishedAt } = props;
-  // do manipulation here
-  const dateString = publishedAt;
+
   return (
     <CardPrimaryStyled>
       <CardImgContainer>
         <ArticleImg src={urlToImage ? urlToImage : breakingNews} />
       </CardImgContainer>
       <Article>
-        <ArticleDetailes>{dateString}</ArticleDetailes>
+        <ArticleDetailes>{publishedAt}</ArticleDetailes>
         <ArticleTitle>{title}</ArticleTitle>
         <ArticleDetailes>{source.name}</ArticleDetailes>
         <ArticleContent>{content}</ArticleContent>

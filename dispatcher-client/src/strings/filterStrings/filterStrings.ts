@@ -81,7 +81,7 @@ export const everythingStrings = [
     options: [
       { name: 'Relevancy', id: 'relevancy' },
       { name: 'Popularity', id: 'popularity' },
-      { name: 'publishedAt' },
+      { name: 'Published at', id: 'publishedAt' },
     ],
   },
   {

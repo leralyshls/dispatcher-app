@@ -10,6 +10,8 @@ export const SearchesContainer = styled(FlexColumn)`
   width: 42rem;
   max-height: 8.25rem;
   padding: 0.5rem 0 0.5rem 1rem;
+  position: absolute;
+  z-index: 6;
 `;
 
 export const SearchesHeader = styled(FlexRow)`
