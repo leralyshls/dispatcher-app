@@ -17,24 +17,12 @@ import {
 } from './styles';
 import { GraphItem } from '../graph/Graph';
 import useWindowSize from '../../../utils/hooks/useWindowSize';
-import { SCREENS } from '../../../utils/screenSizes';
 
 interface DoughnutProps {
   data: GraphItem[];
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
-  const size = useWindowSize();
-
-  const grapfSizes = {
-    outerRadiusDesktop: '80%',
-    outerRadiusLaptop: '60%',
-    innerRadiusDesktop: '70%',
-    innerRadiusLaptop: '50%',
-    marginTopDesktop: -10,
-    marginTopLaptop: -30,
-  };
-
   const totalSources = data.length;
   const renderLegend = (...args: any) => {
     const { payload } = args[0];

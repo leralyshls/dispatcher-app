@@ -21,6 +21,7 @@ export const CardSharedStyle = styled.div`
 `;
 
 // shared strings of styles
+
 export const filterSharedStyles = `
   font-size: 0.875rem;
   background: ${COLORS.white};
