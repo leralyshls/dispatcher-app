@@ -5,6 +5,7 @@ import {
   fontFamilyMulish,
 } from '../../../styles/sharedStyles';
 import { COLORS } from '../../../utils/colors';
+import { SCREENS } from '../../../utils/screenSizes';
 
 interface liProps {
   color: string;
@@ -18,16 +19,15 @@ export const StyledUL = styled(FlexColumn)`
   margin-block: 0.5em 0;
   max-height: 3.78rem;
 
-  @media only screen and (max-width: 1354px) {
+  @media only screen and (max-width: ${SCREENS.laptopL - 1}px) {
     display: none;
   }
 
-  @media only screen and (min-width: 1355px) and (max-width: 1900px) {
-    max-height: 5.5rem;
-    margin-block: 0 1em;
+  @media only screen and (min-width: ${SCREENS.laptopL}px) and (max-width: ${SCREENS.desktop}px) {
+    max-height: 3.78rem;
   }
 
-  @media only screen and (min-width: 1900px) {
+  @media only screen and (min-width: ${SCREENS.desktop}px) {
     margin-block: -0.625rem 0;
     max-height: 6.8rem;
   }

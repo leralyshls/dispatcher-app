@@ -16,7 +16,6 @@ import {
   StyledListContainer,
 } from './styles';
 import { GraphItem } from '../graph/Graph';
-import useWindowSize from '../../../utils/hooks/useWindowSize';
 
 interface DoughnutProps {
   data: GraphItem[];
@@ -46,7 +45,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
     <ResponsiveContainer width='100%' height='100%'>
       <PieChart
         margin={{
-          top: 5,
+          top: 2,
           right: 0,
           bottom: 0,
           left: 0,
@@ -54,8 +53,8 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
       >
         <Pie
           data={data}
-          outerRadius={65}
-          innerRadius={55}
+          outerRadius={60}
+          innerRadius={50}
           paddingAngle={0}
           dataKey='value'
         >
