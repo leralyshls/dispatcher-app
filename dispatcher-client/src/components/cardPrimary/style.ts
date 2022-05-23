@@ -9,14 +9,18 @@ import {
 export const CardPrimaryStyled = styled(CardSharedStyle)`
   flex-direction: row;
   width: 100%;
-  max-width: 61.75rem;
-  height: 15.125rem;
+  min-height: max(12.6vw, 15.125rem);
+  margin-bottom: 1.5rem;
+  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
 `;
 
 export const CardImgContainer = styled.div`
-  flex: 1;
-  min-width: 15.25rem;
+  flex: 3;
+  max-width: 18rem;
   height: 100%;
+  @media only screen and (max-width: 1920px) {
+    max-width: 15.125rem;
+  }
 `;
 
 export const CardButtonContainer = styled(FlexRow)`
@@ -27,7 +31,7 @@ export const ArticleImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 25% 0%;
+  object-position: 50% 0%;
   border-radius: 1.25rem 0 0 1.25rem;
   border-right: 1px solid ${COLORS.secondary};
 `;

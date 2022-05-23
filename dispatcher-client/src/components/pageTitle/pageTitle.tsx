@@ -1,18 +1,19 @@
 import React from 'react';
-import { TitleContainer, TitleStyled } from './style';
+import { TitleStyled } from './style';
+import { countryFirstVisit } from '../../mockData/filterStrings';
+import data from '../../mockData/topHeadlinesPage1.json';
 
 export interface TitleProps {
-  country?: string;
-  total?: number;
+  firstVisit?: boolean;
 }
 
-const PageTitle = ({ country, total }: TitleProps) => {
+const PageTitle = ({ firstVisit }: TitleProps) => {
   return (
-    <TitleContainer>
-      <TitleStyled country={country}>
-        {country ? `Top Headlines In ${country}` : `${total} Total results`}
-      </TitleStyled>
-    </TitleContainer>
+    <TitleStyled firstVisit={firstVisit}>
+      {firstVisit
+        ? `Top Headlines In ${countryFirstVisit}`
+        : `${data.totalResults} Total results`}
+    </TitleStyled>
   );
 };
 

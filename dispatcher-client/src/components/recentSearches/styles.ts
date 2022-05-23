@@ -6,16 +6,20 @@ import { dropdownSharedStyles } from '../../styles/sharedStyles';
 
 export const SearchesContainer = styled(FlexColumn)`
   ${dropdownSharedStyles}
-  max-width: 42rem;
-  width: 42rem;
+  width: 41.44rem;
   max-height: 8.25rem;
   padding: 0.5rem 0 0.5rem 1rem;
+  position: absolute;
+  z-index: 6;
+  left: 12.6%;
+  top: 92%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 `;
 
 export const SearchesHeader = styled(FlexRow)`
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.3rem;
 `;
 export const SearchesTitle = styled.span`
   text-transform: uppercase;

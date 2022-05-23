@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Graph from './Graph';
-import CardSecondary from '../../CardSecondary/CardSecondary';
+import CardSecondary from '../../cardSecondary/CardSecondary';
 import { areaChartMock, doughnutMock } from '../graphsMockData';
 
 export default {

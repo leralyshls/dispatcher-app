@@ -1,23 +1,37 @@
 import styled from 'styled-components';
 import { FlexRow, FlexColumn } from '../../../styles/sharedStyles';
 import { COLORS } from '../../../utils/colors';
+import { SCREENS } from '../../../utils/screenSizes';
 
 interface liProps {
   color: string;
 }
 
-const width100 = 'width: 100%;';
-
 export const StyledUL = styled(FlexColumn)`
-  ${width100}
-  height: 8rem;
   list-style: none;
-  justify-content: space-evenly;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-block: 0.5em 0;
+  max-height: 5.5rem;
+
+  @media only screen and (max-width: ${SCREENS.laptopM}px) {
+    display: none;
+  }
+
+  @media only screen and (max-width: 1650px) {
+    max-height: 3.8rem;
+  }
+
+  @media only screen and (min-width: ${SCREENS.desktop}px) {
+    margin-block: -0.625rem 0;
+    max-height: 6.8rem;
+  }
 `;
 
 export const StyledLI = styled(FlexRow)`
-  ${width100}
   padding: 0 2rem;
+  margin-bottom: 0.69rem;
   &:before {
     width: 2em;
     content: '●';
@@ -28,7 +42,6 @@ export const StyledLI = styled(FlexRow)`
 `;
 
 export const StyledListContainer = styled(FlexRow)`
-  ${width100}
   font-size: 0.93rem;
   justify-content: space-between;
 `;
@@ -36,8 +49,10 @@ export const StyledListContainer = styled(FlexRow)`
 export const GreySpan = styled.span`
   color: ${COLORS.doughnutGrey};
   font-size: 0.93rem;
+  font-weight: 400;
 `;
 export const BlueSpan = styled.span`
   color: ${COLORS.bluishBlack};
   font-size: 0.875rem;
+  font-weight: 400;
 `;

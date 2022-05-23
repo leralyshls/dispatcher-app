@@ -1,5 +1,7 @@
 import { sources } from './allSources';
 
+export const countryFirstVisit = 'Israel';
+
 export const filters = {
   search: ['Top Headlines', 'Everything'],
   everything: {
@@ -18,10 +20,10 @@ export const filters = {
       'Chinese',
     ],
     sources: sources,
-    sourtBy: ['Relevancy', 'Popularity', 'Published at'],
+    sortBy: ['Relevancy', 'Popularity', 'Published at'],
   },
   topHeadlines: {
-    options: ['Country', 'Category', 'Sources'],
+    filterBy: ['Country', 'Category', 'Sources'],
     country: [
       'United Arab Emirates',
       'Argentina',

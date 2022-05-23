@@ -8,40 +8,35 @@ import {
 import { CardProps } from './CardSecondary';
 
 export const CardSecondaryStyled = styled(CardSharedStyle)`
-  max-width: 25.75rem;
   width: 100%;
-  max-height: 23.75rem;
-  height: 23.75rem;
+  height: 19.69vw;
   flex-direction: column;
   justify-content: space-between;
   padding: 1.56rem 0 1rem;
+  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
 `;
 
 export const TitleContainer = styled(FlexColumn)`
-  width: 100%;
-  height: 15%;
-  justify-content: space-evenly;
   margin-left: 1.56rem;
 `;
 
 export const SecondaryCardTitle = styled.h5`
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 1.25vw, 1.5rem);
   color: ${COLORS.bluishBlack};
+  margin-bottom: 0.4rem;
 `;
 
 export const Underline = styled.div`
-  min-width: 1.25rem;
   width: 1.25rem;
-  min-height: 0.19rem;
   height: 0.19rem;
   border-radius: 0.625rem;
   background: ${COLORS.purple};
 `;
 
 export const BodyContainer = styled(FlexRow)`
-  width: 100%;
   height: 100%;
-  justify-content: center;
+  justify-content: ${(props: CardProps) =>
+    props.children.props.type === 'doughnut' ? 'space-between' : 'center'};
   align-items: ${(props: CardProps) =>
     props.children.props.type === 'area' ? 'flex-end' : 'center'};
 `;

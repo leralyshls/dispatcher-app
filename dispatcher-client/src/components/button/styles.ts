@@ -5,15 +5,15 @@ import { COLORS } from '../../utils/colors';
 
 export const ButtonStyled = styled(Button)`
   && {
-    ${(props: ButtonProps) => `
+    ${({ color }: ButtonProps) => `
       border-radius: 1.25rem;
       font-size: 0.875rem;
-      background: ${props.color ? COLORS[props.color] : 'none'};
-      color: ${props.color === 'primary' ? COLORS.white : COLORS.purple};
+      background: ${color ? COLORS[color] : 'none'};
+      color: ${color === 'primary' ? COLORS.white : COLORS.purple};
       opacity: 1;
       &:hover{
-        opacity: ${props.color && 0.8};
-        background: ${props.color ? COLORS[props.color] : 'none'};
+        opacity: ${color && 0.8};
+        background: ${color ? COLORS[color] : 'none'};
       }
     `}
   }

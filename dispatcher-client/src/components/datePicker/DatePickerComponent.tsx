@@ -27,19 +27,24 @@ const DatePickerComponent: React.FC = () => {
         components={{
           OpenPickerIcon: DateIcon,
         }}
+        PaperProps={{ elevation: 3 }}
+        PopperProps={{ placement: 'right-end' }}
         renderInput={(params) => (
-          <DatesFilterContainer>
+          <DatesFilterContainer onClick={() => setOpen(true)}>
+            {value ? '' : 'Dates'}
             <TextField
               variant='standard'
               {...params}
               inputProps={{
                 ...params.inputProps,
-                placeholder: 'Dates',
+                placeholder: '',
                 readOnly: true,
-                disableUnderline: true,
-                sx: { color: COLORS.purple, cursor: 'pointer' },
+                sx: {
+                  color: COLORS.purple,
+                  cursor: 'pointer',
+                  fontSize: '0.875rem',
+                },
               }}
-              onClick={() => setOpen(true)}
             />
           </DatesFilterContainer>
         )}

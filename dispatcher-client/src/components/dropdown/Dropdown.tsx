@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 
-export interface DropdownProps {
-  placeholder?: string;
-  options: string[];
-  isInSearchBox?: boolean;
+export interface Option {
+  name: string;
+  id: string;
 }
 
-const Dropwdown = ({ placeholder, options, isInSearchBox }: DropdownProps) => {
+export interface DropdownProps {
+  placeholder?: string;
+  options: Option[];
+  insearchbox?: any;
+}
+
+const Dropwdown = ({ placeholder, options, insearchbox }: DropdownProps) => {
   const [value, setValue] = useState<string | null | undefined>(placeholder);
   return (
-    <DropdownContainer options={options} isInSearchBox={isInSearchBox}>
+    <DropdownContainer
+      options={options}
+      insearchbox={insearchbox ? insearchbox.toString() : undefined}
+    >
       <CustomSelect
         value={value ? value : placeholder}
         onChange={setValue}
@@ -20,8 +28,12 @@ const Dropwdown = ({ placeholder, options, isInSearchBox }: DropdownProps) => {
         }
       >
         {options.map((option) => (
-          <StyledOption key={option} value={option} className='font-mullish'>
-            {option}
+          <StyledOption
+            key={option.id}
+            value={option.name}
+            className='font-mulish'
+          >
+            {option.name}
           </StyledOption>
         ))}
       </CustomSelect>

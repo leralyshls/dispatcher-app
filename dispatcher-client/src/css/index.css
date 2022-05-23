@@ -1,20 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
 
-/* will be using later */
 :root {
   --color-dark-purple: #262146;
-  --color-purple: #5a5a89;
-  --color-light-purple: #dfe0eb;
-  --color-primary: #0058b9;
-  --color-secondary: #d9dbe9;
-  --color-light-grey: #f8f8ff;
-  --color-white: #ffffff;
-  --color-text-button-hover: #d9dbe94d;
-  --color-dropdown-hover: #dfe0eb69;
-  --color-bluish-black: #14142b;
 }
-
 *,
 * ::before,
 * ::after {
@@ -26,7 +15,7 @@
   font-size: 16px;
 }
 
-.font-mullish {
+.font-mulish {
   font-family: 'Mulish', 'Roboto', sans-serif;
   font-weight: 400;
 }
