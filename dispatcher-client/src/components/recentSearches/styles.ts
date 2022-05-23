@@ -6,7 +6,6 @@ import { dropdownSharedStyles } from '../../styles/sharedStyles';
 
 export const SearchesContainer = styled(FlexColumn)`
   ${dropdownSharedStyles}
-  position: relative;
   width: 41.44rem;
   max-height: 8.25rem;
   padding: 0.5rem 0 0.5rem 1rem;

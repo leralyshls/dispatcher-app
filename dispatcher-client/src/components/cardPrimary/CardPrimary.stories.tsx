@@ -17,8 +17,8 @@ const Template: ComponentStory<typeof CardPrimary> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   title,
-  urlToImage: urlToImage,
-  publishedAt: publishedAt,
+  urlToImage,
+  publishedAt,
   source: { name: source.name },
-  content: content,
+  content,
 };
