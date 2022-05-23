@@ -1,6 +1,5 @@
 import { COLORS } from '../utils/colors';
 import styled from 'styled-components';
-import MulishFont from '../styles/fonts';
 
 export const FlexColumn = styled.div`
   display: flex;
@@ -37,9 +36,4 @@ export const dropdownSharedStyles = `
   color: ${COLORS.purple};
   overflow: overlay;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-`;
-
-export const fontFamilyMulish = `
-  ${MulishFont}
-  font-family: 'Mulish', sans-serif;
 `;

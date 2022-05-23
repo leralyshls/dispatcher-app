@@ -15,17 +15,20 @@ export interface RecentSearchesProps {
 }
 
 const RecentSearches = ({ history }: RecentSearchesProps) => {
+  const handleRemove = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <SearchesContainer>
       <SearchesHeader>
         <SearchesTitle>Recent searches</SearchesTitle>
-        <Button>Clear</Button>
+        <Button onMouseDown={(e) => handleRemove(e)}>Clear</Button>
       </SearchesHeader>
       <SearchesList>
         {history.map((el) => (
-          <SearchesItem>
-            <SearchesText>{el}</SearchesText>
-            <Button>
+          <SearchesItem key={el}>
+            <SearchesText className='font-mulish'>{el}</SearchesText>
+            <Button onMouseDown={(e) => handleRemove(e)}>
               <StyledClearIcon />
             </Button>
           </SearchesItem>

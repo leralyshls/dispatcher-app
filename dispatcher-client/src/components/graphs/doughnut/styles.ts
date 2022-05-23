@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  FlexRow,
-  FlexColumn,
-  fontFamilyMulish,
-} from '../../../styles/sharedStyles';
+import { FlexRow, FlexColumn } from '../../../styles/sharedStyles';
 import { COLORS } from '../../../utils/colors';
 import { SCREENS } from '../../../utils/screenSizes';
 
@@ -17,14 +13,14 @@ export const StyledUL = styled(FlexColumn)`
   overflow-x: hidden;
   overflow-y: auto;
   margin-block: 0.5em 0;
-  max-height: 3.78rem;
+  max-height: 5.5rem;
 
-  @media only screen and (max-width: ${SCREENS.laptopL - 1}px) {
+  @media only screen and (max-width: ${SCREENS.laptopM}px) {
     display: none;
   }
 
-  @media only screen and (min-width: ${SCREENS.laptopL}px) and (max-width: ${SCREENS.desktop}px) {
-    max-height: 3.78rem;
+  @media only screen and (max-width: 1650px) {
+    max-height: 3.8rem;
   }
 
   @media only screen and (min-width: ${SCREENS.desktop}px) {
@@ -51,13 +47,11 @@ export const StyledListContainer = styled(FlexRow)`
 `;
 
 export const GreySpan = styled.span`
-  ${fontFamilyMulish}
   color: ${COLORS.doughnutGrey};
   font-size: 0.93rem;
   font-weight: 400;
 `;
 export const BlueSpan = styled.span`
-  ${fontFamilyMulish}
   color: ${COLORS.bluishBlack};
   font-size: 0.875rem;
   font-weight: 400;

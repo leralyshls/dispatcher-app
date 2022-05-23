@@ -17,11 +17,17 @@ const SearchBox: React.FC = () => {
     <>
       <SearchContainer isFocused={focused}>
         <InputStyled
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onFocus={() => {
+            setFocused(true);
+            setShowHistory(true);
+          }}
+          onBlur={() => {
+            setFocused(false);
+            setShowHistory(false);
+          }}
           startAdornment={
             <InputAdornment position='start'>
-              <InputIcon />
+              <InputIcon className='input-icon' />
             </InputAdornment>
           }
           placeholder='Search'

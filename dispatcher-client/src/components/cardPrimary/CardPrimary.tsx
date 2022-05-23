@@ -10,7 +10,7 @@ import {
   ArticleContent,
 } from './style';
 import Button from '../button/MainButton';
-import breakingNews from '../../assets/images/breakingNews.png';
+import noImage from '../../assets/images/noImage.png';
 
 export interface CardProps {
   title: string;
@@ -26,7 +26,7 @@ const CardPrimary = (props: CardProps) => {
   return (
     <CardPrimaryStyled>
       <CardImgContainer>
-        <ArticleImg src={urlToImage ? urlToImage : breakingNews} />
+        <ArticleImg src={urlToImage ? urlToImage : noImage} />
       </CardImgContainer>
       <Article>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>

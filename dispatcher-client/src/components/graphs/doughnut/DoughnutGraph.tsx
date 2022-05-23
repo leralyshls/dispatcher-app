@@ -7,7 +7,6 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
-import { COLORS } from '../../../utils/colors';
 import {
   StyledUL,
   StyledLI,
@@ -16,13 +15,19 @@ import {
   StyledListContainer,
 } from './styles';
 import { GraphItem } from '../graph/Graph';
+import useWindowSize from '../../../hooks/useWindowSize';
+import { COLORS } from '../../../utils/colors';
+import { SCREENS } from '../../../utils/screenSizes';
 
 interface DoughnutProps {
   data: GraphItem[];
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
+  const width = useWindowSize();
+  const { tablet, laptopM } = SCREENS;
   const totalSources = data.length;
+
   const renderLegend = (...args: any) => {
     const { payload } = args[0];
     return (
@@ -31,8 +36,10 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           return (
             <StyledLI color={entry.color} key={entry.value}>
               <StyledListContainer>
-                <BlueSpan>{entry.value}</BlueSpan>
-                <GreySpan>{(entry.payload.percent * 100).toFixed(0)}%</GreySpan>
+                <BlueSpan className='font-mulish'>{entry.value}</BlueSpan>
+                <GreySpan className='font-mulish'>
+                  {(entry.payload.percent * 100).toFixed(0)}%
+                </GreySpan>
               </StyledListContainer>
             </StyledLI>
           );
@@ -42,10 +49,10 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
   };
 
   return (
-    <ResponsiveContainer width='100%' height='100%'>
+    <ResponsiveContainer width='100%' height='90%'>
       <PieChart
         margin={{
-          top: 2,
+          top: 0,
           right: 0,
           bottom: 0,
           left: 0,
@@ -53,8 +60,8 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
       >
         <Pie
           data={data}
-          outerRadius={60}
-          innerRadius={50}
+          outerRadius={width > laptopM ? '70%' : '80%'}
+          innerRadius={width > laptopM ? '60%' : '70%'}
           paddingAngle={0}
           dataKey='value'
         >
@@ -67,7 +74,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           ))}
         </Pie>
         <Legend verticalAlign='bottom' content={renderLegend} />
-        <Tooltip />
+        {width < laptopM && width > tablet && <Tooltip />}
       </PieChart>
     </ResponsiveContainer>
   );

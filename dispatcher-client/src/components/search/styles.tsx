@@ -6,7 +6,6 @@ import { FlexRow } from '../../styles/sharedStyles';
 import { isFocused } from './SearchBox';
 
 export const SearchContainer = styled(FlexRow)<isFocused>`
-  position: relative;
   align-items: center;
   flex-wrap: nowrap;
   border-radius: 0.625rem;
