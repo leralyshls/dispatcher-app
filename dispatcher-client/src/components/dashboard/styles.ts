@@ -18,6 +18,7 @@ export const DashboardContent = styled(FlexColumn)`
   width: 100%;
   padding-inline: 12.5%;
   align-self: center;
+  overflow-x: hidden;
 
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
     padding-inline: 1.25rem;

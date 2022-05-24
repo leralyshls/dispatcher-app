@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexRow } from '../../styles/sharedStyles';
 import { filterSharedStyles } from '../../styles/sharedStyles';
-import { COLORS } from '../../utils/colors';
+import { SCREENS } from '../../utils/screenSizes';
 
 export const DatesFilterContainer = styled(FlexRow)`
   ${filterSharedStyles}
@@ -10,4 +10,9 @@ export const DatesFilterContainer = styled(FlexRow)`
   border-radius: 0.625rem;
   padding: 0.93em 1.2em 0.93em 0.93em;
   align-items: center;
+
+  @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
+    padding-inline: 0;
+    width: 4.375rem;
+  }
 `;
