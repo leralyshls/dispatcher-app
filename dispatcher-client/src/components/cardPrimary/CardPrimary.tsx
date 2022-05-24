@@ -26,7 +26,7 @@ const CardPrimary = (props: CardProps) => {
   const isRTL = RTLCheck(title);
   const checkLength = (str: string | null) => {
     if (str && str.length > 145) {
-      return str.slice(0, 145) + '...';
+      return str.slice(0, 145) + ' ...';
     } else return str;
   };
   return (
@@ -36,9 +36,13 @@ const CardPrimary = (props: CardProps) => {
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle isRTL={isRTL}>{title}</ArticleTitle>
+        <ArticleTitle dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
+          {title}
+        </ArticleTitle>
         <ArticleDetailes>{source.name}</ArticleDetailes>
-        <ArticleContent isRTL={isRTL}>{checkLength(content)}</ArticleContent>
+        <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
+          {checkLength(content)}
+        </ArticleContent>
         <CardButtonContainer isRTL={isRTL}>
           <Button icon color={'primary'}>
             Navigate to dispatch

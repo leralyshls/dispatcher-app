@@ -14,6 +14,9 @@ export const StyledNav = styled(FlexRow)`
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     padding-inline: 1rem;
   }
+  @media only screen and (max-width: 500px) {
+    justify-content: space-between;
+  }
 `;
 
 export const LogoBox = styled(FlexRow)`
@@ -21,6 +24,6 @@ export const LogoBox = styled(FlexRow)`
   align-items: center;
 
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
-    width: max(7.32rem, 15.23%);
+    width: max(15.23%, 5rem);
   }
 `;

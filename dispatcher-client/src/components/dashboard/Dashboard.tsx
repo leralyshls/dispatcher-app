@@ -10,7 +10,7 @@ import { SCREENS } from '../../utils/screenSizes';
 
 const Dashboard: React.FC = () => {
   const { width, height } = useWindowSize();
-  const { tabletM } = SCREENS;
+  const { laptopM } = SCREENS;
   return (
     <DashboardContainer>
       <NavBar />
@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
         <PageTitle firstVisit={true} />
         <MainContent isPortrait={height > width ? true : false}>
           <NewsWidget />
-          {width > tabletM && <GraphsArea />}
+          {width > laptopM && <GraphsArea />}
         </MainContent>
       </DashboardContent>
     </DashboardContainer>

@@ -11,23 +11,38 @@ import { SCREENS } from '../../utils/screenSizes';
 const SearchBox: React.FC = () => {
   const [focused, setFocused] = useState<boolean>(false);
   const [showHistory, setShowHistory] = useState<boolean>(false);
+  const [value, setValue] = useState<string>('');
   const { width } = useWindowSize();
   const { tabletM } = SCREENS;
+  const bigMobile = 500;
+
+  const handleClickOutside = () => {
+    setFocused(false);
+    setShowHistory(false);
+    setValue('');
+  };
+  const handleFocus = (e: React.SyntheticEvent) => {
+    if (e.type === 'click' && width > bigMobile) return;
+    setFocused(true);
+    setShowHistory(true);
+  };
+
   return (
     <>
       <SearchContainer isFocused={focused}>
         <InputStyled
-          onFocus={() => {
-            setFocused(true);
-            setShowHistory(true);
-          }}
-          onBlur={() => {
-            setFocused(false);
-            setShowHistory(false);
-          }}
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+          onFocus={(e) => handleFocus(e)}
+          onBlur={handleClickOutside}
           startAdornment={
             <InputAdornment position='start'>
-              <InputIcon className='input-icon' />
+              <InputIcon
+                tabIndex={1}
+                className='input-icon'
+                onClick={(e) => handleFocus(e)}
+                onBlur={handleClickOutside}
+              />
             </InputAdornment>
           }
           placeholder='Search'
@@ -41,6 +56,7 @@ const SearchBox: React.FC = () => {
           />
         )}
       </SearchContainer>
+
       {showHistory && (
         <RecentSearches history={filters.topHeadlines.category} />
       )}

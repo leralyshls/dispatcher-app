@@ -18,7 +18,7 @@ export const CardPrimaryStyled = styled(CardSharedStyle)<isRTL>`
   margin-bottom: 1.5rem;
   box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
 
-  @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+  @media only screen and (max-width: 700px) {
     flex-direction: column;
     max-height: 28.06rem;
   }
@@ -31,14 +31,14 @@ export const CardImgContainer = styled.div`
   @media only screen and (max-width: ${SCREENS.desktop}px) {
     max-width: 15.125rem;
   }
-  @media only screen and (min-width: ${SCREENS.mobileL}px) and (max-width: ${SCREENS.tabletS -
-    1}px) {
+
+  @media only screen and (max-width: 700px) {
     max-width: 100%;
-    max-height: 50%;
+    max-height: 40%;
   }
-  @media only screen and (max-width: ${SCREENS.mobileL - 1}px) {
+  @media only screen and (max-width: 500px) {
     max-width: 100%;
-    max-height: 33.18%;
+    max-height: 33.18;
   }
 `;
 
@@ -54,7 +54,7 @@ export const CardButtonContainer = styled(FlexRow)<isRTL>`
       transform: ${isRTL && 'rotate(180deg)'};
       margin-right: ${isRTL && 0.5}rem;
     }
-    @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+    @media only screen and (max-width: 700px) {
       width: 100%;
     }
   `}
@@ -70,9 +70,14 @@ export const ArticleImg = styled.img<isRTL>`
     border-right: ${!isRTL && `1px solid ${COLORS.secondary}`};
     border-left: ${isRTL && `1px solid ${COLORS.secondary}`};
 
-    @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+    @media only screen and (max-width: 700px) {
       border-radius: 1.25rem 1.25rem 0 0;
       object-position: 0% 25%;
+    }
+    @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid ${COLORS.secondary};
     }
   `}
 `;

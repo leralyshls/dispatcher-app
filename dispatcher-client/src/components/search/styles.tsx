@@ -2,6 +2,7 @@ import { Input } from '@mui/material';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assets/svgs/inputIcon.svg';
 import { COLORS } from '../../utils/colors';
+import { SCREENS } from '../../utils/screenSizes';
 import { FlexRow } from '../../styles/sharedStyles';
 
 export interface isFocused {
@@ -9,6 +10,7 @@ export interface isFocused {
 }
 
 export const SearchContainer = styled(FlexRow)<isFocused>`
+  ${({ isFocused }: isFocused) => `
   align-items: center;
   flex-wrap: nowrap;
   border-radius: 0.625rem;
@@ -16,7 +18,19 @@ export const SearchContainer = styled(FlexRow)<isFocused>`
   padding: 1rem 0 1rem 1.125rem;
   height: 3.125rem;
   transition: all 0.3s ease-out;
-  width: ${({ isFocused }: isFocused) => (isFocused ? 41.44 : 26.44)}rem;
+  width: ${isFocused ? 41.44 : 26.44}rem;
+  @media only screen and (max-width: ${SCREENS.tabletM}px) {
+    width: ${isFocused ? 68 : 58}%;
+  }
+  @media only screen and (max-width: 700px) {
+    width: ${isFocused ? 85 : 75}%;
+  }
+  @media only screen and (max-width: 500px) {
+    width: 75%;
+    background: ${isFocused ? `${COLORS.white}` : `${COLORS.darkPurple}`};
+    width: ${isFocused ? 75 : 7.5}%;
+    padding-inline: ${isFocused ? 'inherit' : 0};
+  `}
 `;
 
 export const InputStyled = styled(Input)`
@@ -31,4 +45,7 @@ export const InputIcon = styled(Icon)`
   max-height: 1.125rem
   width: auto;
   margin-right: 1rem;
+  &:focus {
+    outline: none;
+  }
 `;

@@ -12,7 +12,7 @@ export const CardsContainer = styled(FlexColumn)`
   }
 
   // styles and show custom scrollbar for big screens
-  @media only screen and (min-width: ${SCREENS.tabletM + 1}px) {
+  @media only screen and (min-width: ${SCREENS.laptopM + 1}px) {
     width: 70.35%;
     padding-right: 0.93rem;
 
