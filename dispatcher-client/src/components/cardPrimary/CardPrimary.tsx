@@ -11,6 +11,7 @@ import {
 } from './style';
 import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
+import RTLCheck from '../../helpers/isRTL';
 
 export interface CardProps {
   title: string;
@@ -22,18 +23,23 @@ export interface CardProps {
 
 const CardPrimary = (props: CardProps) => {
   const { urlToImage, title, source, content, publishedAt } = props;
-
+  const isRTL = RTLCheck(title);
+  const checkLength = (str: string | null) => {
+    if (str && str.length > 145) {
+      return str.slice(0, 145) + '...';
+    } else return str;
+  };
   return (
-    <CardPrimaryStyled>
+    <CardPrimaryStyled isRTL={isRTL}>
       <CardImgContainer>
-        <ArticleImg src={urlToImage ? urlToImage : noImage} />
+        <ArticleImg isRTL={isRTL} src={urlToImage ? urlToImage : noImage} />
       </CardImgContainer>
-      <Article>
+      <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle>{title}</ArticleTitle>
+        <ArticleTitle isRTL={isRTL}>{title}</ArticleTitle>
         <ArticleDetailes>{source.name}</ArticleDetailes>
-        <ArticleContent>{content}</ArticleContent>
-        <CardButtonContainer>
+        <ArticleContent isRTL={isRTL}>{checkLength(content)}</ArticleContent>
+        <CardButtonContainer isRTL={isRTL}>
           <Button icon color={'primary'}>
             Navigate to dispatch
           </Button>

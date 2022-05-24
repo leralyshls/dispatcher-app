@@ -15,6 +15,9 @@ export interface DropdownProps {
 
 const Dropwdown = ({ placeholder, options, insearchbox }: DropdownProps) => {
   const [value, setValue] = useState<string | null | undefined>(placeholder);
+  const handleFilterChange = (newValue: string | null | undefined) => {
+    setValue(newValue);
+  };
   return (
     <DropdownContainer
       options={options}
@@ -22,7 +25,7 @@ const Dropwdown = ({ placeholder, options, insearchbox }: DropdownProps) => {
     >
       <CustomSelect
         value={value ? value : placeholder}
-        onChange={setValue}
+        onChange={handleFilterChange}
         renderValue={(item: SelectOption<string> | null) =>
           item != null ? item.label : placeholder
         }

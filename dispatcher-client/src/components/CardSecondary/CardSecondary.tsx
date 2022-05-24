@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  CardSecondaryStyled,
   TitleContainer,
-  SecondaryCardTitle,
   Underline,
-  BodyContainer,
+  CardSecondaryStyled,
+  CardSecondaryTitle,
+  CardSecondaryBody,
 } from './style';
 
 export interface CardProps {
@@ -16,10 +16,10 @@ const CardSecondary = ({ children, title }: CardProps) => {
   return (
     <CardSecondaryStyled>
       <TitleContainer>
-        <SecondaryCardTitle>{title}</SecondaryCardTitle>
+        <CardSecondaryTitle>{title}</CardSecondaryTitle>
         <Underline />
       </TitleContainer>
-      <BodyContainer>{children}</BodyContainer>
+      <CardSecondaryBody>{children}</CardSecondaryBody>
     </CardSecondaryStyled>
   );
 };

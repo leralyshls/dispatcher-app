@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
   component: PageTitle,
-  title: 'pageTitle',
+  title: 'PageTitle',
 } as ComponentMeta<typeof PageTitle>;
 
 const Template: ComponentStory<typeof PageTitle> = (args) => (

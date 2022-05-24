@@ -2,6 +2,7 @@ import React from 'react';
 import { CardsContainer } from './styles';
 import CardPrimary from '../../../cardPrimary/CardPrimary';
 import topHeadlinesPage from '../../../../mockData/topHeadlinesPage1.json';
+import everything from '../../../../mockData/everything.json';
 
 const NewsWidget: React.FC = () => {
   return (

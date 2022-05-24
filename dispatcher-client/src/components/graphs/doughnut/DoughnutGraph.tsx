@@ -24,8 +24,8 @@ interface DoughnutProps {
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
-  const width = useWindowSize();
-  const { tablet, laptopM } = SCREENS;
+  const { width } = useWindowSize();
+  const { tabletM, laptopM } = SCREENS;
   const totalSources = data.length;
 
   const renderLegend = (...args: any) => {
@@ -74,7 +74,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           ))}
         </Pie>
         <Legend verticalAlign='bottom' content={renderLegend} />
-        {width < laptopM && width > tablet && <Tooltip />}
+        {width < laptopM && width > tabletM && <Tooltip />}
       </PieChart>
     </ResponsiveContainer>
   );

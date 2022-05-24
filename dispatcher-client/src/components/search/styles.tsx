@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assets/svgs/inputIcon.svg';
 import { COLORS } from '../../utils/colors';
 import { FlexRow } from '../../styles/sharedStyles';
-import { isFocused } from './SearchBox';
+
+export interface isFocused {
+  isFocused?: boolean;
+}
 
 export const SearchContainer = styled(FlexRow)<isFocused>`
   align-items: center;

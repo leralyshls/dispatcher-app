@@ -15,7 +15,8 @@ export interface RecentSearchesProps {
 }
 
 const RecentSearches = ({ history }: RecentSearchesProps) => {
-  const handleRemove = (e: any) => {
+  const handleRemove = (e: React.SyntheticEvent) => {
+    console.log(e.target);
     e.preventDefault();
   };
   return (

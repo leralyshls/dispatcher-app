@@ -5,14 +5,14 @@ import Dropdown from '../dropdown/Dropdown';
 import { searchInStrings } from '../../strings/filterStrings/filterStrings';
 import RecentSearches from '../../components/recentSearches/RecentSearches';
 import { filters } from '../../mockData/filterStrings';
-
-export interface isFocused {
-  isFocused?: boolean;
-}
+import useWindowSize from '../../hooks/useWindowSize';
+import { SCREENS } from '../../utils/screenSizes';
 
 const SearchBox: React.FC = () => {
   const [focused, setFocused] = useState<boolean>(false);
   const [showHistory, setShowHistory] = useState<boolean>(false);
+  const { width } = useWindowSize();
+  const { tabletM } = SCREENS;
   return (
     <>
       <SearchContainer isFocused={focused}>
@@ -33,11 +33,13 @@ const SearchBox: React.FC = () => {
           placeholder='Search'
           disableUnderline
         />
-        <Dropdown
-          options={searchInStrings}
-          insearchbox={true}
-          placeholder={searchInStrings[0].name}
-        />
+        {width > tabletM && (
+          <Dropdown
+            options={searchInStrings}
+            insearchbox={true}
+            placeholder={searchInStrings[0].name}
+          />
+        )}
       </SearchContainer>
       {showHistory && (
         <RecentSearches history={filters.topHeadlines.category} />
