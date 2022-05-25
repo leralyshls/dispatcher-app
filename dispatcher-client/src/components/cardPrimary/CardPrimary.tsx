@@ -12,6 +12,7 @@ import {
 import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
 import RTLCheck from '../../helpers/isRTL';
+import cropString from '../../helpers/cropString';
 
 export interface CardProps {
   title: string;
@@ -24,11 +25,6 @@ export interface CardProps {
 const CardPrimary = (props: CardProps) => {
   const { urlToImage, title, source, content, publishedAt } = props;
   const isRTL = RTLCheck(title);
-  const checkLength = (str: string | null) => {
-    if (str && str.length > 145) {
-      return str.slice(0, 145) + ' ...';
-    } else return str;
-  };
   return (
     <CardPrimaryStyled isRTL={isRTL}>
       <CardImgContainer>
@@ -41,7 +37,7 @@ const CardPrimary = (props: CardProps) => {
         </ArticleTitle>
         <ArticleDetailes>{source.name}</ArticleDetailes>
         <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
-          {checkLength(content)}
+          {cropString(content)}
         </ArticleContent>
         <CardButtonContainer isRTL={isRTL}>
           <Button icon color={'primary'}>
