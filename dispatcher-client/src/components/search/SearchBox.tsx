@@ -13,8 +13,7 @@ const SearchBox: React.FC = () => {
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
   const { width } = useWindowSize();
-  const { tabletM } = SCREENS;
-  const bigMobile = 500;
+  const { tabletM, breakpoint500 } = SCREENS;
 
   const handleClickOutside = () => {
     setFocused(false);
@@ -22,7 +21,7 @@ const SearchBox: React.FC = () => {
     setValue('');
   };
   const handleFocus = (e: React.SyntheticEvent) => {
-    if (e.type === 'click' && width > bigMobile) return;
+    if (e.type === 'click' && width > breakpoint500) return;
     setFocused(true);
     setShowHistory(true);
   };

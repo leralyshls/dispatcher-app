@@ -8,4 +8,6 @@ export const SCREENS = {
   laptopM: 1200,
   laptopL: 1440,
   desktop: 1900,
+  breakpoint700: 700,
+  breakpoint500: 500,
 };
