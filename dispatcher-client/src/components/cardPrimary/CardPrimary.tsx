@@ -19,7 +19,7 @@ export interface CardProps {
   urlToImage: string | null;
   publishedAt: string;
   source: { name: string };
-  content: string | null;
+  content: ReturnType<typeof cropString>;
 }
 
 const CardPrimary = (props: CardProps) => {

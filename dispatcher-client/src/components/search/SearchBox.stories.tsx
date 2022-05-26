@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import SearchBox from './SearchBox';
-import { filters } from '../../mockData/filterStrings';
 
 export default {
   title: 'SearchBox',

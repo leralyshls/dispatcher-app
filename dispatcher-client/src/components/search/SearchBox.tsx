@@ -1,40 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import useDebounce from '../../hooks/useDebounce';
 import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { InputAdornment } from '@mui/material';
 import Dropdown from '../dropdown/Dropdown';
 import { searchInStrings } from '../../strings/filterStrings/filterStrings';
 import RecentSearches from '../../components/recentSearches/RecentSearches';
-import { filters } from '../../mockData/filterStrings';
+import {
+  getSearchHistory,
+  addToSearchHistory,
+} from '../../helpers/localStorageUse';
 import useWindowSize from '../../hooks/useWindowSize';
 import { SCREENS } from '../../utils/screenSizes';
 
 const SearchBox: React.FC = () => {
   const [focused, setFocused] = useState<boolean>(false);
   const [showHistory, setShowHistory] = useState<boolean>(false);
-  const [value, setValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
+  const [searchHistory, setSearchHistory] = useState<string[]>(
+    getSearchHistory()
+  );
+
+  const debouncedInputValue = useDebounce<string>(inputValue, 1200);
   const { width } = useWindowSize();
   const { tabletM } = SCREENS;
   const bigMobile = 500;
 
+  useEffect(() => {
+    addToSearchHistory(debouncedInputValue.trim());
+    setSearchHistory(getSearchHistory());
+  }, [debouncedInputValue]);
+
   const handleClickOutside = () => {
     setFocused(false);
     setShowHistory(false);
-    setValue('');
+    setInputValue('');
   };
   const handleFocus = (e: React.SyntheticEvent) => {
     if (e.type === 'click' && width > bigMobile) return;
     setFocused(true);
     setShowHistory(true);
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+  const handleKeyPress = (e: React.KeyboardEvent, value: string) => {
+    if (e.key === 'Enter') {
+      addToSearchHistory(value.trim());
+      setSearchHistory(getSearchHistory());
+    }
+  };
 
   return (
     <>
       <SearchContainer isFocused={focused}>
         <InputStyled
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
+          onChange={handleChange}
+          value={inputValue}
           onFocus={(e) => handleFocus(e)}
           onBlur={handleClickOutside}
+          onKeyPress={(e) => handleKeyPress(e, inputValue)}
           startAdornment={
             <InputAdornment position='start'>
               <InputIcon
@@ -57,8 +81,12 @@ const SearchBox: React.FC = () => {
         )}
       </SearchContainer>
 
-      {showHistory && (
-        <RecentSearches history={filters.topHeadlines.category} />
+      {showHistory && searchHistory.length && (
+        <RecentSearches
+          history={searchHistory}
+          setHistory={setSearchHistory}
+          setInputValue={setInputValue}
+        />
       )}
     </>
   );
