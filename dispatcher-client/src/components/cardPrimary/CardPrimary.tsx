@@ -22,7 +22,7 @@ export interface CardProps {
   content: ReturnType<typeof cropString>;
 }
 
-const CardPrimary = (props: CardProps) => {
+const CardPrimary = React.forwardRef((props: CardProps, ref: any) => {
   const { urlToImage, title, source, content, publishedAt } = props;
   const isRTL = RTLCheck(title);
   return (
@@ -36,7 +36,7 @@ const CardPrimary = (props: CardProps) => {
           {title}
         </ArticleTitle>
         <ArticleDetailes>{source.name}</ArticleDetailes>
-        <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
+        <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL} ref={ref}>
           {cropString(content)}
         </ArticleContent>
         <CardButtonContainer isRTL={isRTL}>
@@ -47,6 +47,6 @@ const CardPrimary = (props: CardProps) => {
       </Article>
     </CardPrimaryStyled>
   );
-};
+});
 
 export default CardPrimary;
