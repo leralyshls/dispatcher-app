@@ -5,11 +5,7 @@ import { COLORS } from '../../utils/colors';
 import { SCREENS } from '../../utils/screenSizes';
 import { FlexRow } from '../../styles/sharedStyles';
 
-export interface isFocused {
-  isFocused?: boolean;
-}
-
-export const SearchContainer = styled(FlexRow)<isFocused>`
+export const SearchContainer = styled(FlexRow)<{ isFocused: boolean }>`
   ${({ isFocused }) => `
   align-items: center;
   flex-wrap: nowrap;

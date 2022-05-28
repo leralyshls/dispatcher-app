@@ -7,11 +7,7 @@ import {
 } from '../../styles/sharedStyles';
 import { SCREENS } from '../../utils/screenSizes';
 
-export interface isRTL {
-  isRTL?: boolean;
-}
-
-export const CardPrimaryStyled = styled(CardSharedStyle)<isRTL>`
+export const CardPrimaryStyled = styled(CardSharedStyle)<{ isRTL: boolean }>`
   flex-direction: ${({ isRTL }) => (isRTL ? 'row-reverse' : 'row')};
   width: 100%;
   min-height: max(12.6vw, 15.125rem);
@@ -42,7 +38,7 @@ export const CardImgContainer = styled.div`
   }
 `;
 
-export const CardButtonContainer = styled(FlexRow)<isRTL>`
+export const CardButtonContainer = styled(FlexRow)<{ isRTL: boolean }>`
   ${({ isRTL }) => `
     max-height: 2.25rem;
     justify-content: ${isRTL ? 'flex-start' : 'flex-end'};
@@ -60,7 +56,7 @@ export const CardButtonContainer = styled(FlexRow)<isRTL>`
   `}
 `;
 
-export const ArticleImg = styled.img<isRTL>`
+export const ArticleImg = styled.img<{ isRTL: boolean }>`
   ${({ isRTL }) => `
     width: 100%;
     height: 100%;
@@ -82,7 +78,7 @@ export const ArticleImg = styled.img<isRTL>`
   `}
 `;
 
-export const Article = styled(FlexColumn)<isRTL>`
+export const Article = styled(FlexColumn)<{ isRTL: boolean }>`
   flex: 3;
   height: 100%;
   align-items: space-between;
@@ -103,13 +99,13 @@ export const ArticleDetailes = styled.p`
   opacity: 0.5;
 `;
 
-export const ArticleTitle = styled.h6<isRTL>`
+export const ArticleTitle = styled.h6<{ isRTL: boolean }>`
   color: ${COLORS.bluishBlack};
   font-size: 1.125rem;
   text-align: ${({ isRTL }) => isRTL && 'right'};
 `;
 
-export const ArticleContent = styled.section<isRTL>`
+export const ArticleContent = styled.section<{ isRTL: boolean }>`
   color: ${COLORS.purple};
   font-size: 0.875rem;
   text-align: ${({ isRTL }) => isRTL && 'right'};
