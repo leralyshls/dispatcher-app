@@ -4,7 +4,7 @@ export const topHeadlinesStrings = [
   {
     name: 'Country',
     options: [
-      { name: 'United Arab Emirates', id: 'ae' },
+      { name: 'UAE', id: 'ae' },
       { name: 'Argentina', id: 'ar' },
       { name: 'Austria', id: 'at' },
       { name: 'Australia', id: 'au' },
@@ -30,7 +30,7 @@ export const topHeadlinesStrings = [
       { name: 'India', id: 'in' },
       { name: 'Italy', id: 'it' },
       { name: 'Japan', id: 'jp' },
-      { name: 'Korea (the Republic of)', id: 'kr' },
+      { name: 'Korea', id: 'kr' },
       { name: 'Lithuania', id: 'lt' },
       { name: 'Latvia', id: 'lv' },
       { name: 'Morocco', id: 'ma' },

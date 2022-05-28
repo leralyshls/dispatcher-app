@@ -1,7 +1,6 @@
 import SearchBox from '../search/SearchBox';
 import Logo from '../logo/Logo';
 import { StyledNav, LogoBox } from './styles';
-import React from 'react';
 
 const NavBar: React.FC = () => {
   return (

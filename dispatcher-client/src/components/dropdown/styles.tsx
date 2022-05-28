@@ -9,6 +9,7 @@ import OptionUnstyled, {
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 import { COLORS } from '../../utils/colors';
+import { SCREENS } from '../../utils/screenSizes';
 import dropdownArrow from '../../assets/svgs/dropdownArrow.svg';
 import { DropdownProps } from './Dropdown';
 import {
@@ -23,6 +24,9 @@ export const DropdownContainer = styled('div')`
     border-radius: ${!insearchbox && '0.625rem'};
     margin-right: ${insearchbox && 0.625}rem;
     border-left: ${insearchbox && `1px solid ${COLORS.lightPurple}`};
+    @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
+      width: fit-content;
+    };
   `}
 `;
 
@@ -48,6 +52,13 @@ const StyledButton = styled('button')`
     float: right;
     transition: transform 0.3s ease-out;
     margin-left: 1rem;
+
+    @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
+      margin-left: 0.5rem;
+    }
+  }
+  @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
+    padding-inline: 0;
   }
 `;
 

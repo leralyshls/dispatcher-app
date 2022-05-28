@@ -1,5 +1,5 @@
-import { COLORS } from '../utils/colors';
 import styled from 'styled-components';
+import { COLORS } from '../utils/colors';
 
 export const FlexColumn = styled.div`
   display: flex;

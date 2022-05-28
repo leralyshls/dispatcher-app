@@ -20,7 +20,7 @@ export const TitleContainer = styled(FlexColumn)`
   margin-left: 1.56rem;
 `;
 
-export const SecondaryCardTitle = styled.h5`
+export const CardSecondaryTitle = styled.h5`
   font-size: clamp(1.25rem, 1.25vw, 1.5rem);
   color: ${COLORS.bluishBlack};
   margin-bottom: 0.4rem;
@@ -33,7 +33,7 @@ export const Underline = styled.div`
   background: ${COLORS.purple};
 `;
 
-export const BodyContainer = styled(FlexRow)`
+export const CardSecondaryBody = styled(FlexRow)`
   height: 100%;
   justify-content: ${(props: CardProps) =>
     props.children.props.type === 'doughnut' ? 'space-between' : 'center'};

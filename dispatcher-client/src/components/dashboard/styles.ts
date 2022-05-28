@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { FlexColumn, FlexRow } from '../../styles/sharedStyles';
 import { COLORS } from '../../utils/colors';
+import { SCREENS } from '../../utils/screenSizes';
+
+export interface isPortrait {
+  isPortrait?: boolean;
+}
 
 export const DashboardContainer = styled(FlexColumn)`
   max-width: 100vw;
@@ -11,11 +16,20 @@ export const DashboardContainer = styled(FlexColumn)`
 export const DashboardContent = styled(FlexColumn)`
   margin-top: 4.625rem;
   width: 100%;
-  padding: 0 12.5%;
+  padding-inline: 12.5%;
   align-self: center;
+  overflow-x: hidden;
+
+  @media only screen and (max-width: ${SCREENS.tabletM}px) {
+    padding-inline: 1.25rem;
+  }
+  @media only screen and (max-width: ${SCREENS.mobileL}px) {
+    padding-inline: 1rem;
+  }
 `;
 
-export const MainContent = styled(FlexRow)`
-  height: 60vw;
+export const MainContent = styled(FlexRow)<isPortrait>`
+  height: ${({ isPortrait }: isPortrait) =>
+    isPortrait ? 'fit-content' : '60vw'};
   gap: 0.94rem;
 `;

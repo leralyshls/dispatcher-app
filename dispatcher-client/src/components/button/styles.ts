@@ -11,6 +11,10 @@ export const ButtonStyled = styled(Button)`
       background: ${color ? COLORS[color] : 'none'};
       color: ${color === 'primary' ? COLORS.white : COLORS.purple};
       opacity: 1;
+      
+      @media only screen and (max-width: 300px) {
+        font-size: 0.75rem;
+      }
       &:hover{
         opacity: ${color && 0.8};
         background: ${color ? COLORS[color] : 'none'};

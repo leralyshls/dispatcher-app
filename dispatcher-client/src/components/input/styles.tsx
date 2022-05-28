@@ -12,7 +12,5 @@ export const InputStyled = styled(Input)`
 `;
 
 export const InputIcon = styled(Icon)`
-  max-height: 1.125rem
-  width: auto;
   margin-right: 1rem;
 `;

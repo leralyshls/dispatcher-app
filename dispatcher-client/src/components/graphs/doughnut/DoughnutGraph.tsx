@@ -5,7 +5,6 @@ import {
   Cell,
   Label,
   ResponsiveContainer,
-  Tooltip,
 } from 'recharts';
 import {
   StyledUL,
@@ -15,17 +14,13 @@ import {
   StyledListContainer,
 } from './styles';
 import { GraphItem } from '../graph/Graph';
-import useWindowSize from '../../../hooks/useWindowSize';
 import { COLORS } from '../../../utils/colors';
-import { SCREENS } from '../../../utils/screenSizes';
 
 interface DoughnutProps {
   data: GraphItem[];
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
-  const width = useWindowSize();
-  const { tablet, laptopM } = SCREENS;
   const totalSources = data.length;
 
   const renderLegend = (...args: any) => {
@@ -60,8 +55,8 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
       >
         <Pie
           data={data}
-          outerRadius={width > laptopM ? '70%' : '80%'}
-          innerRadius={width > laptopM ? '60%' : '70%'}
+          outerRadius={'70%'}
+          innerRadius={'60%'}
           paddingAngle={0}
           dataKey='value'
         >
@@ -74,7 +69,6 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           ))}
         </Pie>
         <Legend verticalAlign='bottom' content={renderLegend} />
-        {width < laptopM && width > tablet && <Tooltip />}
       </PieChart>
     </ResponsiveContainer>
   );
