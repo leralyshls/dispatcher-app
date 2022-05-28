@@ -5,12 +5,8 @@ import { COLORS } from '../../utils/colors';
 import { SCREENS } from '../../utils/screenSizes';
 import { FlexRow } from '../../styles/sharedStyles';
 
-export interface isFocused {
-  isFocused?: boolean;
-}
-
-export const SearchContainer = styled(FlexRow)<isFocused>`
-  ${({ isFocused }: isFocused) => `
+export const SearchContainer = styled(FlexRow)<{ isFocused: boolean }>`
+  ${({ isFocused }) => `
   align-items: center;
   flex-wrap: nowrap;
   border-radius: 0.625rem;
@@ -22,10 +18,10 @@ export const SearchContainer = styled(FlexRow)<isFocused>`
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
     width: ${isFocused ? 68 : 58}%;
   }
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
     width: ${isFocused ? 85 : 75}%;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: ${SCREENS.breakpoint500}px) {
     width: 75%;
     background: ${isFocused ? `${COLORS.white}` : `${COLORS.darkPurple}`};
     width: ${isFocused ? 75 : 7.5}%;

@@ -22,8 +22,7 @@ const SearchBox: React.FC = () => {
 
   const debouncedInputValue = useDebounce<string>(inputValue, 1200);
   const { width } = useWindowSize();
-  const { tabletM } = SCREENS;
-  const bigMobile = 500;
+  const { tabletM, breakpoint500 } = SCREENS;
 
   useEffect(() => {
     addToSearchHistory(debouncedInputValue.trim());
@@ -36,7 +35,7 @@ const SearchBox: React.FC = () => {
     setInputValue('');
   };
   const handleFocus = (e: React.SyntheticEvent) => {
-    if (e.type === 'click' && width > bigMobile) return;
+    if (e.type === 'click' && width > breakpoint500) return;
     setFocused(true);
     setShowHistory(true);
   };
