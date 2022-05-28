@@ -14,7 +14,7 @@ export const StyledNav = styled(FlexRow)`
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     padding-inline: 1rem;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: ${SCREENS.breakpoint500}px) {
     justify-content: space-between;
   }
 `;

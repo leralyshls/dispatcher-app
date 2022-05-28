@@ -12,19 +12,21 @@ import {
 import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
 import RTLCheck from '../../helpers/isRTL';
-import cropString from '../../helpers/cropString';
+import cropCardContent from '../../helpers/cropCardContent';
+import useWindowSize from '../../hooks/useWindowSize';
 
 export interface CardProps {
   title: string;
   urlToImage: string | null;
   publishedAt: string;
   source: { name: string };
-  content: ReturnType<typeof cropString>;
+  content: string | null;
 }
 
 const CardPrimary = React.forwardRef((props: CardProps, ref: any) => {
   const { urlToImage, title, source, content, publishedAt } = props;
   const isRTL = RTLCheck(title);
+  const { width } = useWindowSize();
   return (
     <CardPrimaryStyled isRTL={isRTL}>
       <CardImgContainer>
@@ -37,7 +39,7 @@ const CardPrimary = React.forwardRef((props: CardProps, ref: any) => {
         </ArticleTitle>
         <ArticleDetailes>{source.name}</ArticleDetailes>
         <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL} ref={ref}>
-          {cropString(content)}
+          {content ? cropCardContent(content, width) : ''}
         </ArticleContent>
         <CardButtonContainer isRTL={isRTL}>
           <Button icon color={'primary'}>

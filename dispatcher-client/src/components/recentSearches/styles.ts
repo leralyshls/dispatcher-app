@@ -18,11 +18,11 @@ export const SearchesContainer = styled(FlexColumn)`
     width: 65%;
     left: 16.5%;
   }
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
     width: 80%;
     left: 17%;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: ${SCREENS.breakpoint500}px) {
     width: 69%;
     left: 27%;
   }
