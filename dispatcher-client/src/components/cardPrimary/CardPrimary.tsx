@@ -23,32 +23,34 @@ export interface CardProps {
   content: string | null;
 }
 
-const CardPrimary = React.forwardRef((props: CardProps, ref: any) => {
-  const { urlToImage, title, source, content, publishedAt } = props;
-  const isRTL = RTLCheck(title);
-  const { width } = useWindowSize();
-  return (
-    <CardPrimaryStyled isRTL={isRTL}>
-      <CardImgContainer>
-        <ArticleImg isRTL={isRTL} src={urlToImage ? urlToImage : noImage} />
-      </CardImgContainer>
-      <Article isRTL={isRTL}>
-        <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
-          {title}
-        </ArticleTitle>
-        <ArticleDetailes>{source.name}</ArticleDetailes>
-        <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL} ref={ref}>
-          {content ? cropCardContent(content, width) : ''}
-        </ArticleContent>
-        <CardButtonContainer isRTL={isRTL}>
-          <Button icon color={'primary'}>
-            Navigate to dispatch
-          </Button>
-        </CardButtonContainer>
-      </Article>
-    </CardPrimaryStyled>
-  );
-});
+const CardPrimary = React.forwardRef(
+  (props: CardProps, ref: React.ForwardedRef<HTMLElement>) => {
+    const { urlToImage, title, source, content, publishedAt } = props;
+    const isRTL = RTLCheck(title);
+    const { width } = useWindowSize();
+    return (
+      <CardPrimaryStyled isRTL={isRTL}>
+        <CardImgContainer>
+          <ArticleImg isRTL={isRTL} src={urlToImage ? urlToImage : noImage} />
+        </CardImgContainer>
+        <Article isRTL={isRTL}>
+          <ArticleDetailes>{publishedAt}</ArticleDetailes>
+          <ArticleTitle dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
+            {title}
+          </ArticleTitle>
+          <ArticleDetailes>{source.name}</ArticleDetailes>
+          <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL} ref={ref}>
+            {content ? cropCardContent(content, width) : ''}
+          </ArticleContent>
+          <CardButtonContainer isRTL={isRTL}>
+            <Button icon color={'primary'}>
+              Navigate to dispatch
+            </Button>
+          </CardButtonContainer>
+        </Article>
+      </CardPrimaryStyled>
+    );
+  }
+);
 
 export default CardPrimary;
