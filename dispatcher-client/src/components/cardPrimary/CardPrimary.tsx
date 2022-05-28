@@ -11,8 +11,8 @@ import {
 } from './style';
 import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
-import RTLCheck from '../../helpers/isRTL';
-import cropCardContent from '../../helpers/cropCardContent';
+import RTLCheck from '../../utils/helperFunctions/isRTL';
+import cropCardContent from '../../utils/helperFunctions/cropCardContent';
 import useWindowSize from '../../hooks/useWindowSize';
 
 export interface CardProps {
@@ -20,7 +20,7 @@ export interface CardProps {
   urlToImage: string | null;
   publishedAt: string;
   source: { name: string };
-  content: ReturnType<typeof cropString>;
+  content: string | null;
 }
 
 const CardPrimary = (props: CardProps) => {

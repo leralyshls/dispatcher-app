@@ -8,9 +8,9 @@ import RecentSearches from '../../components/recentSearches/RecentSearches';
 import {
   getSearchHistory,
   addToSearchHistory,
-} from '../../helpers/localStorageUse';
+} from '../../utils/helperFunctions/localStorageUse';
 import useWindowSize from '../../hooks/useWindowSize';
-import { SCREENS } from '../../utils/screenSizes';
+import { SCREENS } from '../../utils/constants/screenSizes';
 
 const SearchBox: React.FC = () => {
   const [focused, setFocused] = useState<boolean>(false);

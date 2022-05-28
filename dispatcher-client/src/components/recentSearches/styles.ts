@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexRow, FlexColumn } from '../../styles/sharedStyles';
-import { COLORS } from '../../utils/colors';
-import { SCREENS } from '../../utils/screenSizes';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 import { ReactComponent as Clear } from '../../assets/svgs/clearIcon.svg';
 import { dropdownSharedStyles } from '../../styles/sharedStyles';
 
@@ -63,6 +63,5 @@ export const SearchesText = styled(FlexColumn)`
 `;
 
 export const StyledClearIcon = styled(Clear)`
-  height: 1rem;
-  // width: auto;
+  height: 0.7rem;
 `;

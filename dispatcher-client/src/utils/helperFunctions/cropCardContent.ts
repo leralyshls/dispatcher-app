@@ -1,4 +1,4 @@
-import { SCREENS } from '../utils/screenSizes';
+import { SCREENS } from '../constants/screenSizes';
 
 const { breakpoint700 } = SCREENS;
 

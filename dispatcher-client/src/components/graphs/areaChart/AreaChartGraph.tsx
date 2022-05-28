@@ -1,5 +1,5 @@
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
-import { COLORS } from '../../../utils/colors';
+import { COLORS } from '../../../utils/constants/colors';
 import { GraphItem } from '../graph/Graph';
 
 interface AreaProps {

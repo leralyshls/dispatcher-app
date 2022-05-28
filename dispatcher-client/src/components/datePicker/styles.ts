@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexRow } from '../../styles/sharedStyles';
 import { filterSharedStyles } from '../../styles/sharedStyles';
-import { SCREENS } from '../../utils/screenSizes';
+import { SCREENS } from '../../utils/constants/screenSizes';
 
 export const DatesFilterContainer = styled(FlexRow)`
   ${filterSharedStyles}

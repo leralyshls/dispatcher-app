@@ -1,8 +1,8 @@
 import { Input } from '@mui/material';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from '../../assets/svgs/inputIcon.svg';
-import { COLORS } from '../../utils/colors';
-import { SCREENS } from '../../utils/screenSizes';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 import { FlexRow } from '../../styles/sharedStyles';
 
 export const SearchContainer = styled(FlexRow)<{ isFocused: boolean }>`

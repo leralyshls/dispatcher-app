@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { ButtonProps } from './MainButton';
-import { COLORS } from '../../utils/colors';
+import { COLORS } from '../../utils/constants/colors';
 
 export const ButtonStyled = styled(Button)`
   && {

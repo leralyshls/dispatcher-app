@@ -8,8 +8,8 @@ import OptionUnstyled, {
 } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
-import { COLORS } from '../../utils/colors';
-import { SCREENS } from '../../utils/screenSizes';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 import dropdownArrow from '../../assets/svgs/dropdownArrow.svg';
 import { DropdownProps } from './Dropdown';
 import {
