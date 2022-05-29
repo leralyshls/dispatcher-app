@@ -23,7 +23,7 @@ export const CardPrimaryStyled = styled(CardSharedStyle)<{ isRTL: boolean }>`
 export const CardImgContainer = styled.div`
   flex: 3;
   max-width: 18rem;
-  height: 100%;
+  min-height: 100%;
   @media only screen and (max-width: ${SCREENS.desktop}px) {
     max-width: 15.125rem;
   }
@@ -80,7 +80,7 @@ export const ArticleImg = styled.img<{ isRTL: boolean }>`
 
 export const Article = styled(FlexColumn)<{ isRTL: boolean }>`
   flex: 3;
-  height: 100%;
+  min-height: 100%;
   align-items: space-between;
   justify-content: space-between;
   padding: 1rem;
