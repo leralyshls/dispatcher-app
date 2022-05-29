@@ -35,22 +35,20 @@ const CardPrimary = (props: CardProps) => {
   const sourceString = author ? `${author}, ${source.name}` : `${source.name}`;
   const replacementChar = '�';
   return (
-    <CardPrimaryStyled isRTL={isRTL}>
+    <CardPrimaryStyled>
       <CardImgContainer>
-        <ArticleImg isRTL={isRTL} src={urlToImage ? urlToImage : noImage} />
+        <ArticleImg src={urlToImage ? urlToImage : noImage} />
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle dir={direction} isRTL={isRTL}>
-          {title}
-        </ArticleTitle>
+        <ArticleTitle> {title}</ArticleTitle>
         <ArticleDetailes dir={direction}>{sourceString}</ArticleDetailes>
-        <ArticleContent dir={direction} isRTL={isRTL}>
+        <ArticleContent dir={direction}>
           {content && !content.includes(replacementChar)
             ? cropCardContent(content, width)
             : ''}
         </ArticleContent>
-        <CardButtonContainer isRTL={isRTL}>
+        <CardButtonContainer>
           <Button icon color={'primary'}>
             Navigate to dispatch
           </Button>

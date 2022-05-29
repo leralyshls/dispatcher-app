@@ -7,8 +7,8 @@ import {
   FlexRow,
 } from '../../styles/sharedStyles';
 
-export const CardPrimaryStyled = styled(CardSharedStyle)<{ isRTL: boolean }>`
-  flex-direction: ${({ isRTL }) => (isRTL ? 'row-reverse' : 'row')};
+export const CardPrimaryStyled = styled(CardSharedStyle)`
+  flex-direction: row;
   width: 100%;
   min-height: max(12.6vw, 15.125rem);
   margin-bottom: 1.5rem;
@@ -30,52 +30,42 @@ export const CardImgContainer = styled.div`
 
   @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
     max-width: 100%;
-    max-height: 40%;
+    flex: 5;
   }
   @media only screen and (max-width: ${SCREENS.breakpoint500}px) {
     max-width: 100%;
-    max-height: 33.18%;
+    flex: 4;
   }
 `;
 
-export const CardButtonContainer = styled(FlexRow)<{ isRTL: boolean }>`
-  ${({ isRTL }) => `
+export const CardButtonContainer = styled(FlexRow)`
     max-height: 2.25rem;
-    justify-content: ${isRTL ? 'flex-start' : 'flex-end'};
+    justify-content: flex-end;
 
     .MuiButton-root.MuiButton-contained {
-      flex-direction: ${isRTL && 'row-reverse'};
 
-    .MuiButton-endIcon {
-      transform: ${isRTL && 'rotate(180deg)'};
-      margin-right: ${isRTL && 0.5}rem;
-    }
     @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
       width: 100%;
     }
-  `}
 `;
 
-export const ArticleImg = styled.img<{ isRTL: boolean }>`
-  ${({ isRTL }) => `
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 0%;
-    border-radius: ${isRTL ? '0 1.25rem 1.25rem 0' : '1.25rem 0 0 1.25rem'}};
-    border-right: ${!isRTL && `1px solid ${COLORS.secondary}`};
-    border-left: ${isRTL && `1px solid ${COLORS.secondary}`};
+export const ArticleImg = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  border-radius: 1.25rem 0 0 1.25rem;
+  border-right: 1px solid ${COLORS.secondary};
 
-    @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
-      border-radius: 1.25rem 1.25rem 0 0;
-      object-position: 0% 25%;
-    }
-    @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
-      border-right: none;
-      border-left: none;
-      border-bottom: 1px solid ${COLORS.secondary};
-    }
-  `}
+  @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
+    border-radius: 1.25rem 1.25rem 0 0;
+    object-position: 0% 25%;
+  }
+  @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
+    border-right: none;
+    border-bottom: 1px solid ${COLORS.secondary};
+  }
 `;
 
 export const Article = styled(FlexColumn)<{ isRTL: boolean }>`
@@ -88,6 +78,7 @@ export const Article = styled(FlexColumn)<{ isRTL: boolean }>`
 
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
     padding-block: 0.59rem;
+    flex: 6;
   }
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     padding-block: 0.59rem 1rem;
@@ -99,14 +90,12 @@ export const ArticleDetailes = styled.p`
   opacity: 0.5;
 `;
 
-export const ArticleTitle = styled.h6<{ isRTL: boolean }>`
+export const ArticleTitle = styled.h6`
   color: ${COLORS.bluishBlack};
   font-size: 1.125rem;
-  text-align: ${({ isRTL }) => isRTL && 'right'};
 `;
 
-export const ArticleContent = styled.section<{ isRTL: boolean }>`
+export const ArticleContent = styled.section`
   color: ${COLORS.purple};
   font-size: 0.875rem;
-  text-align: ${({ isRTL }) => isRTL && 'right'};
 `;
