@@ -29,7 +29,7 @@ const NewsWidget = () => {
         loader={null}
         scrollableTarget='scrollableDiv'
       >
-        {news.map((article: IArticle, index: number) => (
+        {news.map((article: IArticle) => (
           <CardPrimary
             key={article.title}
             urlToImage={article.urlToImage}
