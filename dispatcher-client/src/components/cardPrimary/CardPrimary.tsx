@@ -15,6 +15,7 @@ import RTLCheck from '../../utils/helperFunctions/isRTL';
 import cropCardContent from '../../utils/helperFunctions/cropCardContent';
 import useWindowSize from '../../hooks/useWindowSize';
 import { format } from 'date-fns';
+import dateFormatString from '../../utils/constants/dateFormatString';
 
 export interface CardProps {
   title: string;
@@ -22,13 +23,17 @@ export interface CardProps {
   publishedAt: string;
   source: { name: string };
   content: string | null;
+  author: string | null;
 }
 
 const CardPrimary = (props: CardProps) => {
-  const { urlToImage, title, source, content } = props;
-  const isRTL = RTLCheck(title);
+  const { urlToImage, title, source, content, author } = props;
   const { width } = useWindowSize();
-  const publishedAt = format(new Date(props.publishedAt), 'EEEE LLL d, yyyy');
+  const isRTL = RTLCheck(title);
+  const direction = isRTL ? 'rtl' : 'ltr';
+  const publishedAt = format(new Date(props.publishedAt), dateFormatString);
+  const sourceString = author ? `${author}, ${source.name}` : `${source.name}`;
+  const replacementChar = '�';
   return (
     <CardPrimaryStyled isRTL={isRTL}>
       <CardImgContainer>
@@ -36,12 +41,14 @@ const CardPrimary = (props: CardProps) => {
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
+        <ArticleTitle dir={direction} isRTL={isRTL}>
           {title}
         </ArticleTitle>
-        <ArticleDetailes>{source.name}</ArticleDetailes>
-        <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
-          {content ? cropCardContent(content, width) : ''}
+        <ArticleDetailes dir={direction}>{sourceString}</ArticleDetailes>
+        <ArticleContent dir={direction} isRTL={isRTL}>
+          {content && !content.includes(replacementChar)
+            ? cropCardContent(content, width)
+            : ''}
         </ArticleContent>
         <CardButtonContainer isRTL={isRTL}>
           <Button icon color={'primary'}>

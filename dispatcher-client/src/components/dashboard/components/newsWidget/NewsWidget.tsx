@@ -37,6 +37,7 @@ const NewsWidget = () => {
             publishedAt={article.publishedAt}
             source={article.source}
             content={article.description}
+            author={article.author}
           />
         ))}
       </InfiniteScroll>
