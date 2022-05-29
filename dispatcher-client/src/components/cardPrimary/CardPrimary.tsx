@@ -14,6 +14,7 @@ import noImage from '../../assets/images/noImage.png';
 import RTLCheck from '../../utils/helperFunctions/isRTL';
 import cropCardContent from '../../utils/helperFunctions/cropCardContent';
 import useWindowSize from '../../hooks/useWindowSize';
+import { format } from 'date-fns';
 
 export interface CardProps {
   title: string;
@@ -24,9 +25,10 @@ export interface CardProps {
 }
 
 const CardPrimary = (props: CardProps) => {
-  const { urlToImage, title, source, content, publishedAt } = props;
+  const { urlToImage, title, source, content } = props;
   const isRTL = RTLCheck(title);
   const { width } = useWindowSize();
+  const publishedAt = format(new Date(props.publishedAt), 'EEEE LLL d, yyyy');
   return (
     <CardPrimaryStyled isRTL={isRTL}>
       <CardImgContainer>
