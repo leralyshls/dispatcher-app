@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { COLORS } from '../../utils/colors';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 import {
   CardSharedStyle,
   FlexColumn,
   FlexRow,
 } from '../../styles/sharedStyles';
-import { SCREENS } from '../../utils/screenSizes';
 
 export const CardPrimaryStyled = styled(CardSharedStyle)<{ isRTL: boolean }>`
   flex-direction: ${({ isRTL }) => (isRTL ? 'row-reverse' : 'row')};

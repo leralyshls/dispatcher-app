@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexRow } from '../../../../styles/sharedStyles';
-import { COLORS } from '../../../../utils/colors';
-import { SCREENS } from '../../../../utils/screenSizes';
+import { COLORS } from '../../../../utils/constants/colors';
+import { SCREENS } from '../../../../utils/constants/screenSizes';
 
 export const FilterDiv = styled(FlexRow)`
   padding-block: 1.25rem;

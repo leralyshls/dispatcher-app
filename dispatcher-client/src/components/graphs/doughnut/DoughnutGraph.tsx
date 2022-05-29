@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import {
   PieChart,
   Pie,
@@ -14,7 +15,7 @@ import {
   StyledListContainer,
 } from './styles';
 import { GraphItem } from '../graph/Graph';
-import { COLORS } from '../../../utils/colors';
+import uniqueColors from '../../../utils/helperFunctions/uniqueColors';
 
 interface DoughnutProps {
   data: GraphItem[];
@@ -22,7 +23,10 @@ interface DoughnutProps {
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {
   const totalSources = data.length;
-
+  const doughnutColors = useMemo(
+    () => uniqueColors(totalSources),
+    [totalSources]
+  );
   const renderLegend = (...args: any) => {
     const { payload } = args[0];
     return (
@@ -64,7 +68,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
-              fill={COLORS.doughnut[index % COLORS.doughnut.length]}
+              fill={doughnutColors[index % doughnutColors.length]}
             />
           ))}
         </Pie>

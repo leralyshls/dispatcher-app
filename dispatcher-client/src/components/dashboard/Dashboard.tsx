@@ -6,7 +6,7 @@ import NewsWidget from './components/newsWidget/NewsWidget';
 import GraphsArea from './components/graphsArea/GraphsArea';
 import PageTitle from '../../components/pageTitle/PageTitle';
 import useWindowSize from '../../hooks/useWindowSize';
-import { SCREENS } from '../../utils/screenSizes';
+import { SCREENS } from '../../utils/constants/screenSizes';
 
 const Dashboard: React.FC = () => {
   const { width, height } = useWindowSize();

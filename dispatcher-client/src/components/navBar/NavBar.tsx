@@ -1,3 +1,4 @@
+import React from 'react';
 import SearchBox from '../search/SearchBox';
 import Logo from '../logo/Logo';
 import { StyledNav, LogoBox } from './styles';
