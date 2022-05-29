@@ -1,16 +1,17 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+import { IArticle } from '../../../../utils/types/APITypes';
 import { CardsContainer } from './styles';
 import CardPrimary from '../../../cardPrimary/CardPrimary';
-import topHeadlinesResponces from '../../../../mockData/topHeadlinesResponces.json';
+import topHeadlinesResponses from '../../../../mockData/topHeadlinesResponses.json';
 import everything from '../../../../mockData/everything.json';
 
 const NewsWidget = () => {
   const [page, setPage] = useState<number>(1);
-  const [news, setNews] = useState<APITypes.Article[]>(
-    topHeadlinesResponces[page].articles
+  const [news, setNews] = useState<IArticle[]>(
+    topHeadlinesResponses[page].articles
   );
   const [hasMore, setHasMore] = useState<boolean>(
-    topHeadlinesResponces[page].articles.length > 0
+    topHeadlinesResponses[page].articles.length > 0
   );
   const observer = useRef<IntersectionObserver>();
   const lastArticleElementRef = useCallback(
@@ -19,8 +20,8 @@ const NewsWidget = () => {
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           setPage((page) => page + 1);
-          setNews([...news, ...topHeadlinesResponces[page + 1].articles]);
-          setHasMore(topHeadlinesResponces[page + 1].articles.length > 0);
+          setNews([...news, ...topHeadlinesResponses[page + 1].articles]);
+          setHasMore(topHeadlinesResponses[page + 1].articles.length > 0);
         }
       });
       if (node) observer.current.observe(node);
@@ -30,7 +31,7 @@ const NewsWidget = () => {
 
   return (
     <CardsContainer>
-      {news.map((article: APITypes.Article, index: number) => {
+      {news.map((article: IArticle, index: number) => {
         if (news.length === index + 1) {
           return (
             <CardPrimary
