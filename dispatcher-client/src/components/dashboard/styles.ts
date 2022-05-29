@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexColumn, FlexRow } from '../../styles/sharedStyles';
-import { COLORS } from '../../utils/colors';
-import { SCREENS } from '../../utils/screenSizes';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 
 export interface isPortrait {
   isPortrait?: boolean;

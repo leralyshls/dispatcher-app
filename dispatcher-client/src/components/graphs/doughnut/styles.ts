@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexRow, FlexColumn } from '../../../styles/sharedStyles';
-import { COLORS } from '../../../utils/colors';
-import { SCREENS } from '../../../utils/screenSizes';
+import { COLORS } from '../../../utils/constants/colors';
+import { SCREENS } from '../../../utils/constants/screenSizes';
 
 interface liProps {
   color: string;

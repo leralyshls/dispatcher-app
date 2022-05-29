@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../../utils/colors';
+import { COLORS } from '../../utils/constants/colors';
 import { FlexColumn } from '../../styles/sharedStyles';
 
 export const NoDataContainer = styled(FlexColumn)`

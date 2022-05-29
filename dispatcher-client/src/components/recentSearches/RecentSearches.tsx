@@ -3,7 +3,7 @@ import {
   clearSearchHistory,
   deleteFromSearchHistory,
   getSearchHistory,
-} from '../../helpers/localStorageUse';
+} from '../../utils/helperFunctions/localStorageUse';
 import {
   SearchesContainer,
   SearchesHeader,

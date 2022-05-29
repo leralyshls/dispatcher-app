@@ -1,4 +1,4 @@
-import { COLORS } from '../utils/colors';
+import { COLORS } from '../constants/colors';
 
 export const randomHEX = (): string => {
   return (

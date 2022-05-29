@@ -1,7 +1,7 @@
 import { Input } from '@mui/material';
 import { ReactComponent as Icon } from '../../assets/svgs/inputIcon.svg';
 import styled from 'styled-components';
-import { COLORS } from '../../utils/colors';
+import { COLORS } from '../../utils/constants/colors';
 
 export const InputStyled = styled(Input)`
   flex: 2;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { COLORS } from '../../utils/colors';
-import { SCREENS } from '../../utils/screenSizes';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 import { TitleProps } from './PageTitle';
 import { FlexRow } from '../../styles/sharedStyles';
 
