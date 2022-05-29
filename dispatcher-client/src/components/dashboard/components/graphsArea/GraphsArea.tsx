@@ -1,6 +1,6 @@
 import React from 'react';
 import { GraphsContainer } from './styles';
-import CardSecondary from '../../../CardSecondary/CardSecondary';
+import CardSecondary from '../../../cardSecondary/CardSecondary';
 import Graph from '../../../graphs/graph/Graph';
 import { doughnutMock, areaChartMock } from '../../../graphs/graphsMockData';
 
