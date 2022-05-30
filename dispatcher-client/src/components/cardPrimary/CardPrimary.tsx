@@ -16,6 +16,7 @@ import cropCardContent from '../../utils/helperFunctions/cropCardContent';
 import useWindowSize from '../../hooks/useWindowSize';
 import { format } from 'date-fns';
 import dateFormatString from '../../utils/constants/dateFormatString';
+import { IArticle } from '../../utils/types/APITypes';
 
 export interface CardProps {
   title: string;
@@ -26,8 +27,8 @@ export interface CardProps {
   author: string | null;
 }
 
-const CardPrimary = (props: CardProps) => {
-  const { urlToImage, title, source, content, author } = props;
+const CardPrimary = (props: IArticle) => {
+  const { urlToImage, title, source, description, author } = props;
   const { width } = useWindowSize();
   const isRTL = RTLCheck(title);
   const direction = isRTL ? 'rtl' : 'ltr';
@@ -37,15 +38,15 @@ const CardPrimary = (props: CardProps) => {
   return (
     <CardPrimaryStyled>
       <CardImgContainer>
-        <ArticleImg src={urlToImage ? urlToImage : noImage} />
+        <ArticleImg src={urlToImage || noImage} />
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
         <ArticleTitle dir={direction}>{title}</ArticleTitle>
         <ArticleDetailes dir={direction}>{sourceString}</ArticleDetailes>
         <ArticleContent dir={direction}>
-          {content && !content.includes(replacementChar)
-            ? cropCardContent(content, width)
+          {description && !description.includes(replacementChar)
+            ? cropCardContent(description, width)
             : ''}
         </ArticleContent>
         <CardButtonContainer>
