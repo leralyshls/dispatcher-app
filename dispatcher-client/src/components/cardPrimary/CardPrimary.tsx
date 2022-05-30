@@ -15,6 +15,8 @@ import RTLCheck from '../../utils/helperFunctions/isRTL';
 import cropCardContent from '../../utils/helperFunctions/cropCardContent';
 import useWindowSize from '../../hooks/useWindowSize';
 import { format } from 'date-fns';
+import dateFormatString from '../../utils/constants/dateFormatString';
+import { IArticle } from '../../utils/types/APITypes';
 
 export interface CardProps {
   title: string;
@@ -22,28 +24,32 @@ export interface CardProps {
   publishedAt: string;
   source: { name: string };
   content: string | null;
+  author: string | null;
 }
 
-const CardPrimary = (props: CardProps) => {
-  const { urlToImage, title, source, content } = props;
-  const isRTL = RTLCheck(title);
+const CardPrimary = (props: IArticle) => {
+  const { urlToImage, title, source, description, author } = props;
   const { width } = useWindowSize();
-  const publishedAt = format(new Date(props.publishedAt), 'EEEE LLL d, yyyy');
+  const isRTL = RTLCheck(title);
+  const direction = isRTL ? 'rtl' : 'ltr';
+  const publishedAt = format(new Date(props.publishedAt), dateFormatString);
+  const sourceString = author ? `${author}, ${source.name}` : `${source.name}`;
+  const replacementChar = '�';
   return (
-    <CardPrimaryStyled isRTL={isRTL}>
+    <CardPrimaryStyled>
       <CardImgContainer>
-        <ArticleImg isRTL={isRTL} src={urlToImage ? urlToImage : noImage} />
+        <ArticleImg src={urlToImage || noImage} />
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
-          {title}
-        </ArticleTitle>
-        <ArticleDetailes>{source.name}</ArticleDetailes>
-        <ArticleContent dir={isRTL ? 'rtl' : 'ltr'} isRTL={isRTL}>
-          {content ? cropCardContent(content, width) : ''}
+        <ArticleTitle dir={direction}>{title}</ArticleTitle>
+        <ArticleDetailes dir={direction}>{sourceString}</ArticleDetailes>
+        <ArticleContent dir={direction}>
+          {description && !description.includes(replacementChar)
+            ? cropCardContent(description, width)
+            : ''}
         </ArticleContent>
-        <CardButtonContainer isRTL={isRTL}>
+        <CardButtonContainer>
           <Button icon color={'primary'}>
             Navigate to dispatch
           </Button>

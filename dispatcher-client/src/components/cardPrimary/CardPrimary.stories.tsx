@@ -19,6 +19,6 @@ Primary.args = {
   title,
   urlToImage,
   publishedAt,
-  source: { name: source.name },
+  source: { name: source.name, id: source.id },
   content,
 };
