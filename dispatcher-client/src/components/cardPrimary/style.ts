@@ -16,7 +16,7 @@ export const CardPrimaryStyled = styled(CardSharedStyle)`
 
   @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
     flex-direction: column;
-    min-height: 28.06rem;
+    height: 28.06rem;
   }
 `;
 
@@ -30,11 +30,11 @@ export const CardImgContainer = styled.div`
 
   @media only screen and (max-width: ${SCREENS.breakpoint700}px) {
     max-width: 100%;
-    flex: 5;
+    min-height: 40%;
   }
   @media only screen and (max-width: ${SCREENS.breakpoint500}px) {
     max-width: 100%;
-    flex: 4;
+    min-height: 33%;
   }
 `;
 
@@ -78,10 +78,11 @@ export const Article = styled(FlexColumn)<{ isRTL: boolean }>`
 
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
     padding-block: 0.59rem;
-    flex: 6;
+    min-height: 60%;
   }
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     padding-block: 0.59rem 1rem;
+    min-height: 66%;
   }
 `;
 

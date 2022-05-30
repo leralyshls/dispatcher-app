@@ -41,7 +41,7 @@ const CardPrimary = (props: CardProps) => {
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
-        <ArticleTitle> {title}</ArticleTitle>
+        <ArticleTitle dir={direction}>{title}</ArticleTitle>
         <ArticleDetailes dir={direction}>{sourceString}</ArticleDetailes>
         <ArticleContent dir={direction}>
           {content && !content.includes(replacementChar)
