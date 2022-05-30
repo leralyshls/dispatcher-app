@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useAppSelector } from '../../store/hooks';
 import useDebounce from '../../hooks/useDebounce';
 import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { InputAdornment } from '@mui/material';
 import Dropdown from '../dropdown/Dropdown';
-import { searchInStrings } from '../../strings/filterStrings/filterStrings';
+import { endpointsFilters } from '../../utils/constants/filterStrings';
 import RecentSearches from '../../components/recentSearches/RecentSearches';
 import {
   getSearchHistory,
@@ -19,7 +20,7 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
-
+  const endpoint = useAppSelector((state) => state.filter.endpoint);
   const debouncedInputValue = useDebounce<string>(inputValue, 1200);
   const { width } = useWindowSize();
   const { tabletM, breakpoint500 } = SCREENS;
@@ -48,7 +49,6 @@ const SearchBox: React.FC = () => {
       setSearchHistory(getSearchHistory());
     }
   };
-
   return (
     <>
       <SearchContainer isFocused={focused}>
@@ -73,9 +73,10 @@ const SearchBox: React.FC = () => {
         />
         {width > tabletM && (
           <Dropdown
-            options={searchInStrings}
+            options={endpointsFilters.options}
             insearchbox={true}
-            placeholder={searchInStrings[0].name}
+            placeholder={endpoint.name}
+            filtertype={endpointsFilters.filter.id}
           />
         )}
       </SearchContainer>

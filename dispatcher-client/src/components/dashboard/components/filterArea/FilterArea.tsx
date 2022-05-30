@@ -1,17 +1,18 @@
 import React from 'react';
 import { FilterDiv } from './styles';
 import Dropwdown from '../../../dropdown/Dropdown';
-import { topHeadlinesStrings } from '../../../../strings/filterStrings/filterStrings';
+import { topHeadlinesFilters } from '../../../../utils/constants/filterStrings';
 // import DatePickerComponent from '../../../datePicker/DatePickerComponent';
 
 const FilterArea: React.FC = () => {
   return (
     <FilterDiv>
-      {topHeadlinesStrings.map((item, index) => (
+      {topHeadlinesFilters.map((item, index) => (
         <Dropwdown
-          key={`filter-${item.name}`}
+          key={item.filter.id}
           options={item.options}
-          placeholder={item.name}
+          placeholder={item.filter.name}
+          filtertype={item.filter.id}
         />
       ))}
       {/* <DatePickerComponent /> */}

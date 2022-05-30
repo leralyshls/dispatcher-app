@@ -16,6 +16,7 @@ import {
   filterSharedStyles,
   dropdownSharedStyles,
 } from '../../styles/sharedStyles';
+import { Option } from './Dropdown';
 
 export const DropdownContainer = styled('div')`
   ${({ insearchbox }: DropdownProps) => `
@@ -123,9 +124,8 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 2;
 `;
 
-export const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
-  props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<HTMLUListElement>
+export function CustomSelect<TValue extends {}>(
+  props: SelectUnstyledProps<TValue>
 ) {
   const components: SelectUnstyledProps<TValue>['components'] = {
     Root: StyledButton,
@@ -133,7 +133,6 @@ export const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
     Popper: StyledPopper,
     ...props.components,
   };
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
-}) as <TValue>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLUListElement>
-) => JSX.Element;
+
+  return <SelectUnstyled {...props} components={components} />;
+}

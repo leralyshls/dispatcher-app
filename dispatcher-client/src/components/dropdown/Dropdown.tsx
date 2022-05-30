@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 import { SelectOption } from '@mui/base/SelectUnstyled';
+import { filterActions } from '../../store/slices/filterSlice';
+import { useAppDispatch } from '../../store/hooks';
 
 export interface Option {
   name: string;
@@ -8,34 +10,37 @@ export interface Option {
 }
 
 export interface DropdownProps {
-  placeholder?: string;
+  placeholder: string;
   options: Option[];
   insearchbox?: any;
+  filtertype: string;
 }
 
-const Dropwdown = ({ placeholder, options, insearchbox }: DropdownProps) => {
-  const [value, setValue] = useState<string | null | undefined>(placeholder);
-  const handleFilterChange = (newValue: string | null | undefined) => {
-    setValue(newValue);
+const Dropwdown = ({
+  placeholder,
+  options,
+  insearchbox,
+  filtertype,
+}: DropdownProps) => {
+  const dispatch = useAppDispatch();
+  const handleFilterChange = (newValue: Option | null) => {
+    console.log(newValue);
   };
   return (
     <DropdownContainer
       options={options}
       insearchbox={insearchbox ? insearchbox.toString() : undefined}
+      filtertype={filtertype}
+      placeholder={placeholder}
     >
       <CustomSelect
-        value={value ? value : placeholder}
         onChange={handleFilterChange}
-        renderValue={(item: SelectOption<string> | null) =>
+        renderValue={(item: SelectOption<Option> | null) =>
           item != null ? item.label : placeholder
         }
       >
         {options.map((option) => (
-          <StyledOption
-            key={option.id}
-            value={option.name}
-            className='font-mulish'
-          >
+          <StyledOption key={option.id} value={option} className='font-mulish'>
             {option.name}
           </StyledOption>
         ))}
