@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '../../store/hooks';
-import { fetchNews } from '../../store/slices/apiRequestSlice';
+import { fetchNews } from '../../store/slices/newsSlice';
 import { DashboardContainer, DashboardContent, MainContent } from './styles';
 import FilterArea from './components/filterArea/FilterArea';
 import NavBar from '../navBar/NavBar';

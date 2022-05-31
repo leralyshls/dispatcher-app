@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import apiRequestSlice from './slices/apiRequestSlice';
+import newsSlice from './slices/newsSlice';
 import filterSlice from './slices/filterSlice';
 
 const store = configureStore({
-  reducer: { filter: filterSlice, data: apiRequestSlice },
+  reducer: { filter: filterSlice, data: newsSlice },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
