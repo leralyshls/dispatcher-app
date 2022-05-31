@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '../../store/hooks';
 import useDebounce from '../../hooks/useDebounce';
 import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { InputAdornment } from '@mui/material';
@@ -20,7 +19,6 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
-  const endpoint = useAppSelector((state) => state.filter.endpoint);
   const debouncedInputValue = useDebounce<string>(inputValue, 1200);
   const { width } = useWindowSize();
   const { tabletM, breakpoint500 } = SCREENS;
@@ -75,7 +73,7 @@ const SearchBox: React.FC = () => {
           <Dropdown
             options={endpointsFilters.options}
             insearchbox={true}
-            placeholder={endpoint.name}
+            placeholder={endpointsFilters.options[0].name}
             filtertype={endpointsFilters.filter.id}
           />
         )}

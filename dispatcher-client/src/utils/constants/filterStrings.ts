@@ -109,7 +109,7 @@ export const everythingFilters = [
 ];
 
 export const endpointsFilters = {
-  filter: { name: '', id: 'endpoint' },
+  filter: { name: 'endpoint', id: 'endpoint' },
   options: [
     { name: 'Top Headlines', id: 'top-headlines' },
     { name: 'Everything', id: 'everything' },

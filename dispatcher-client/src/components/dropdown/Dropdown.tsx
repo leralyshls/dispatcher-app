@@ -24,7 +24,11 @@ const Dropwdown = ({
 }: DropdownProps) => {
   const dispatch = useAppDispatch();
   const handleFilterChange = (newValue: Option | null) => {
-    console.log(newValue);
+    if (newValue) {
+      dispatch(
+        filterActions.updateFilter({ key: filtertype, value: newValue.id })
+      );
+    }
   };
   return (
     <DropdownContainer

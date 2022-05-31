@@ -1,31 +1,33 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
 
-interface FilterItem {
-  name: string;
-  id: string;
-}
+type Dictionary = {
+  [key: string]: string;
+};
 
-interface IFilter {
+interface IState extends Dictionary {
   country: string;
-  endpoint: FilterItem;
-  searchInput: string;
+  query: string;
   date: string;
   language: string;
   sortBy: string;
   category: string;
-  source: string;
+  sources: string;
 }
 
-const initialState: IFilter = {
-  country: 'Israel',
-  endpoint: { name: 'Top Headlines', id: 'top-headlines' },
-  searchInput: '',
+interface FilterItemPayload {
+  key: string;
+  value: string;
+}
+
+const initialState: IState = {
+  country: 'il',
+  endpoint: 'top-headlines',
+  query: '',
   date: '',
   language: '',
   sortBy: '',
   category: '',
-  source: '',
+  sources: '',
 };
 
 const filterSlice = createSlice({
@@ -35,26 +37,8 @@ const filterSlice = createSlice({
     setCountry(state, action: PayloadAction<string>) {
       state.country = action.payload;
     },
-    setEndpoint(state, action: PayloadAction<FilterItem>) {
-      state.endpoint = action.payload;
-    },
-    setSearchInput(state, action: PayloadAction<string>) {
-      state.searchInput = action.payload;
-    },
-    setDate(state, action: PayloadAction<string>) {
-      state.date = action.payload;
-    },
-    setLanguage(state, action: PayloadAction<string>) {
-      state.language = action.payload;
-    },
-    setSortBy(state, action: PayloadAction<string>) {
-      state.sortBy = action.payload;
-    },
-    setCategory(state, action: PayloadAction<string>) {
-      state.category = action.payload;
-    },
-    setSource(state, action: PayloadAction<string>) {
-      state.source = action.payload;
+    updateFilter: (state, action: PayloadAction<FilterItemPayload>) => {
+      state[action.payload.key] = action.payload.value;
     },
   },
 });
