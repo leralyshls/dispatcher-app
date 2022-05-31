@@ -8,7 +8,7 @@ import RecentSearches from '../../components/recentSearches/RecentSearches';
 import {
   getSearchHistory,
   addToSearchHistory,
-} from '../../utils/helperFunctions/localStorageUse';
+} from '../../utils/localStorageUse';
 import useWindowSize from '../../hooks/useWindowSize';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
