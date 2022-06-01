@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { fetchNews } from '../../store/slices/newsSlice';
+import { fetchSources } from '../../store/slices/sourcesSlice';
 import { DashboardContainer, DashboardContent, MainContent } from './styles';
 import FilterArea from './components/filterArea/FilterArea';
 import NavBar from '../navBar/NavBar';
@@ -16,6 +17,7 @@ const Dashboard = () => {
   const { width, height } = useWindowSize();
   const { laptopM } = SCREENS;
   useEffect(() => {
+    dispatch(fetchSources());
     dispatch(fetchNews());
   }, [dispatch]);
   return (

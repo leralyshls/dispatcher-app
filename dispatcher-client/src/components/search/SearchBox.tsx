@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
-import { SearchContainer, InputStyled, InputIcon } from './styles';
-import { InputAdornment } from '@mui/material';
-import Dropdown from '../dropdown/Dropdown';
-import { endpointsFilters } from '../../utils/constants/filterStrings';
-import RecentSearches from '../../components/recentSearches/RecentSearches';
+import useWindowSize from '../../hooks/useWindowSize';
+import { useAppDispatch } from '../../store/hooks';
+import { filterActions } from '../../store/slices/filterSlice';
+import { fetchNews } from '../../store/slices/newsSlice';
 import {
   getSearchHistory,
   addToSearchHistory,
 } from '../../utils/localStorageUse';
-import useWindowSize from '../../hooks/useWindowSize';
+import Dropdown from '../dropdown/Dropdown';
+import RecentSearches from '../../components/recentSearches/RecentSearches';
+import { SearchContainer, InputStyled, InputIcon } from './styles';
+import { InputAdornment } from '@mui/material';
+import { endpointsFilters } from '../../utils/constants/filterStrings';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
 const SearchBox: React.FC = () => {
@@ -19,14 +22,19 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
-  const debouncedInputValue = useDebounce<string>(inputValue, 1200);
+  const debouncedInputValue = useDebounce<string>(inputValue, 1000);
+  const dispatch = useAppDispatch();
   const { width } = useWindowSize();
   const { tabletM, breakpoint500 } = SCREENS;
 
   useEffect(() => {
-    addToSearchHistory(debouncedInputValue.trim());
+    const searchText = debouncedInputValue.trim();
+    if (searchText === '') return;
+    addToSearchHistory(searchText);
+    dispatch(filterActions.setQuery(searchText));
     setSearchHistory(getSearchHistory());
-  }, [debouncedInputValue]);
+    dispatch(fetchNews());
+  }, [debouncedInputValue, dispatch]);
 
   const handleClickOutside = () => {
     setFocused(false);

@@ -8,10 +8,10 @@ import topHeadlinesResponses from '../../../../mockData/topHeadlinesResponses.js
 import everything from '../../../../mockData/everything.json';
 
 const NewsWidget = () => {
-  const news = useAppSelector((state) => state.data.articles);
+  const news = useAppSelector((state) => state.news.articles);
   // const [page, setPage] = useState<number>(1);
   // const [news, setNews] = useState<IArticle[]>(
-  //   topHeadlinesResponses[page].articles
+  //   topHeadlinesResponses[0].articles
   // );
   // const [hasMore, setHasMore] = useState<boolean>(
   //   topHeadlinesResponses[page].articles.length > 0

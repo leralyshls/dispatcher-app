@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 import { filterActions } from '../../store/slices/filterSlice';
 import { useAppDispatch } from '../../store/hooks';
+import { fetchNews } from '../../store/slices/newsSlice';
 
 export interface Option {
   name: string;
@@ -28,6 +29,7 @@ const Dropwdown = ({
       dispatch(
         filterActions.updateFilter({ key: filtertype, value: newValue.id })
       );
+      dispatch(fetchNews());
     }
   };
   return (

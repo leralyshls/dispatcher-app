@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type Dictionary = {
+export interface IFilterState {
   [key: string]: string;
-};
-
-interface IState extends Dictionary {
   country: string;
-  query: string;
-  date: string;
+  endpoint: string;
+  q: string;
+  from: string;
   language: string;
   sortBy: string;
   category: string;
@@ -19,11 +17,11 @@ interface FilterItemPayload {
   value: string;
 }
 
-const initialState: IState = {
+const initialState: IFilterState = {
   country: 'il',
   endpoint: 'top-headlines',
-  query: '',
-  date: '',
+  q: '',
+  from: '',
   language: '',
   sortBy: '',
   category: '',
@@ -39,6 +37,9 @@ const filterSlice = createSlice({
     },
     updateFilter: (state, action: PayloadAction<FilterItemPayload>) => {
       state[action.payload.key] = action.payload.value;
+    },
+    setQuery(state, action: PayloadAction<string>) {
+      state.q = action.payload;
     },
   },
 });

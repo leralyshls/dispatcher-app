@@ -72,7 +72,7 @@ export const topHeadlinesFilters = [
       { name: 'Technology', id: 'technology' },
     ],
   },
-  { filter: { name: 'Sources', id: 'sources' }, options: sources },
+  { filter: { name: 'Sources', id: 'sources' } },
 ];
 
 export const everythingFilters = [
@@ -85,9 +85,9 @@ export const everythingFilters = [
     ],
   },
   {
-    filter: { name: 'Dates', id: 'dates' },
+    filter: { name: 'Dates', id: 'from' },
   },
-  { filter: { name: 'Sources', id: 'sources' }, options: sources },
+  { filter: { name: 'Sources', id: 'sources' } },
   {
     filter: { name: 'Language', id: 'language' },
     options: [

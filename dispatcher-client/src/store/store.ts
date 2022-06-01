@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import newsSlice from './slices/newsSlice';
 import filterSlice from './slices/filterSlice';
+import sourcesSlice from './slices/sourcesSlice';
 
 const store = configureStore({
-  reducer: { filter: filterSlice, data: newsSlice },
+  reducer: { filters: filterSlice, news: newsSlice, sources: sourcesSlice },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
