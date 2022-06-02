@@ -1,7 +1,6 @@
 import React from 'react';
 import { TitleStyled } from './style';
 import data from '../../mockData/topHeadlinesPage1.json';
-import { useAppSelector } from '../../store/hooks';
 
 export interface TitleProps {
   firstVisit?: boolean;

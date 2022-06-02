@@ -3,7 +3,6 @@ import {
   createSlice,
   PayloadAction,
   AsyncThunk,
-  createSelector,
 } from '@reduxjs/toolkit';
 import { IResponseSources } from '../../utils/types/APITypes';
 import { fetchSourcesData } from '../../services/newsApiService';

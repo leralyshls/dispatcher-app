@@ -1,5 +1,3 @@
-import { sources } from './sources';
-
 export const topHeadlinesFilters = [
   {
     filter: { name: 'Country', id: 'country' },
