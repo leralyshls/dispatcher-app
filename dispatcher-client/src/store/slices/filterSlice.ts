@@ -41,6 +41,15 @@ const filterSlice = createSlice({
     setQuery(state, action: PayloadAction<string>) {
       state.q = action.payload;
     },
+    cleanFilters(state) {
+      state.country = '';
+      state.q = '';
+      state.from = '';
+      state.language = '';
+      state.sortBy = '';
+      state.category = '';
+      state.sources = '';
+    },
   },
 });
 

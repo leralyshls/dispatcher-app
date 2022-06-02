@@ -26,18 +26,16 @@ const buildAxiosParams = (
   return searchParams;
 };
 
-export const fetchNewsData = async (state: IFilterState, page: number) => {
+export const fetchNewsData = async (state: IFilterState, page: number = 1) => {
   const { endpoint } = state;
   const params = buildAxiosParams(page, state);
   const res = await axios.get(`/${endpoint}`, { params });
-  console.log(res);
   if (res.status === 200) return res;
   else throw new Error('Could not fetch news');
 };
 
 export const fetchSourcesData = async () => {
   const res = await axios.get(`/top-headlines/sources`);
-  console.log(res);
   if (res.status === 200) return res;
   else throw new Error('Could not fetch sources');
 };

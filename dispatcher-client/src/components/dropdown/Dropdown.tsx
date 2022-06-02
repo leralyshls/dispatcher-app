@@ -29,7 +29,11 @@ const Dropwdown = ({
       dispatch(
         filterActions.updateFilter({ key: filtertype, value: newValue.id })
       );
-      dispatch(fetchNews());
+      if (filtertype !== 'endpoint') {
+        dispatch(fetchNews());
+      } else {
+        dispatch(filterActions.cleanFilters());
+      }
     }
   };
   return (
