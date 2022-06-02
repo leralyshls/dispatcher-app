@@ -1,8 +1,8 @@
+import { MAX_LOCAL_STORAGE_SEARCHES } from './constants/maxValues';
 export const NAME = 'searchHistory';
-export const MAX = 10;
 
 export const shouldRemoveLast = (arr: string[]): void => {
-  if (arr.length > MAX) arr.pop();
+  if (arr.length > MAX_LOCAL_STORAGE_SEARCHES) arr.pop();
 };
 
 export const getSearchHistory = () => {

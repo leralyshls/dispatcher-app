@@ -3,7 +3,7 @@ import {
   clearSearchHistory,
   deleteFromSearchHistory,
   getSearchHistory,
-} from '../../utils/helperFunctions/localStorageUse';
+} from '../../utils/localStorageUse';
 import {
   SearchesContainer,
   SearchesHeader,
@@ -14,6 +14,7 @@ import {
   StyledClearIcon,
 } from './styles';
 import Button from '../button/MainButton';
+import { MAX_AMOUNT_RECENT_SEARCHES } from '../../utils/constants/maxValues';
 
 export interface RecentSearchesProps {
   history: string[];
@@ -26,7 +27,6 @@ const RecentSearches = ({
   setHistory,
   setInputValue,
 }: RecentSearchesProps) => {
-  const MAXSEARCHES = 5;
   const removeFromHistory = (e: React.SyntheticEvent, item: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -49,7 +49,7 @@ const RecentSearches = ({
         <Button onMouseDown={(e) => clearHistory(e)}>Clear</Button>
       </SearchesHeader>
       <SearchesList>
-        {history.slice(0, MAXSEARCHES).map((el) => (
+        {history.slice(0, MAX_AMOUNT_RECENT_SEARCHES).map((el) => (
           <SearchesItem key={el} onMouseDown={(e) => chooseRecentSearch(e, el)}>
             <SearchesText className='font-mulish'>{el}</SearchesText>
             <Button onMouseDown={(e) => removeFromHistory(e, el)}>

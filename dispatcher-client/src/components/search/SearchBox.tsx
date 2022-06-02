@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
-import { SearchContainer, InputStyled, InputIcon } from './styles';
-import { InputAdornment } from '@mui/material';
-import Dropdown from '../dropdown/Dropdown';
-import { searchInStrings } from '../../strings/filterStrings/filterStrings';
-import RecentSearches from '../../components/recentSearches/RecentSearches';
+import useWindowSize from '../../hooks/useWindowSize';
+import { useAppDispatch } from '../../store/hooks';
+import { filterActions } from '../../store/slices/filterSlice';
+import { fetchNews } from '../../store/slices/newsSlice';
 import {
   getSearchHistory,
   addToSearchHistory,
-} from '../../utils/helperFunctions/localStorageUse';
-import useWindowSize from '../../hooks/useWindowSize';
+} from '../../utils/localStorageUse';
+import Dropdown from '../dropdown/Dropdown';
+import RecentSearches from '../../components/recentSearches/RecentSearches';
+import { SearchContainer, InputStyled, InputIcon } from './styles';
+import { InputAdornment } from '@mui/material';
+import { endpointsFilters } from '../../utils/constants/filterStrings';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
 const SearchBox: React.FC = () => {
@@ -19,15 +22,19 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
-
-  const debouncedInputValue = useDebounce<string>(inputValue, 1200);
+  const debouncedInputValue = useDebounce<string>(inputValue, 1000);
+  const dispatch = useAppDispatch();
   const { width } = useWindowSize();
   const { tabletM, breakpoint500 } = SCREENS;
 
   useEffect(() => {
-    addToSearchHistory(debouncedInputValue.trim());
+    const searchText = debouncedInputValue.trim();
+    if (searchText === '') return;
+    addToSearchHistory(searchText);
+    dispatch(filterActions.setQuery(searchText));
     setSearchHistory(getSearchHistory());
-  }, [debouncedInputValue]);
+    dispatch(fetchNews());
+  }, [debouncedInputValue, dispatch]);
 
   const handleClickOutside = () => {
     setFocused(false);
@@ -48,7 +55,6 @@ const SearchBox: React.FC = () => {
       setSearchHistory(getSearchHistory());
     }
   };
-
   return (
     <>
       <SearchContainer isFocused={focused}>
@@ -73,9 +79,10 @@ const SearchBox: React.FC = () => {
         />
         {width > tabletM && (
           <Dropdown
-            options={searchInStrings}
+            options={endpointsFilters.options}
             insearchbox={true}
-            placeholder={searchInStrings[0].name}
+            placeholder={endpointsFilters.options[0].name}
+            filtertype={endpointsFilters.filter.id}
           />
         )}
       </SearchContainer>

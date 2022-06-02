@@ -1,8 +1,6 @@
-import { sources } from './sources';
-
-export const topHeadlinesStrings = [
+export const topHeadlinesFilters = [
   {
-    name: 'Country',
+    filter: { name: 'Country', id: 'country' },
     options: [
       { name: 'UAE', id: 'ae' },
       { name: 'Argentina', id: 'ar' },
@@ -61,7 +59,7 @@ export const topHeadlinesStrings = [
     ],
   },
   {
-    name: 'Category',
+    filter: { name: 'Category', id: 'category' },
     options: [
       { name: 'Business', id: 'business' },
       { name: 'Entertainment', id: 'entertainment' },
@@ -72,12 +70,12 @@ export const topHeadlinesStrings = [
       { name: 'Technology', id: 'technology' },
     ],
   },
-  { name: 'Sources', options: sources },
+  { filter: { name: 'Sources', id: 'sources' } },
 ];
 
-export const everythingStrings = [
+export const everythingFilters = [
   {
-    name: 'Sort by',
+    filter: { name: 'Sort by', id: 'category' },
     options: [
       { name: 'Relevancy', id: 'relevancy' },
       { name: 'Popularity', id: 'popularity' },
@@ -85,11 +83,11 @@ export const everythingStrings = [
     ],
   },
   {
-    name: 'Dates',
+    filter: { name: 'Dates', id: 'from' },
   },
-  { name: 'Sources', options: sources },
+  { filter: { name: 'Sources', id: 'sources' } },
   {
-    name: 'Language',
+    filter: { name: 'Language', id: 'language' },
     options: [
       { name: 'Arabic', id: 'ar' },
       { name: 'German', id: 'de' },
@@ -108,7 +106,10 @@ export const everythingStrings = [
   },
 ];
 
-export const searchInStrings = [
-  { name: 'Top Headlines', id: 'top-headlines' },
-  { name: 'Everything', id: 'everything' },
-];
+export const endpointsFilters = {
+  filter: { name: 'endpoint', id: 'endpoint' },
+  options: [
+    { name: 'Top Headlines', id: 'top-headlines' },
+    { name: 'Everything', id: 'everything' },
+  ],
+};

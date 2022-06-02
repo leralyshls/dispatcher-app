@@ -11,8 +11,8 @@ import {
 } from './style';
 import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
-import RTLCheck from '../../utils/helperFunctions/isRTL';
-import cropCardContent from '../../utils/helperFunctions/cropCardContent';
+import RTLCheck from '../../utils/isRTL';
+import cropCardContent from '../../utils/cropCardContent';
 import useWindowSize from '../../hooks/useWindowSize';
 import { format } from 'date-fns';
 import dateFormatString from '../../utils/constants/dateFormatString';

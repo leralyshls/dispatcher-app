@@ -3,10 +3,6 @@ import { FlexColumn, FlexRow } from '../../styles/sharedStyles';
 import { COLORS } from '../../utils/constants/colors';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
-export interface isPortrait {
-  isPortrait?: boolean;
-}
-
 export const DashboardContainer = styled(FlexColumn)`
   max-width: 100vw;
   min-height: 100vh;
@@ -28,8 +24,7 @@ export const DashboardContent = styled(FlexColumn)`
   }
 `;
 
-export const MainContent = styled(FlexRow)<isPortrait>`
-  height: ${({ isPortrait }: isPortrait) =>
-    isPortrait ? 'fit-content' : '60vw'};
+export const MainContent = styled(FlexRow)<{ isPortrait: boolean }>`
+  height: ${({ isPortrait }) => (isPortrait ? 'fit-content' : '60vw')};
   gap: 0.94rem;
 `;

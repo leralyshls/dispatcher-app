@@ -15,7 +15,7 @@ import {
   StyledListContainer,
 } from './styles';
 import { GraphItem } from '../graph/Graph';
-import uniqueColors from '../../../utils/helperFunctions/uniqueColors';
+import uniqueColors from '../../../utils/uniqueColors';
 
 interface DoughnutProps {
   data: GraphItem[];
