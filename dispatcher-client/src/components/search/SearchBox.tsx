@@ -39,7 +39,6 @@ const SearchBox: React.FC = () => {
   const handleClickOutside = () => {
     setFocused(false);
     setShowHistory(false);
-    setInputValue('');
   };
   const handleFocus = (e: React.SyntheticEvent) => {
     if (e.type === 'click' && width > breakpoint500) return;

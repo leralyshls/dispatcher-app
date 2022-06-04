@@ -1,4 +1,5 @@
 import React from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
 import {
   CardPrimaryStyled,
   CardImgContainer,
@@ -13,9 +14,7 @@ import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
 import RTLCheck from '../../utils/isRTL';
 import cropCardContent from '../../utils/cropCardContent';
-import useWindowSize from '../../hooks/useWindowSize';
-import { format } from 'date-fns';
-import dateFormatString from '../../utils/constants/dateFormatString';
+import { formatArticleDate } from '../../utils/dateFormat';
 import { IArticle } from '../../utils/types/APITypes';
 
 export interface CardProps {
@@ -32,7 +31,7 @@ const CardPrimary = (props: IArticle) => {
   const { width } = useWindowSize();
   const isRTL = RTLCheck(title);
   const direction = isRTL ? 'rtl' : 'ltr';
-  const publishedAt = format(new Date(props.publishedAt), dateFormatString);
+  const publishedAt = formatArticleDate(props.publishedAt);
   const sourceString = author ? `${author}, ${source.name}` : `${source.name}`;
   const replacementChar = '�';
   return (

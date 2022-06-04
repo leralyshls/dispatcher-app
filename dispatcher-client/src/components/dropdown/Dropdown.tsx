@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 import { filterActions } from '../../store/slices/filterSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { fetchNews } from '../../store/slices/newsSlice';
-import { ENDPOINTS } from '../../utils/types/APITypes';
 
-export interface Option {
+export interface IOption {
   name: string;
   id: string;
 }
 
 export interface DropdownProps {
   placeholder: string;
-  options: Option[];
+  options: IOption[];
   insearchbox?: any;
   filtertype: string;
 }
@@ -23,12 +22,13 @@ const Dropwdown = React.forwardRef(
     { placeholder, options, insearchbox, filtertype }: DropdownProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const [value, setValue] = useState<Option | null>(null);
+    const [selectedFilterValue, setSelectedFilterValue] =
+      useState<IOption | null>(null);
     const sources = useAppSelector((state) => state.filters.sources);
     const q = useAppSelector((state) => state.filters.q);
     const dispatch = useAppDispatch();
     const hasRequiredParams = sources !== '' || q !== '';
-    console.log(hasRequiredParams);
+
     const searchNews = (filtertype: string) => {
       if (filtertype === 'endpoint') {
         dispatch(filterActions.cleanFilters());
@@ -39,9 +39,10 @@ const Dropwdown = React.forwardRef(
         dispatch(fetchNews());
       }
     };
-    const handleFilterChange = (newValue: Option | null) => {
+
+    const handleFilterChange = (newValue: IOption | null) => {
       if (newValue) {
-        setValue(newValue);
+        setSelectedFilterValue(newValue);
         dispatch(
           filterActions.updateFilter({ key: filtertype, value: newValue.id })
         );
@@ -50,12 +51,13 @@ const Dropwdown = React.forwardRef(
     };
 
     const handleUnselectFilter = (id: string) => {
-      if (value && id === value.id) {
-        setValue(null);
+      if (selectedFilterValue && id === selectedFilterValue.id) {
+        setSelectedFilterValue(null);
         dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
-        dispatch(fetchNews());
+        // dispatch(fetchNews());
       }
     };
+
     return (
       <DropdownContainer
         options={options}
@@ -66,9 +68,9 @@ const Dropwdown = React.forwardRef(
         id={filtertype}
       >
         <CustomSelect
-          value={value}
+          value={selectedFilterValue}
           onChange={handleFilterChange}
-          renderValue={(item: SelectOption<Option> | null) =>
+          renderValue={(item: SelectOption<IOption> | null) =>
             item != null ? item.label : placeholder
           }
         >
@@ -77,11 +79,7 @@ const Dropwdown = React.forwardRef(
               key={option.id}
               onClick={() => handleUnselectFilter(option.id)}
             >
-              <StyledOption
-                key={option.id}
-                value={option}
-                className='font-mulish'
-              >
+              <StyledOption value={option} className='font-mulish'>
                 {option.name}
               </StyledOption>
             </div>

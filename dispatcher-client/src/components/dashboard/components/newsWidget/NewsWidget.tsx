@@ -1,14 +1,11 @@
 import React from 'react';
-import { useAppDispatch } from '../../../../store/hooks';
-import { newsActions } from '../../../../store/slices/newsSlice';
-import { scrollNews } from '../../../../store/slices/newsSlice';
+import { useAppSelector, useAppDispatch } from '../../../../store/hooks';
+import { newsActions, scrollNews } from '../../../../store/slices/newsSlice';
 import { IArticle } from '../../../../utils/types/APITypes';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useAppSelector } from '../../../../store/hooks';
-import { CardsContainer } from './styles';
 import CardPrimary from '../../../cardPrimary/CardPrimary';
+import { CardsContainer } from './styles';
 import { MAX_NUM_PAGE } from '../../../../utils/constants/maxValues';
-// import topHeadlinesResponses from '../../../../mockData/topHeadlinesResponses.json';
 
 const NewsWidget = () => {
   const dispatch = useAppDispatch();
