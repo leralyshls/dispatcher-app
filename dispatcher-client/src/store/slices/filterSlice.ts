@@ -43,12 +43,10 @@ const filterSlice = createSlice({
     },
     cleanFilters(state) {
       state.country = '';
-      state.q = '';
       state.from = '';
       state.language = '';
       state.sortBy = '';
       state.category = '';
-      state.sources = '';
     },
   },
 });

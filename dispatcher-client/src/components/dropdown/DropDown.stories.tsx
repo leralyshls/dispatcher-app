@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Dropdown from './Dropdown';
 import {
-  topHeadlinesFilters,
+  topFilters,
   endpointsFilters,
 } from '../../utils/constants/filterStrings';
 
@@ -18,8 +18,8 @@ const Template: ComponentStory<typeof Dropdown> = (args) => (
 export const Regular = Template.bind({});
 Regular.args = {
   ...Regular.args,
-  placeholder: topHeadlinesFilters[0].filter.name,
-  options: topHeadlinesFilters[0].options,
+  placeholder: topFilters[0].filter.name,
+  options: topFilters[0].options,
   insearchbox: false,
 };
 

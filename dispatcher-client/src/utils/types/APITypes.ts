@@ -26,3 +26,8 @@ export interface ISource {
   language: string;
   country: string;
 }
+
+export enum ENDPOINTS {
+  TOP = 'top-headlines',
+  EVERYTHING = 'everything',
+}

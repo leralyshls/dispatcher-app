@@ -16,7 +16,6 @@ import {
   filterSharedStyles,
   dropdownSharedStyles,
 } from '../../styles/sharedStyles';
-import { Option } from './Dropdown';
 
 export const DropdownContainer = styled('div')`
   ${({ insearchbox }: DropdownProps) => `
