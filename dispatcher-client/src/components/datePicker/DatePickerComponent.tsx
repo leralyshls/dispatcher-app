@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
 import useWindowSize from '../../hooks/useWindowSize';
+import { hasRequiredParamEndpoint } from '../../services/newsApiService';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -33,9 +34,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
     } else {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
     }
-    if (filters.q !== '' || filters.sources !== '') {
-      dispatch(fetchNews());
-    }
+    hasRequiredParamEndpoint(filters) && dispatch(fetchNews());
   };
 
   return (
