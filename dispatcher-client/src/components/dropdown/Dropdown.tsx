@@ -19,10 +19,6 @@ export interface DropdownProps {
   options: IOption[];
   insearchbox?: any;
   filtertype: string;
-  disabled?: boolean;
-  disabledDropdowns?: boolean[];
-  setDisabled?: React.Dispatch<React.SetStateAction<boolean[]>>;
-  dropwdownId?: number;
 }
 
 const Dropwdown = ({
@@ -30,7 +26,6 @@ const Dropwdown = ({
   options,
   insearchbox,
   filtertype,
-  disabled,
 }: DropdownProps) => {
   const [selectedFilterValue, setSelectedFilterValue] =
     useState<IOption | null>(null);
@@ -77,6 +72,8 @@ const Dropwdown = ({
       insearchbox={insearchbox ? insearchbox.toString() : undefined}
       filtertype={filtertype}
       placeholder={placeholder}
+      filters={filters}
+      className={filtertype}
     >
       <CustomSelect
         value={selectedFilterValue}
@@ -84,7 +81,6 @@ const Dropwdown = ({
         renderValue={(item: SelectOption<IOption> | null) =>
           item != null ? item.label : placeholder
         }
-        disabled={disabled}
       >
         {options.map((option) => (
           <div key={option.id} onClick={() => handleUnselectFilter(option.id)}>

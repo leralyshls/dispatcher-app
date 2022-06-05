@@ -1,4 +1,5 @@
 import React from 'react';
+import { IFilterState } from '../../store/slices/filterSlice';
 import SelectUnstyled, {
   SelectUnstyledProps,
   selectUnstyledClasses,
@@ -17,13 +18,28 @@ import {
   dropdownSharedStyles,
 } from '../../styles/sharedStyles';
 
+interface DropdownContainerProps extends DropdownProps {
+  filters: IFilterState;
+}
+
+const disabledStyle = `
+  pointer-events: none;
+  opacity: 0.5;
+`;
+
 export const DropdownContainer = styled('div')`
-  ${({ insearchbox }: DropdownProps) => `
+  ${({ insearchbox, filters }: DropdownContainerProps) => `
     width: ${insearchbox ? 'fit-content' : '10.93rem'};
     height: 2.94rem;
     border-radius: ${!insearchbox && '0.625rem'};
     margin-right: ${insearchbox && 0.625}rem;
     border-left: ${insearchbox && `1px solid ${COLORS.lightPurple}`};
+    &.country, &.category{
+      ${filters.sources !== '' && disabledStyle}
+    }
+    &.sources{
+      ${filters.category !== '' || (filters.country !== '' && disabledStyle)}
+    }
     @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
       width: fit-content;
     };

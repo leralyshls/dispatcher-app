@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import useWindowSize from '../../hooks/useWindowSize';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { useAppDispatch } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
 import {

@@ -22,6 +22,7 @@ const FilterArea = () => {
       filtertype={item.filter.id}
     />
   ));
+
   const everythingDropdowns = everythingFilters.map((item) =>
     item.filter.id !== datesFilterId ? (
       <Dropwdown
@@ -34,6 +35,7 @@ const FilterArea = () => {
       <DatePickerComponent key={item.filter.id} filtertype={item.filter.id} />
     )
   );
+
   return (
     <FilterDiv>
       {endpoint === ENDPOINTS.TOP ? topDropdowns : everythingDropdowns}
