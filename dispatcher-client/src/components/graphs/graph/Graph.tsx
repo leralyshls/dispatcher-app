@@ -12,14 +12,16 @@ export interface GraphProps {
 
 const Graph = ({ type }: GraphProps) => {
   const articles = useAppSelector((state) => state.news.articles);
-  const areaChartData = prepareAreaChartData(articles);
-  const doughnutData = prepareDoughnutData(articles);
   return (
     <>
       {type === 'area' ? (
-        <AreaChartGraph data={articles.length ? areaChartData : []} />
+        <AreaChartGraph
+          data={articles.length ? prepareAreaChartData(articles) : []}
+        />
       ) : (
-        <DoughnutGraph data={articles.length ? doughnutData : []} />
+        <DoughnutGraph
+          data={articles.length ? prepareDoughnutData(articles) : []}
+        />
       )}
     </>
   );
