@@ -14,11 +14,11 @@ import {
   GreySpan,
   StyledListContainer,
 } from './styles';
-import { GraphItem } from '../graph/Graph';
+import { IGraphItem } from '../../../utils/prepareGraphData';
 import uniqueColors from '../../../utils/uniqueColors';
 
 interface DoughnutProps {
-  data: GraphItem[];
+  data: IGraphItem[];
 }
 
 const DoughnutGraph = ({ data }: DoughnutProps) => {

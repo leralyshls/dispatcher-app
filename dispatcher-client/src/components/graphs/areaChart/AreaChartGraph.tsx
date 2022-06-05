@@ -1,9 +1,9 @@
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
 import { COLORS } from '../../../utils/constants/colors';
-import { GraphItem } from '../graph/Graph';
+import { IGraphItem } from '../../../utils/prepareGraphData';
 
 interface AreaProps {
-  data: GraphItem[];
+  data: IGraphItem[];
 }
 
 const AreaChartGraph = ({ data }: AreaProps) => {

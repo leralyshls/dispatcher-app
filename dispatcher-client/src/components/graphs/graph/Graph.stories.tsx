@@ -16,12 +16,10 @@ const Template: ComponentStory<typeof Graph> = (args) => (
 
 export const AreaChartExample = Template.bind({});
 AreaChartExample.args = {
-  data: areaChartMock,
   type: 'area',
 };
 
 export const DoughnutExample = Template.bind({});
 DoughnutExample.args = {
-  data: doughnutMock,
   type: 'doughnut',
 };
