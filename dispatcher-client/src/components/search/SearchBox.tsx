@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import useWindowSize from '../../hooks/useWindowSize';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
 import {
@@ -10,8 +10,8 @@ import {
 } from '../../utils/localStorageUse';
 import Dropdown from '../dropdown/Dropdown';
 import RecentSearches from '../../components/recentSearches/RecentSearches';
-import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { InputAdornment } from '@mui/material';
+import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { endpointsFilters } from '../../utils/constants/filterStrings';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
@@ -29,11 +29,12 @@ const SearchBox: React.FC = () => {
 
   useEffect(() => {
     const searchText = debouncedInputValue.trim();
-    if (searchText === '') return;
-    addToSearchHistory(searchText);
     dispatch(filterActions.setQuery(searchText));
-    setSearchHistory(getSearchHistory());
-    dispatch(fetchNews());
+    if (searchText !== '') {
+      addToSearchHistory(searchText);
+      setSearchHistory(getSearchHistory());
+      dispatch(fetchNews());
+    }
   }, [debouncedInputValue, dispatch]);
 
   const handleClickOutside = () => {

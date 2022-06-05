@@ -20,6 +20,7 @@ export interface DatePickerProps {
 const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
   const [selectedDate, setSelectedDate] = React.useState<string | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
+  const filters = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
   const { tabletM } = SCREENS;
@@ -31,6 +32,9 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
       dispatch(filterActions.updateFilter({ key: filtertype, value: ISO }));
     } else {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
+    }
+    if (filters.q !== '' || filters.sources !== '') {
+      dispatch(fetchNews());
     }
   };
 

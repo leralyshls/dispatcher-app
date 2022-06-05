@@ -41,7 +41,8 @@ const filterSlice = createSlice({
     setQuery(state, action: PayloadAction<string>) {
       state.q = action.payload;
     },
-    cleanFilters(state) {
+    setEndpoint(state, action: PayloadAction<FilterItemPayload>) {
+      state[action.payload.key] = action.payload.value;
       state.country = '';
       state.from = '';
       state.language = '';

@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import { useAppSelector } from '../../../../store/hooks';
 import { FilterDiv } from './styles';
 import Dropwdown from '../../../dropdown/Dropdown';
+import DatePickerComponent from '../../../datePicker/DatePickerComponent';
 import {
   topFilters,
   everythingFilters,
 } from '../../../../utils/constants/filterStrings';
 import { ENDPOINTS } from '../../../../utils/types/APITypes';
-import DatePickerComponent from '../../../datePicker/DatePickerComponent';
 
 const FilterArea = () => {
   const sources = useAppSelector((state) => state.sources.sources);
@@ -15,6 +15,7 @@ const FilterArea = () => {
   const topRefs = useRef<(HTMLDivElement | null)[]>([]);
   const everythingRefs = useRef<(HTMLDivElement | null)[]>([]);
   const datesFilterId = everythingFilters[1].filter.id;
+
   const topDropdowns = topFilters.map((item, index) => (
     <Dropwdown
       key={item.filter.id}
@@ -34,7 +35,7 @@ const FilterArea = () => {
         ref={(el) => (everythingRefs.current[index] = el)}
       />
     ) : (
-      <DatePickerComponent key={item.filter.id} />
+      <DatePickerComponent key={item.filter.id} filtertype={item.filter.id} />
     )
   );
   return (

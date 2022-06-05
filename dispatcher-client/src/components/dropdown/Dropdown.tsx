@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CustomSelect, StyledOption, DropdownContainer } from './styles';
-import { SelectOption } from '@mui/base/SelectUnstyled';
-import { filterActions } from '../../store/slices/filterSlice';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { fetchNews } from '../../store/slices/newsSlice';
+import { filterActions } from '../../store/slices/filterSlice';
+import { SelectOption } from '@mui/base/SelectUnstyled';
+import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 
 export interface IOption {
   name: string;
@@ -24,18 +24,28 @@ const Dropwdown = React.forwardRef(
   ) => {
     const [selectedFilterValue, setSelectedFilterValue] =
       useState<IOption | null>(null);
-    const sources = useAppSelector((state) => state.filters.sources);
-    const q = useAppSelector((state) => state.filters.q);
     const dispatch = useAppDispatch();
-    const hasRequiredParams = sources !== '' || q !== '';
+    const filters = useAppSelector((state) => state.filters);
 
-    const searchNews = (filtertype: string) => {
-      if (filtertype === 'endpoint') {
-        dispatch(filterActions.cleanFilters());
-        if (hasRequiredParams) {
-          dispatch(fetchNews());
-        }
-      } else {
+    const hasRequiredParam =
+      filters.category !== '' ||
+      filters.country !== '' ||
+      filters.q !== '' ||
+      filters.sources !== '';
+
+    const performFilterActions = (id: string) => {
+      dispatch(
+        filterActions.updateFilter({
+          key: filtertype,
+          value: id,
+        })
+      );
+      hasRequiredParam && dispatch(fetchNews());
+    };
+
+    const performEndpointActions = (id: string) => {
+      dispatch(filterActions.setEndpoint({ key: filtertype, value: id }));
+      if (filters.q !== '' || filters.sources !== '') {
         dispatch(fetchNews());
       }
     };
@@ -43,18 +53,23 @@ const Dropwdown = React.forwardRef(
     const handleFilterChange = (newValue: IOption | null) => {
       if (newValue) {
         setSelectedFilterValue(newValue);
-        dispatch(
-          filterActions.updateFilter({ key: filtertype, value: newValue.id })
-        );
-        searchNews(filtertype);
+        if (filtertype === 'endpoint') {
+          performEndpointActions(newValue.id);
+        } else {
+          performFilterActions(newValue.id);
+        }
       }
     };
 
     const handleUnselectFilter = (id: string) => {
-      if (selectedFilterValue && id === selectedFilterValue.id) {
+      if (
+        selectedFilterValue &&
+        id === selectedFilterValue.id &&
+        !insearchbox
+      ) {
         setSelectedFilterValue(null);
         dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
-        // dispatch(fetchNews());
+        hasRequiredParam && dispatch(fetchNews());
       }
     };
 
