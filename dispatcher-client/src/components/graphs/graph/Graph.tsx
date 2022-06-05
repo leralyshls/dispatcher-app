@@ -5,8 +5,6 @@ import {
 } from '../../../utils/prepareGraphData';
 import AreaChartGraph from '../areaChart/AreaChartGraph';
 import DoughnutGraph from '../doughnut/DoughnutGraph';
-import topHeadlinesPage1 from '../../../mockData/topHeadlinesPage1.json';
-import { areaChartMock } from '../graphsMockData';
 
 export interface GraphProps {
   type: string;
@@ -14,13 +12,14 @@ export interface GraphProps {
 
 const Graph = ({ type }: GraphProps) => {
   const articles = useAppSelector((state) => state.news.articles);
-  prepareDoughnutData(topHeadlinesPage1.articles);
+  const areaChartData = prepareAreaChartData(articles);
+  const doughnutData = prepareDoughnutData(articles);
   return (
     <>
       {type === 'area' ? (
-        <AreaChartGraph data={areaChartMock} />
+        <AreaChartGraph data={articles.length ? areaChartData : []} />
       ) : (
-        <DoughnutGraph data={articles && prepareDoughnutData(articles)} />
+        <DoughnutGraph data={articles.length ? doughnutData : []} />
       )}
     </>
   );

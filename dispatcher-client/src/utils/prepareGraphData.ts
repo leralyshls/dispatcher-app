@@ -1,4 +1,5 @@
 import { IArticle } from './types/APITypes';
+import { formatAreaChartDate } from './dateFormat';
 
 export interface IGraphItem {
   name: string;
@@ -7,24 +8,45 @@ export interface IGraphItem {
 
 type dataObjType = { [key: string]: number };
 
-export const prepareDoughnutData = (articles: IArticle[]) => {
-  const dataObj: dataObjType = {};
+const createArrGraphItems = (obj: dataObjType): IGraphItem[] => {
   const dataArr: IGraphItem[] = [];
-  articles.forEach((article) => {
-    dataObj[article.source.name]
-      ? dataObj[article.source.name]++
-      : (dataObj[article.source.name] = 1);
-  });
-  Object.entries(dataObj).map((el) => {
-    const graphItem: IGraphItem = {
-      name: el[0],
-      value: el[1],
-    };
+  Object.entries(obj).map((el) => {
+    const graphItem: IGraphItem = { name: el[0], value: el[1] };
     dataArr.push(graphItem);
   });
-  return dataArr.sort((a, b) => b.value - a.value);
+  return dataArr;
 };
 
-export const prepareAreaChartData = (data: IArticle[]) => {
-  // console.log(data);
+const addEmptyData = (arrayData: IGraphItem[], value: number): IGraphItem[] => {
+  arrayData.push({ name: '', value });
+  arrayData.unshift({ name: '\xa0', value });
+  return arrayData;
+};
+
+export const prepareDoughnutData = (articles: IArticle[]): IGraphItem[] => {
+  const sourcesObj: dataObjType = {};
+  articles.forEach((article) => {
+    sourcesObj[article.source.name]
+      ? sourcesObj[article.source.name]++
+      : (sourcesObj[article.source.name] = 1);
+  });
+  return createArrGraphItems(sourcesObj).sort((a, b) => b.value - a.value);
+};
+
+export const prepareAreaChartData = (articles: IArticle[]): IGraphItem[] => {
+  const datesObj: dataObjType = {};
+  const sortedArticles = [...articles].sort(
+    (a, b) =>
+      new Date(a.publishedAt).valueOf() - new Date(b.publishedAt).valueOf()
+  );
+  sortedArticles.forEach((article) => {
+    const formattedDate = formatAreaChartDate(article.publishedAt);
+    datesObj[formattedDate]
+      ? datesObj[formattedDate]++
+      : (datesObj[formattedDate] = 1);
+  });
+  const arrGraphItems = createArrGraphItems(datesObj);
+  return arrGraphItems.length > 1
+    ? arrGraphItems
+    : addEmptyData(arrGraphItems, arrGraphItems[0].value);
 };

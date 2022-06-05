@@ -10,3 +10,7 @@ export const formatArticleDate = (date: string) => {
 export const formatToISO = (date: Date) => {
   return formatISO(date).slice(0, 10);
 };
+
+export const formatAreaChartDate = (date: string) => {
+  return format(new Date(date), 'dd/MM');
+};
