@@ -34,7 +34,7 @@ const AreaChartGraph = ({ data }: AreaProps) => {
           tickLine={false}
           scale='point'
           stroke={COLORS.purple}
-          padding={{ left: 30, right: 25 }}
+          interval='preserveStartEnd'
         />
         <Area
           type='monotone'
