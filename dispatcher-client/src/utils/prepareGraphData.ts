@@ -10,7 +10,7 @@ type dataObjType = { [key: string]: number };
 
 const createArrGraphItems = (obj: dataObjType): IGraphItem[] => {
   const dataArr: IGraphItem[] = [];
-  Object.entries(obj).map((el) => {
+  Object.entries(obj).forEach((el) => {
     const graphItem: IGraphItem = { name: el[0], value: el[1] };
     dataArr.push(graphItem);
   });
