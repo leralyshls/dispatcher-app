@@ -7,7 +7,7 @@ const buildAxiosParams = (
   page: number,
   pageSize: number = 10
 ) => {
-  const { endpoint, sources, country, category, q, from, sortBy, language } =
+  const { endpoint, sources, country, category, q, to, sortBy, language } =
     params;
   let paramsObj;
 
@@ -16,7 +16,7 @@ const buildAxiosParams = (
   } else if (endpoint === ENDPOINTS.TOP && sources !== '') {
     paramsObj = { sources, q };
   } else {
-    paramsObj = { q, sources, from, sortBy, language };
+    paramsObj = { q, sources, to, sortBy, language };
   }
   paramsObj = {
     ...paramsObj,

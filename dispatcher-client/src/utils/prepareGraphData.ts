@@ -17,12 +17,6 @@ const createArrGraphItems = (obj: dataObjType): IGraphItem[] => {
   return dataArr;
 };
 
-const addEmptyData = (arrayData: IGraphItem[], value: number): IGraphItem[] => {
-  arrayData.push({ name: '', value });
-  arrayData.unshift({ name: '\xa0', value });
-  return arrayData;
-};
-
 export const prepareDoughnutData = (articles: IArticle[]): IGraphItem[] => {
   const sourcesObj: dataObjType = {};
   articles.forEach((article) => {
@@ -46,7 +40,5 @@ export const prepareAreaChartData = (articles: IArticle[]): IGraphItem[] => {
       : (datesObj[formattedDate] = 1);
   });
   const arrGraphItems = createArrGraphItems(datesObj);
-  return arrGraphItems.length > 1
-    ? arrGraphItems
-    : addEmptyData(arrGraphItems, arrGraphItems[0].value);
+  return arrGraphItems;
 };

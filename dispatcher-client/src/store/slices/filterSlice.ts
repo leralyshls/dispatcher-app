@@ -5,7 +5,7 @@ export interface IFilterState {
   country: string;
   endpoint: string;
   q: string;
-  from: string;
+  to: string;
   language: string;
   sortBy: string;
   category: string;
@@ -21,7 +21,7 @@ const initialState: IFilterState = {
   country: 'il',
   endpoint: 'top-headlines',
   q: '',
-  from: '',
+  to: '',
   language: '',
   sortBy: '',
   category: '',
@@ -44,7 +44,7 @@ const filterSlice = createSlice({
     setEndpoint(state, action: PayloadAction<FilterItemPayload>) {
       state[action.payload.key] = action.payload.value;
       state.country = '';
-      state.from = '';
+      state.to = '';
       state.language = '';
       state.sortBy = '';
       state.category = '';

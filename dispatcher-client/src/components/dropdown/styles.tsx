@@ -38,7 +38,7 @@ export const DropdownContainer = styled('div')`
       ${filters.sources !== '' && disabledStyle}
     }
     &.sources{
-      ${filters.category !== '' || (filters.country !== '' && disabledStyle)}
+      ${filters.category !== '' || filters.country !== '' ? disabledStyle : ''}
     }
     @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
       width: fit-content;

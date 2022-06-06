@@ -83,7 +83,7 @@ export const everythingFilters = [
     ],
   },
   {
-    filter: { name: 'Dates', id: 'from' },
+    filter: { name: 'Dates', id: 'to' },
   },
   { filter: { name: 'Sources', id: 'sources' } },
   {

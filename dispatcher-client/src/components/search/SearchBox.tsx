@@ -28,9 +28,9 @@ const SearchBox: React.FC = () => {
   const { tabletM, breakpoint500 } = SCREENS;
 
   useEffect(() => {
-    const searchText = debouncedInputValue.trim();
-    dispatch(filterActions.setQuery(searchText));
-    if (searchText !== '') {
+    if (debouncedInputValue !== '') {
+      const searchText = debouncedInputValue.trim();
+      dispatch(filterActions.setQuery(searchText));
       addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());

@@ -10,7 +10,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import { COLORS } from '../../utils/constants/colors';
 import { SCREENS } from '../../utils/constants/screenSizes';
-import { formatToISO } from '../../utils/dateFormat';
 import { ReactComponent as DateIcon } from '../../assets/svgs/date.svg';
 import { DatesFilterContainer } from './styles';
 
@@ -29,7 +28,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
   const handleDateChange = (newValue: any) => {
     setSelectedDate(newValue);
     if (newValue) {
-      const ISO = formatToISO(newValue);
+      const ISO = newValue.toISOString().slice(0, 10);
       dispatch(filterActions.updateFilter({ key: filtertype, value: ISO }));
     } else {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
