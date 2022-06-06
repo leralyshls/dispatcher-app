@@ -33,6 +33,15 @@ export const fetchNews: AsyncThunk<any, void, { state: RootState }> =
       } catch (err) {
         return rejectWithValue(JSON.stringify(err));
       }
+    },
+    {
+      condition: (_, { getState }) => {
+        const state = getState() as RootState;
+        const { country, category, q, sources } = state.filters;
+        if (country === '' && category === '' && q === '' && sources === '') {
+          return false;
+        }
+      },
     }
   );
 

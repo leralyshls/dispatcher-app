@@ -12,12 +12,12 @@ export const CardSecondaryStyled = styled(CardSharedStyle)`
   height: 19.69vw;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.56rem 0 1rem;
+  padding: 6.07% 4.5%;
   box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
 `;
 
 export const TitleContainer = styled(FlexColumn)`
-  margin-left: 1.56rem;
+  margin-left: 1.6%;
 `;
 
 export const CardSecondaryTitle = styled.h5`

@@ -1,37 +1,71 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import React from 'react';
+import { useAppDispatch } from '../../store/hooks';
+import { filterActions } from '../../store/slices/filterSlice';
+import { fetchNews } from '../../store/slices/newsSlice';
+import useWindowSize from '../../hooks/useWindowSize';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TextField } from '@mui/material';
+import { COLORS } from '../../utils/constants/colors';
+import { SCREENS } from '../../utils/constants/screenSizes';
 import { ReactComponent as DateIcon } from '../../assets/svgs/date.svg';
 import { DatesFilterContainer } from './styles';
-import { COLORS } from '../../utils/constants/colors';
 
-const DatePickerComponent: React.FC = () => {
-  const [value, setValue] = React.useState<Date | null>(null);
+export interface DatePickerProps {
+  filtertype: string;
+}
+
+const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
+  const [selectedDate, setSelectedDate] = React.useState<string | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const { width } = useWindowSize();
+  const { tabletM } = SCREENS;
+
+  const handleDateChange = (newValue: any) => {
+    setSelectedDate(newValue);
+    if (newValue) {
+      const ISO = newValue.toISOString().slice(0, 10);
+      dispatch(filterActions.updateFilter({ key: filtertype, value: ISO }));
+    } else {
+      dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
+    }
+    dispatch(fetchNews());
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
+        clearable={width > tabletM ? true : false}
+        showToolbar={false}
+        orientation='portrait'
+        inputFormat='dd/MM/yyyy'
         open={open}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         disableFuture
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
+        value={selectedDate}
+        onChange={handleDateChange}
         InputProps={{
           disableUnderline: true,
         }}
         components={{
           OpenPickerIcon: DateIcon,
         }}
-        PaperProps={{ elevation: 3 }}
-        PopperProps={{ placement: 'right-end' }}
+        PaperProps={{
+          sx: {
+            borderRadius: '1.25rem',
+            boxShadow: '0px 32px 64px rgba(0, 0, 0, 0.05)',
+          },
+        }}
+        PopperProps={{
+          placement: 'bottom',
+          sx: { paddingTop: '1rem', paddingLeft: '13%' },
+        }}
         renderInput={(params) => (
           <DatesFilterContainer onClick={() => setOpen(true)}>
-            {value ? '' : 'Dates'}
+            {selectedDate ? '' : 'Dates'}
             <TextField
               variant='standard'
               {...params}

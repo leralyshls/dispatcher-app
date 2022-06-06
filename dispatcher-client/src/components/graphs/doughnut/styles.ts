@@ -14,7 +14,6 @@ export const StyledUL = styled(FlexColumn)`
   overflow-y: auto;
   margin-block: 0.5em 0;
   max-height: 5.5rem;
-
   @media only screen and (max-width: ${SCREENS.laptopM}px) {
     display: none;
   }
@@ -30,7 +29,7 @@ export const StyledUL = styled(FlexColumn)`
 `;
 
 export const StyledLI = styled(FlexRow)`
-  padding: 0 2rem;
+  padding: 0 1rem 0 1.5rem;
   margin-bottom: 0.69rem;
   &:before {
     width: 2em;

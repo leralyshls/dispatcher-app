@@ -1,23 +1,27 @@
+import { useAppSelector } from '../../../store/hooks';
+import {
+  prepareDoughnutData,
+  prepareAreaChartData,
+} from '../../../utils/prepareGraphData';
 import AreaChartGraph from '../areaChart/AreaChartGraph';
 import DoughnutGraph from '../doughnut/DoughnutGraph';
 
-export interface GraphItem {
-  name: string;
-  value: number;
-}
-
 export interface GraphProps {
   type: string;
-  data: GraphItem[];
 }
 
-const Graph = ({ type, data }: GraphProps) => {
+const Graph = ({ type }: GraphProps) => {
+  const articles = useAppSelector((state) => state.news.articles);
   return (
     <>
       {type === 'area' ? (
-        <AreaChartGraph data={data} />
+        <AreaChartGraph
+          data={articles.length ? prepareAreaChartData(articles) : []}
+        />
       ) : (
-        <DoughnutGraph data={data} />
+        <DoughnutGraph
+          data={articles.length ? prepareDoughnutData(articles) : []}
+        />
       )}
     </>
   );

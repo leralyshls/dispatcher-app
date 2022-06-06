@@ -1,4 +1,4 @@
-export const topHeadlinesFilters = [
+export const topFilters = [
   {
     filter: { name: 'Country', id: 'country' },
     options: [
@@ -75,7 +75,7 @@ export const topHeadlinesFilters = [
 
 export const everythingFilters = [
   {
-    filter: { name: 'Sort by', id: 'category' },
+    filter: { name: 'Sort by', id: 'sortBy' },
     options: [
       { name: 'Relevancy', id: 'relevancy' },
       { name: 'Popularity', id: 'popularity' },
@@ -83,7 +83,7 @@ export const everythingFilters = [
     ],
   },
   {
-    filter: { name: 'Dates', id: 'from' },
+    filter: { name: 'Dates', id: 'to' },
   },
   { filter: { name: 'Sources', id: 'sources' } },
   {

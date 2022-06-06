@@ -1,9 +1,9 @@
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
 import { COLORS } from '../../../utils/constants/colors';
-import { GraphItem } from '../graph/Graph';
+import { IGraphItem } from '../../../utils/prepareGraphData';
 
 interface AreaProps {
-  data: GraphItem[];
+  data: IGraphItem[];
 }
 
 const AreaChartGraph = ({ data }: AreaProps) => {
@@ -34,7 +34,7 @@ const AreaChartGraph = ({ data }: AreaProps) => {
           tickLine={false}
           scale='point'
           stroke={COLORS.purple}
-          padding={{ left: 30, right: 25 }}
+          interval='preserveStartEnd'
         />
         <Area
           type='monotone'

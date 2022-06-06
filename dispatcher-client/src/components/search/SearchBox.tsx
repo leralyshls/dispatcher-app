@@ -10,8 +10,8 @@ import {
 } from '../../utils/localStorageUse';
 import Dropdown from '../dropdown/Dropdown';
 import RecentSearches from '../../components/recentSearches/RecentSearches';
-import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { InputAdornment } from '@mui/material';
+import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { endpointsFilters } from '../../utils/constants/filterStrings';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
@@ -28,18 +28,18 @@ const SearchBox: React.FC = () => {
   const { tabletM, breakpoint500 } = SCREENS;
 
   useEffect(() => {
-    const searchText = debouncedInputValue.trim();
-    if (searchText === '') return;
-    addToSearchHistory(searchText);
-    dispatch(filterActions.setQuery(searchText));
-    setSearchHistory(getSearchHistory());
-    dispatch(fetchNews());
+    if (debouncedInputValue !== '') {
+      const searchText = debouncedInputValue.trim();
+      dispatch(filterActions.setQuery(searchText));
+      addToSearchHistory(searchText);
+      setSearchHistory(getSearchHistory());
+      dispatch(fetchNews());
+    }
   }, [debouncedInputValue, dispatch]);
 
   const handleClickOutside = () => {
     setFocused(false);
     setShowHistory(false);
-    setInputValue('');
   };
   const handleFocus = (e: React.SyntheticEvent) => {
     if (e.type === 'click' && width > breakpoint500) return;

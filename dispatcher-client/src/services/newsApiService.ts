@@ -1,21 +1,22 @@
 import axios from '../axios/config';
 import { IFilterState } from '../store/slices/filterSlice';
+import { ENDPOINTS } from '../utils/types/APITypes';
 
 const buildAxiosParams = (
-  page: number,
   params: IFilterState,
+  page: number,
   pageSize: number = 10
 ) => {
-  const { endpoint, sources, country, category, q, from, sortBy, language } =
+  const { endpoint, sources, country, category, q, to, sortBy, language } =
     params;
   let paramsObj;
 
-  if (endpoint === 'top-headlines' && sources === '') {
-    paramsObj = { country, category, q, pageSize };
-  } else if (endpoint === 'top-headlines' && sources !== '') {
-    paramsObj = { sources, q, pageSize };
+  if (endpoint === ENDPOINTS.TOP && sources === '') {
+    paramsObj = { country, category, q };
+  } else if (endpoint === ENDPOINTS.TOP && sources !== '') {
+    paramsObj = { sources, q };
   } else {
-    paramsObj = { q, sources, from, sortBy, language, pageSize };
+    paramsObj = { q, sources, to, sortBy, language };
   }
   paramsObj = {
     ...paramsObj,
@@ -28,14 +29,14 @@ const buildAxiosParams = (
 
 export const fetchNewsData = async (state: IFilterState, page: number = 1) => {
   const { endpoint } = state;
-  const params = buildAxiosParams(page, state);
+  const params = buildAxiosParams(state, page);
   const res = await axios.get(`/${endpoint}`, { params });
   if (res.status === 200) return res;
   else throw new Error('Could not fetch news');
 };
 
 export const fetchSourcesData = async () => {
-  const res = await axios.get(`/top-headlines/sources`);
+  const res = await axios.get(`/${ENDPOINTS.TOP}/sources`);
   if (res.status === 200) return res;
   else throw new Error('Could not fetch sources');
 };
