@@ -40,16 +40,3 @@ export const fetchSourcesData = async () => {
   if (res.status === 200) return res;
   else throw new Error('Could not fetch sources');
 };
-
-export const hasRequiredParam = (filters: IFilterState) => {
-  return (
-    filters.category !== '' ||
-    filters.country !== '' ||
-    filters.q !== '' ||
-    filters.sources !== ''
-  );
-};
-
-export const hasRequiredParamEndpoint = (filters: IFilterState) => {
-  return filters.q !== '' || filters.sources !== '';
-};

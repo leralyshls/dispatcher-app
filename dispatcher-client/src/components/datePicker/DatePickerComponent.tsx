@@ -1,9 +1,8 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { useAppDispatch } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
 import useWindowSize from '../../hooks/useWindowSize';
-import { hasRequiredParamEndpoint } from '../../services/newsApiService';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -20,7 +19,6 @@ export interface DatePickerProps {
 const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
   const [selectedDate, setSelectedDate] = React.useState<string | null>(null);
   const [open, setOpen] = React.useState<boolean>(false);
-  const filters = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
   const { tabletM } = SCREENS;
@@ -33,7 +31,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
     } else {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
     }
-    hasRequiredParamEndpoint(filters) && dispatch(fetchNews());
+    dispatch(fetchNews());
   };
 
   return (

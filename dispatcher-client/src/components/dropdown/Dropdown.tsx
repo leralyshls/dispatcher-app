@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { fetchNews } from '../../store/slices/newsSlice';
 import { filterActions } from '../../store/slices/filterSlice';
-import {
-  hasRequiredParam,
-  hasRequiredParamEndpoint,
-} from '../../services/newsApiService';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 
@@ -39,12 +35,12 @@ const Dropwdown = ({
         value: id,
       })
     );
-    hasRequiredParam(filters) && dispatch(fetchNews());
+    dispatch(fetchNews());
   };
 
   const performEndpointActions = (id: string) => {
     dispatch(filterActions.setEndpoint({ key: filtertype, value: id }));
-    hasRequiredParamEndpoint(filters) && dispatch(fetchNews());
+    dispatch(fetchNews());
   };
 
   const handleFilterChange = (newValue: IOption | null) => {
@@ -62,7 +58,7 @@ const Dropwdown = ({
     if (selectedFilterValue && id === selectedFilterValue.id && !insearchbox) {
       setSelectedFilterValue(null);
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
-      hasRequiredParam(filters) && dispatch(fetchNews());
+      dispatch(fetchNews());
     }
   };
 
