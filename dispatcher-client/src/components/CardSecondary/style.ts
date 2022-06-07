@@ -5,6 +5,7 @@ import {
   FlexColumn,
   FlexRow,
 } from '../../styles/sharedStyles';
+import { CardProps } from './CardSecondary';
 
 export const CardSecondaryStyled = styled(CardSharedStyle)`
   width: 100%;
@@ -34,6 +35,8 @@ export const Underline = styled.div`
 
 export const CardSecondaryBody = styled(FlexRow)`
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  justify-content: ${(props: CardProps) =>
+    props?.children?.props?.type === 'doughnut' ? 'space-between' : 'center'};
+  align-items: ${(props: CardProps) =>
+    props?.children?.props?.type === 'area' ? 'flex-end' : 'center'};
 `;

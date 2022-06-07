@@ -49,6 +49,15 @@ export const CardButtonContainer = styled(FlexRow)`
     }
 `;
 
+export const ATagStyled = styled.a`
+  font-size: inherit;
+  color: ${COLORS.white};
+  text-decoration: none;
+  @media only screen and (max-width: 300px) {
+    font-size: 0.75rem;
+  }
+`;
+
 export const ArticleImg = styled.img`
   display: block;
   width: 100%;

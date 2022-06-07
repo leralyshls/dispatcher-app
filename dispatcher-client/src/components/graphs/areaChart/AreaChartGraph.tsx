@@ -1,4 +1,3 @@
-import { Skeleton } from '@mui/material';
 import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
 import { COLORS } from '../../../utils/constants/colors';
 import { IGraphItem } from '../../../utils/prepareGraphData';

@@ -9,6 +9,7 @@ import {
   ArticleDetailes,
   ArticleTitle,
   ArticleContent,
+  ATagStyled,
 } from './style';
 import Button from '../button/MainButton';
 import noImage from '../../assets/images/noImage.png';
@@ -27,7 +28,7 @@ export interface CardProps {
 }
 
 const CardPrimary = (props: IArticle) => {
-  const { urlToImage, title, source, description, author } = props;
+  const { urlToImage, title, source, description, author, url } = props;
   const { width } = useWindowSize();
   const isRTL = RTLCheck(title);
   const direction = isRTL ? 'rtl' : 'ltr';
@@ -50,7 +51,9 @@ const CardPrimary = (props: IArticle) => {
         </ArticleContent>
         <CardButtonContainer>
           <Button icon color={'primary'}>
-            Navigate to dispatch
+            <ATagStyled href={url} target='_blank' rel='noopener noreferrer'>
+              Navigate to dispatch
+            </ATagStyled>
           </Button>
         </CardButtonContainer>
       </Article>
