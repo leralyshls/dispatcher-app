@@ -1,6 +1,6 @@
 import axios from '../axios/config';
 import { IFilterState } from '../store/slices/filterSlice';
-import { ENDPOINTS } from '../utils/types/APITypes';
+import { ENDPOINTS } from '../utils/constants/endpoints';
 
 const buildAxiosParams = (
   params: IFilterState,

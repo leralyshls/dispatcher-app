@@ -28,9 +28,9 @@ const SearchBox: React.FC = () => {
   const { tabletM, breakpoint500 } = SCREENS;
 
   useEffect(() => {
+    const searchText = debouncedInputValue.trim();
+    dispatch(filterActions.setQuery(searchText));
     if (debouncedInputValue !== '') {
-      const searchText = debouncedInputValue.trim();
-      dispatch(filterActions.setQuery(searchText));
       addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
@@ -53,6 +53,7 @@ const SearchBox: React.FC = () => {
     if (e.key === 'Enter') {
       addToSearchHistory(value.trim());
       setSearchHistory(getSearchHistory());
+      dispatch(fetchNews());
     }
   };
   return (

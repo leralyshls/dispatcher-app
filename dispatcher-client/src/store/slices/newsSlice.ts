@@ -7,6 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 import { IResponseNews } from '../../utils/types/APITypes';
 import { fetchNewsData } from '../../services/newsApiService';
+import { RESPONSES } from '../../utils/constants/responseStatus';
 
 interface INewsState extends IResponseNews {
   page: number;
@@ -14,7 +15,7 @@ interface INewsState extends IResponseNews {
 }
 
 const initialState: INewsState = {
-  status: 'idle',
+  status: RESPONSES.IDLE,
   totalResults: -1,
   articles: [],
   page: 1,
@@ -74,7 +75,7 @@ export const newsSlice = createSlice({
   },
   extraReducers: {
     [fetchNews.pending.type]: (state) => {
-      state.status = 'loading';
+      state.status = RESPONSES.LOADING;
     },
     [fetchNews.fulfilled.type]: (
       state,
@@ -85,10 +86,10 @@ export const newsSlice = createSlice({
       state.articles = action.payload.articles;
     },
     [fetchNews.rejected.type]: (state) => {
-      state.status = 'error';
+      state.status = RESPONSES.ERROR;
     },
     [scrollNews.pending.type]: (state) => {
-      state.status = 'loading';
+      state.status = RESPONSES.LOADING;
     },
     [scrollNews.fulfilled.type]: (
       state,
@@ -99,7 +100,7 @@ export const newsSlice = createSlice({
       state.articles = [...state.articles, ...action.payload.articles];
     },
     [scrollNews.rejected.type]: (state) => {
-      state.status = 'error';
+      state.status = RESPONSES.ERROR;
     },
   },
 });
