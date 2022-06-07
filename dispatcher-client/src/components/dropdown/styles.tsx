@@ -46,6 +46,9 @@ export const DropdownContainer = styled('div')`
       min-width: 6rem;
       width: fit-content;
     };
+    @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+      width: 100%;
+    }
   `}
 `;
 
@@ -75,6 +78,9 @@ const StyledButton = styled('button')`
   }
   @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
     padding-inline: 0;
+  }
+  @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+    padding: 0.93em;
   }
 `;
 

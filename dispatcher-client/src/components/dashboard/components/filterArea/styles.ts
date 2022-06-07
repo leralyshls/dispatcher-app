@@ -20,4 +20,17 @@ export const FilterDiv = styled(FlexRow)`
     border-top: 1px solid ${COLORS.secondary};
     gap: max(1.25rem, 3%);
   }
+  @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    display: grid;
+    background: none;
+    grid-template-columns: repeat(2, 1fr);
+    padding-block: 1rem;
+
+    div.endpoint {
+      grid-column: 1 / 3;
+    }
+  }
 `;

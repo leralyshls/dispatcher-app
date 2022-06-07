@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
@@ -9,16 +9,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import { COLORS } from '../../utils/constants/colors';
 import { SCREENS } from '../../utils/constants/screenSizes';
-import { ReactComponent as DateIcon } from '../../assets/svgs/date.svg';
-import { DatesFilterContainer } from './styles';
+import { DatesFilterContainer, DateIconStyled } from './styles';
 
 export interface DatePickerProps {
   filtertype: string;
 }
 
 const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
-  const [selectedDate, setSelectedDate] = React.useState<string | null>(null);
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
   const { tabletM } = SCREENS;
@@ -50,9 +49,6 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
         InputProps={{
           disableUnderline: true,
         }}
-        components={{
-          OpenPickerIcon: DateIcon,
-        }}
         PaperProps={{
           sx: {
             borderRadius: '1.25rem',
@@ -80,6 +76,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
                 },
               }}
             />
+            <DateIconStyled />
           </DatesFilterContainer>
         )}
       />

@@ -18,16 +18,18 @@ const GraphsArea: React.FC = () => {
         {totalResults > 0 && status !== RESPONSES.LOADING && (
           <Graph type='doughnut' />
         )}
-        {(totalResults === 0 || status === RESPONSES.ERROR) &&
-          status !== RESPONSES.LOADING && <NoData type='chart' />}
+        {totalResults === 0 && status !== RESPONSES.LOADING && (
+          <NoData type='chart' />
+        )}
       </CardSecondary>
       <CardSecondary title='Dates'>
         {status === RESPONSES.LOADING && <SkeletonAreaChart />}
         {totalResults > 0 && status !== RESPONSES.LOADING && (
           <Graph type='area' />
         )}
-        {(totalResults === 0 || status === RESPONSES.ERROR) &&
-          status !== RESPONSES.LOADING && <NoData type='chart' />}
+        {totalResults === 0 && status !== RESPONSES.LOADING && (
+          <NoData type='chart' />
+        )}
       </CardSecondary>
     </GraphsContainer>
   );
