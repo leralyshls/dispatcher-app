@@ -19,3 +19,10 @@
   font-family: 'Mulish', 'Roboto', sans-serif;
   font-weight: 400;
 }
+
+.PrivatePickersSlideTransition-root {
+  min-height: 195px !important;
+  @media only screen and (min-width: 769px) {
+    min-height: 180px !important;
+  }
+}

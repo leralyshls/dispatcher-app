@@ -18,6 +18,6 @@ export const FilterDiv = styled(FlexRow)`
     overflow-x: hidden;
     background: ${COLORS.white};
     border-top: 1px solid ${COLORS.secondary};
-    gap: 3%;
+    gap: max(1.25rem, 3%);
   }
 `;

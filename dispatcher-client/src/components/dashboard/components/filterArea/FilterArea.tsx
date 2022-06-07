@@ -1,21 +1,34 @@
 import React from 'react';
 import { useAppSelector } from '../../../../store/hooks';
-import { FilterDiv } from './styles';
-import Dropwdown from '../../../dropdown/Dropdown';
+import useWindowSize from '../../../../hooks/useWindowSize';
+import Dropdown from '../../../dropdown/Dropdown';
 import DatePickerComponent from '../../../datePicker/DatePickerComponent';
+import { FilterDiv } from './styles';
 import {
   topFilters,
   everythingFilters,
+  endpointsFilters,
 } from '../../../../utils/constants/filterStrings';
 import { ENDPOINTS } from '../../../../utils/constants/endpoints';
+import { SCREENS } from '../../../../utils/constants/screenSizes';
 
 const FilterArea = () => {
   const sources = useAppSelector((state) => state.sources.sources);
   const endpoint = useAppSelector((state) => state.filters.endpoint);
+  const { width } = useWindowSize();
+  const { tabletM } = SCREENS;
   const datesFilterId = everythingFilters[1].filter.id;
 
+  const endpointDropdows = (
+    <Dropdown
+      options={endpointsFilters.options}
+      placeholder={endpointsFilters.options[0].name}
+      filtertype={endpointsFilters.filter.id}
+    />
+  );
+
   const topDropdowns = topFilters.map((item, index) => (
-    <Dropwdown
+    <Dropdown
       key={item.filter.id}
       options={item?.options || sources}
       placeholder={item.filter.name}
@@ -25,7 +38,7 @@ const FilterArea = () => {
 
   const everythingDropdowns = everythingFilters.map((item) =>
     item.filter.id !== datesFilterId ? (
-      <Dropwdown
+      <Dropdown
         key={item.filter.id}
         options={item?.options || sources}
         placeholder={item.filter.name}
@@ -38,6 +51,7 @@ const FilterArea = () => {
 
   return (
     <FilterDiv>
+      {width < tabletM && endpointDropdows}
       {endpoint === ENDPOINTS.TOP ? topDropdowns : everythingDropdowns}
     </FilterDiv>
   );

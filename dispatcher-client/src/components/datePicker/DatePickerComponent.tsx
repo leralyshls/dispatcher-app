@@ -56,7 +56,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
         PaperProps={{
           sx: {
             borderRadius: '1.25rem',
-            boxShadow: '0px 32px 64px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0px 32px 64px rgba(0, 0, 0, 0.07)',
           },
         }}
         PopperProps={{

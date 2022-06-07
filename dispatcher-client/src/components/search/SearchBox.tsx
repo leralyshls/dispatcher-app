@@ -34,6 +34,7 @@ const SearchBox: React.FC = () => {
       addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
+      setShowHistory(false);
     }
   }, [debouncedInputValue, dispatch]);
 
@@ -49,11 +50,12 @@ const SearchBox: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  const handleKeyPress = (e: React.KeyboardEvent, value: string) => {
+  const handleEnterKeyPress = (e: React.KeyboardEvent, value: string) => {
     if (e.key === 'Enter') {
       addToSearchHistory(value.trim());
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
+      setShowHistory(false);
     }
   };
   return (
@@ -64,7 +66,7 @@ const SearchBox: React.FC = () => {
           value={inputValue}
           onFocus={(e) => handleFocus(e)}
           onBlur={handleClickOutside}
-          onKeyPress={(e) => handleKeyPress(e, inputValue)}
+          onKeyPress={(e) => handleEnterKeyPress(e, inputValue)}
           startAdornment={
             <InputAdornment position='start'>
               <InputIcon

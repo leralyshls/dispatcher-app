@@ -38,7 +38,12 @@ const CardPrimary = (props: IArticle) => {
   return (
     <CardPrimaryStyled>
       <CardImgContainer>
-        <ArticleImg src={urlToImage || noImage} />
+        <ArticleImg
+          src={urlToImage || noImage}
+          onError={(e: any) => {
+            e.target.src = noImage;
+          }}
+        />
       </CardImgContainer>
       <Article isRTL={isRTL}>
         <ArticleDetailes>{publishedAt}</ArticleDetailes>
