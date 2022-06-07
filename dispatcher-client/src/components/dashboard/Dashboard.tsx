@@ -16,6 +16,7 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
   const { width, height } = useWindowSize();
   const { laptopM } = SCREENS;
+
   useEffect(() => {
     dispatch(fetchSources());
     dispatch(fetchNews());

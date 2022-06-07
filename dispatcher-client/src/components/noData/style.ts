@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { COLORS } from '../../utils/constants/colors';
 import { FlexColumn } from '../../styles/sharedStyles';
+import { NoDataProps } from './NoData';
 
 export const NoDataContainer = styled(FlexColumn)`
   align-items: center;
   justify-content: center;
   min-height: fit-content;
+  margin-top: ${({ type }: NoDataProps) => type === 'search' && '20vh'};
 `;
 
 export const NoDataImageDiv = styled.div`

@@ -36,7 +36,7 @@ export const Underline = styled.div`
 export const CardSecondaryBody = styled(FlexRow)`
   height: 100%;
   justify-content: ${(props: CardProps) =>
-    props.children.props.type === 'doughnut' ? 'space-between' : 'center'};
+    props?.children?.props?.type === 'doughnut' ? 'space-between' : 'center'};
   align-items: ${(props: CardProps) =>
-    props.children.props.type === 'area' ? 'flex-end' : 'center'};
+    props?.children?.props?.type === 'area' ? 'flex-end' : 'center'};
 `;

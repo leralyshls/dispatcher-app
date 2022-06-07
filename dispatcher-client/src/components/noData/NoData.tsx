@@ -14,7 +14,7 @@ export interface NoDataProps {
 
 const NoData = ({ type }: NoDataProps) => {
   return (
-    <NoDataContainer>
+    <NoDataContainer type={type}>
       <NoDataImageDiv>
         <NoDataImage src={type === 'search' ? search : chart} />
       </NoDataImageDiv>

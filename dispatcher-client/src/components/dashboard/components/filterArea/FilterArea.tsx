@@ -7,7 +7,7 @@ import {
   topFilters,
   everythingFilters,
 } from '../../../../utils/constants/filterStrings';
-import { ENDPOINTS } from '../../../../utils/types/APITypes';
+import { ENDPOINTS } from '../../../../utils/constants/endpoints';
 
 const FilterArea = () => {
   const sources = useAppSelector((state) => state.sources.sources);
