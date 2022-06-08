@@ -12,9 +12,8 @@ import { MAX_NUM_PAGE } from '../../../../utils/constants/maxValues';
 
 const NewsWidget = () => {
   const dispatch = useAppDispatch();
-  const { articles, totalResults, hasMore, page, status } = useAppSelector(
-    (state) => state.news
-  );
+  const { articles, totalResults, hasMore, page, status, hasSearched } =
+    useAppSelector((state) => state.news);
 
   const getMoreData = () => {
     if (hasMore && page < MAX_NUM_PAGE) {
@@ -22,6 +21,9 @@ const NewsWidget = () => {
       dispatch(scrollNews());
       const isMore = articles.length < totalResults && page < MAX_NUM_PAGE;
       dispatch(newsActions.setHasMore(isMore));
+      if (!hasSearched) {
+        dispatch(newsActions.setHasSearched());
+      }
     }
   };
   return (

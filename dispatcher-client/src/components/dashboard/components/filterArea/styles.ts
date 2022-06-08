@@ -26,7 +26,7 @@ export const FilterDiv = styled(FlexRow)`
     padding-left: 0;
     display: grid;
     background: none;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     padding-block: 1rem;
     border-top: none;
   }
