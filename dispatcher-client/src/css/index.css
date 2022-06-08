@@ -33,3 +33,7 @@
     min-height: 180px !important;
   }
 }
+text.recharts-text tspan {
+  font-weight: 700;
+  font-size: 0.8125rem;
+}
