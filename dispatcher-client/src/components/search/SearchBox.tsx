@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import useWindowSize from '../../hooks/useWindowSize';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
+import { newsActions } from '../../store/slices/newsSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
 import {
   getSearchHistory,
@@ -22,6 +23,7 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
+  const hasSearched = useAppSelector((state) => state.news.hasSearched);
   const debouncedInputValue = useDebounce<string>(inputValue, 1000);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
@@ -35,6 +37,9 @@ const SearchBox: React.FC = () => {
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
       setShowHistory(false);
+      if (!hasSearched) {
+        dispatch(newsActions.setHasSearched());
+      }
     }
   }, [debouncedInputValue, dispatch]);
 

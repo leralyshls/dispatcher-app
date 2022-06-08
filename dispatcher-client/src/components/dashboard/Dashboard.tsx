@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch } from '../../store/hooks';
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchNews } from '../../store/slices/newsSlice';
 import { fetchSources } from '../../store/slices/sourcesSlice';
 import { DashboardContainer, DashboardContent, MainContent } from './styles';
@@ -10,23 +10,30 @@ import GraphsArea from './components/graphsArea/GraphsArea';
 import PageTitle from '../pageTitle/PageTitle';
 import useWindowSize from '../../hooks/useWindowSize';
 import { SCREENS } from '../../utils/constants/screenSizes';
-import { countryFirstVisit } from '../../mockData/filterStrings';
 
 const Dashboard = () => {
+  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(true);
   const dispatch = useAppDispatch();
+  const country = useAppSelector((state) => state.filters.country);
   const { width, height } = useWindowSize();
   const { laptopM } = SCREENS;
 
   useEffect(() => {
     dispatch(fetchSources());
-    dispatch(fetchNews());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (country && isFirstVisit) {
+      dispatch(fetchNews());
+      setIsFirstVisit(false);
+    }
+  }, [dispatch, country, isFirstVisit]);
   return (
     <DashboardContainer>
       <NavBar />
       <DashboardContent>
         <FilterArea />
-        <PageTitle firstVisit={true} country={countryFirstVisit} />
+        <PageTitle />
         <MainContent isPortrait={height > width ? true : false}>
           <NewsWidget />
           {width > laptopM && <GraphsArea />}

@@ -1,4 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import {
+  createSlice,
+  PayloadAction,
+  createAsyncThunk,
+  AsyncThunk,
+} from '@reduxjs/toolkit';
+import { getIP } from '../../services/IPAddressService';
+import { findCountryById } from '../../utils/findCountryById';
+import defaultCountry from '../../utils/constants/defaultCountry';
 
 export interface IFilterState {
   [key: string]: string;
@@ -18,7 +27,7 @@ interface FilterItemPayload {
 }
 
 const initialState: IFilterState = {
-  country: 'il',
+  country: '',
   endpoint: 'top-headlines',
   q: '',
   to: '',
@@ -27,6 +36,17 @@ const initialState: IFilterState = {
   category: '',
   sources: '',
 };
+
+export const getIPAddress: AsyncThunk<any, void, { state: RootState }> =
+  createAsyncThunk('filter/getIPAddress', async (_, { rejectWithValue }) => {
+    try {
+      const response = await getIP();
+      const countryId = response.country_code.toLowerCase();
+      return findCountryById(countryId).id;
+    } catch (err) {
+      return rejectWithValue(JSON.stringify(err));
+    }
+  });
 
 const filterSlice = createSlice({
   name: 'filter',
@@ -48,6 +68,14 @@ const filterSlice = createSlice({
       state.language = '';
       state.sortBy = '';
       state.category = '';
+    },
+  },
+  extraReducers: {
+    [getIPAddress.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.country = action.payload;
+    },
+    [getIPAddress.rejected.type]: (state) => {
+      state.country = defaultCountry.id;
     },
   },
 });

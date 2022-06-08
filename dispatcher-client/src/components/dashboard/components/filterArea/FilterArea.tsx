@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppSelector } from '../../../../store/hooks';
 import useWindowSize from '../../../../hooks/useWindowSize';
 import Dropdown from '../../../dropdown/Dropdown';
@@ -51,7 +51,7 @@ const FilterArea = () => {
 
   return (
     <FilterDiv>
-      {width < tabletM && endpointDropdows}
+      {width <= tabletM && endpointDropdows}
       {endpoint === ENDPOINTS.TOP ? topDropdowns : everythingDropdowns}
     </FilterDiv>
   );

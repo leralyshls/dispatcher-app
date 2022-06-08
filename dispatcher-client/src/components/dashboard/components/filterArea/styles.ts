@@ -10,9 +10,9 @@ export const FilterDiv = styled(FlexRow)`
   gap: min(1.25rem, 2%);
   overflow-x: hidden;
 
-  @media only screen and (max-width: ${SCREENS.tabletM}px) {
-    width: 120%;
-    margin-left: -2rem;
+  @media only screen and (max-width: 880px) {
+    width: 180%;
+    margin-left: -8rem;
     padding-left: 2.125rem;
     padding-block: 0;
     overflow-x: hidden;
@@ -20,7 +20,7 @@ export const FilterDiv = styled(FlexRow)`
     border-top: 1px solid ${COLORS.secondary};
     gap: max(1.25rem, 3%);
   }
-  @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+  @media only screen and (max-width: ${SCREENS.tabletM}px) {
     width: 100%;
     margin-left: 0;
     padding-left: 0;
@@ -28,9 +28,17 @@ export const FilterDiv = styled(FlexRow)`
     background: none;
     grid-template-columns: repeat(2, 1fr);
     padding-block: 1rem;
-
-    div.endpoint {
-      grid-column: 1 / 3;
-    }
+    border-top: none;
   }
+  @media only screen and (max-width: ${SCREENS.mobileL}px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
+export const MobileEndpointFilterDiv = styled.div`
+  width: 120%;
+  margin-left: -2rem;
+  padding-left: 2rem;
+  background: ${COLORS.white};
+  border-bottom: 1px solid ${COLORS.secondary};
 `;

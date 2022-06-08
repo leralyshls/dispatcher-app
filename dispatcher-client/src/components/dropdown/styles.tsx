@@ -42,11 +42,7 @@ export const DropdownContainer = styled('div')`
     &.sources{
       ${filters.category !== '' || filters.country !== '' ? disabledStyle : ''}
     }
-    @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
-      min-width: 6rem;
-      width: fit-content;
-    };
-    @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
+    @media only screen and (max-width: ${SCREENS.tabletM}px) {
       width: 100%;
     }
   `}
@@ -76,12 +72,6 @@ const StyledButton = styled('button')`
     transition: transform 0.3s ease-out;
     margin-left: 1rem;
   }
-  @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
-    padding-inline: 0;
-  }
-  @media only screen and (max-width: ${SCREENS.tabletS - 1}px) {
-    padding: 0.93em;
-  }
 `;
 
 const StyledListbox = styled('ul')`
@@ -108,6 +98,12 @@ const StyledListbox = styled('ul')`
   }
   ::-webkit-scrollbar-thumb:hover {
     background: ${COLORS.greyPlaceholder};
+  }
+  @media only screen and (max-width: ${SCREENS.tabletM}px) {
+    width: 45.5vw;
+  }
+  @media only screen and (max-width: ${SCREENS.mobileL}px) {
+    width: 91vw;
   }
 `;
 

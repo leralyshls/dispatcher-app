@@ -10,7 +10,10 @@ export const NoDataContainer = styled(FlexColumn)`
   min-height: fit-content;
   margin-top: ${({ type }: NoDataProps) => type === 'search' && '20vh'};
   @media only screen and (max-width: ${SCREENS.laptopM}px) {
-    margin-top: 1rem;
+    margin-top: 3rem;
+  }
+  @media only screen and (max-width: ${SCREENS.mobileM}px) {
+    margin-top: 6rem;
   }
 `;
 

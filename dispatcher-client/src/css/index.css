@@ -22,10 +22,14 @@
 
 .PrivatePickersSlideTransition-root {
   min-height: 195px !important;
-  @media only screen and (min-width: 769px) {
-    min-height: 180px !important;
-  }
 }
+
 [data-testid] {
   display: none !important;
+}
+
+@media only screen and (min-width: 769px) {
+  .PrivatePickersSlideTransition-root {
+    min-height: 180px !important;
+  }
 }
