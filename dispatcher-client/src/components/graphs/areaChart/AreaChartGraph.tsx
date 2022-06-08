@@ -12,7 +12,7 @@ const AreaChartGraph = ({ data }: AreaProps) => {
       <AreaChart
         data={data}
         margin={{
-          top: 10,
+          top: 30,
           right: 0,
           left: 0,
           bottom: 0,

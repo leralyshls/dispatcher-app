@@ -41,7 +41,7 @@ const SearchBox: React.FC = () => {
         dispatch(newsActions.setHasSearched());
       }
     }
-  }, [debouncedInputValue, dispatch]);
+  }, [debouncedInputValue, dispatch, hasSearched]);
 
   const handleClickOutside = () => {
     setFocused(false);
