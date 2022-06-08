@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { FlexRow } from '../../../../styles/sharedStyles';
 import { COLORS } from '../../../../utils/constants/colors';
 import { SCREENS } from '../../../../utils/constants/screenSizes';
+import { StyledClearIcon } from '../../../recentSearches/styles';
+
+export const AlertClearIcon = styled(StyledClearIcon)`
+  margin-left: 0.5rem;
+  cursor: pointer;
+`;
 
 export const FilterDiv = styled(FlexRow)`
   padding-block: 1.25rem;

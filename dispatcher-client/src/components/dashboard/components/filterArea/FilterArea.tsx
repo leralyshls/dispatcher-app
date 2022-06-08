@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '../../../../store/hooks';
 import useWindowSize from '../../../../hooks/useWindowSize';
+import { Snackbar, Alert } from '@mui/material';
+import { AlertClearIcon } from './styles';
 import Dropdown from '../../../dropdown/Dropdown';
 import DatePickerComponent from '../../../datePicker/DatePickerComponent';
 import { FilterDiv } from './styles';
@@ -11,13 +13,29 @@ import {
 } from '../../../../utils/constants/filterStrings';
 import { ENDPOINTS } from '../../../../utils/constants/endpoints';
 import { SCREENS } from '../../../../utils/constants/screenSizes';
+import { COLORS } from '../../../../utils/constants/colors';
 
 const FilterArea = () => {
+  const [openAlert, setOpenAlert] = useState<boolean>(false);
   const sources = useAppSelector((state) => state.sources.sources);
   const endpoint = useAppSelector((state) => state.filters.endpoint);
   const { width } = useWindowSize();
   const { tabletM } = SCREENS;
   const datesFilterId = everythingFilters[1].filter.id;
+
+  const alertMessageTop = 'Please choose a country, a source, or a category';
+  const alertMessageEverything =
+    'Please search for something or choose a source';
+
+  const handleCloseAlert = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === 'clickaway') {
+      setOpenAlert(false);
+    }
+    setOpenAlert(false);
+  };
 
   const endpointDropdows = (
     <Dropdown
@@ -33,6 +51,7 @@ const FilterArea = () => {
       options={item?.options || sources}
       placeholder={item.filter.name}
       filtertype={item.filter.id}
+      setOpenAlert={setOpenAlert}
     />
   ));
 
@@ -43,9 +62,14 @@ const FilterArea = () => {
         options={item?.options || sources}
         placeholder={item.filter.name}
         filtertype={item.filter.id}
+        setOpenAlert={setOpenAlert}
       />
     ) : (
-      <DatePickerComponent key={item.filter.id} filtertype={item.filter.id} />
+      <DatePickerComponent
+        key={item.filter.id}
+        filtertype={item.filter.id}
+        setOpenAlert={setOpenAlert}
+      />
     )
   );
 
@@ -53,6 +77,18 @@ const FilterArea = () => {
     <FilterDiv>
       {width <= tabletM && endpointDropdows}
       {endpoint === ENDPOINTS.TOP ? topDropdowns : everythingDropdowns}
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={3000}
+        onClose={handleCloseAlert}
+      >
+        <Alert sx={{ background: `${COLORS.white}` }}>
+          {endpoint === ENDPOINTS.TOP
+            ? alertMessageTop
+            : alertMessageEverything}
+          <AlertClearIcon onClick={() => setOpenAlert(false)} />
+        </Alert>
+      </Snackbar>
     </FilterDiv>
   );
 };

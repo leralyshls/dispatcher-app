@@ -8,16 +8,19 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers';
 import { TextField } from '@mui/material';
 import { COLORS } from '../../utils/constants/colors';
+import { ENDPOINTS } from '../../utils/constants/endpoints';
 import { DatesFilterContainer, DateIconStyled } from './styles';
 
 export interface DatePickerProps {
   filtertype: string;
+  setOpenAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
+const DatePickerComponent = ({ filtertype, setOpenAlert }: DatePickerProps) => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const hasSearched = useAppSelector((state) => state.news.hasSearched);
+  const filters = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
 
   const handleDateChange = (newValue: any) => {
@@ -27,6 +30,14 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
       dispatch(filterActions.updateFilter({ key: filtertype, value: ISO }));
     } else {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
+    }
+    if (
+      setOpenAlert &&
+      filters.endpoint === ENDPOINTS.EVERYTHING &&
+      filters.q === '' &&
+      filters.sources === ''
+    ) {
+      setOpenAlert(true);
     }
     dispatch(fetchNews());
     if (!hasSearched) {

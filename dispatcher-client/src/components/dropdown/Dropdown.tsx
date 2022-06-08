@@ -4,6 +4,7 @@ import { fetchNews, newsActions } from '../../store/slices/newsSlice';
 import { filterActions } from '../../store/slices/filterSlice';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
+import { ENDPOINTS } from '../../utils/constants/endpoints';
 
 export interface IOption {
   name: string;
@@ -15,8 +16,7 @@ export interface DropdownProps {
   options: IOption[];
   insearchbox?: any;
   filtertype: string;
-  showFilters?: boolean;
-  setShowFilters?: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Dropwdown = ({
@@ -24,6 +24,7 @@ const Dropwdown = ({
   options,
   insearchbox,
   filtertype,
+  setOpenAlert,
 }: DropdownProps) => {
   const [selectedFilterValue, setSelectedFilterValue] =
     useState<IOption | null>(null);
@@ -38,6 +39,15 @@ const Dropwdown = ({
         value: id,
       })
     );
+    if (
+      setOpenAlert &&
+      filters.endpoint === ENDPOINTS.EVERYTHING &&
+      filters.q === '' &&
+      filters.sources === '' &&
+      filtertype !== 'sources'
+    ) {
+      setOpenAlert(true);
+    }
     dispatch(fetchNews());
     if (!hasSearched) {
       dispatch(newsActions.setHasSearched());
