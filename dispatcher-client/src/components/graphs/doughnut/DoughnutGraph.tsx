@@ -48,7 +48,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
   };
 
   return (
-    <ResponsiveContainer width='100%' height='90%'>
+    <ResponsiveContainer width='100%' height='100%'>
       <PieChart
         margin={{
           top: 0,
@@ -59,8 +59,8 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
       >
         <Pie
           data={data}
-          outerRadius={'70%'}
-          innerRadius={'60%'}
+          outerRadius={'75%'}
+          innerRadius={'65%'}
           paddingAngle={0}
           dataKey='value'
         >

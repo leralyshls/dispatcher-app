@@ -12,8 +12,24 @@ export const StyledUL = styled(FlexColumn)`
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  margin-block: 0.5em 0;
+  margin-block: 1em 0;
   max-height: 5.5rem;
+  ::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  ::-webkit-scrollbar-track {
+    background: ${COLORS.lightGrey};
+    visibility: hidden;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${COLORS.purple};
+    border-radius: 5px;
+    opacity: 1;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${COLORS.greyPlaceholder};
+
   @media only screen and (max-width: ${SCREENS.laptopM}px) {
     display: none;
   }

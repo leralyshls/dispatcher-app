@@ -36,7 +36,7 @@ const SearchBox: React.FC = () => {
       addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
-      setShowHistory(false);
+      handleClickOutside();
       if (!hasSearched) {
         dispatch(newsActions.setHasSearched());
       }

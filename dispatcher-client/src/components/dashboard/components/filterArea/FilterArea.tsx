@@ -23,7 +23,6 @@ const FilterArea = () => {
   const { tabletM } = SCREENS;
   const datesFilterId = everythingFilters[1].filter.id;
 
-  const alertMessageTop = 'Please choose a country, a source, or a category';
   const alertMessageEverything =
     'Please search for something or choose a source';
 
@@ -83,9 +82,7 @@ const FilterArea = () => {
         onClose={handleCloseAlert}
       >
         <Alert sx={{ background: `${COLORS.white}` }}>
-          {endpoint === ENDPOINTS.TOP
-            ? alertMessageTop
-            : alertMessageEverything}
+          {alertMessageEverything}
           <AlertClearIcon onClick={() => setOpenAlert(false)} />
         </Alert>
       </Snackbar>

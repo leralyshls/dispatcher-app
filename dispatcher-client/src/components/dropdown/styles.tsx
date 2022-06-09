@@ -100,7 +100,7 @@ const StyledListbox = styled('ul')`
     background: ${COLORS.greyPlaceholder};
   }
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
-    width: 45.5vw;
+    width: 29.8vw;
   }
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     width: 91vw;
