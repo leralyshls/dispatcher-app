@@ -14,8 +14,7 @@ const Template: ComponentStory<typeof PageTitle> = (args) => (
 export const TopHeadlines = Template.bind({});
 TopHeadlines.args = {
   ...TopHeadlines.args,
-  firstVisit: true,
 };
 
 export const TotalResults = Template.bind({});
-TotalResults.args = { ...TotalResults.args, firstVisit: false };
+TotalResults.args = { ...TotalResults.args };

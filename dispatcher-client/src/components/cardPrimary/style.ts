@@ -72,7 +72,6 @@ export const ArticleImg = styled.img`
     object-position: 0% 25%;
   }
   @media only screen and (max-width: ${SCREENS.tabletM - 1}px) {
-    border-right: none;
     border-bottom: 1px solid ${COLORS.secondary};
   }
 `;

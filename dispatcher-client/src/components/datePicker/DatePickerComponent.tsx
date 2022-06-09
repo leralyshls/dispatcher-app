@@ -1,27 +1,27 @@
-import React from 'react';
-import { useAppDispatch } from '../../store/hooks';
+import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
+import { newsActions } from '../../store/slices/newsSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
-import useWindowSize from '../../hooks/useWindowSize';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers';
 import { TextField } from '@mui/material';
 import { COLORS } from '../../utils/constants/colors';
-import { SCREENS } from '../../utils/constants/screenSizes';
-import { ReactComponent as DateIcon } from '../../assets/svgs/date.svg';
-import { DatesFilterContainer } from './styles';
+import { ENDPOINTS } from '../../utils/constants/endpoints';
+import { DatesFilterContainer, DateIconStyled } from './styles';
 
 export interface DatePickerProps {
   filtertype: string;
+  setOpenAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
-  const [selectedDate, setSelectedDate] = React.useState<string | null>(null);
-  const [open, setOpen] = React.useState<boolean>(false);
+const DatePickerComponent = ({ filtertype, setOpenAlert }: DatePickerProps) => {
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const hasSearched = useAppSelector((state) => state.news.hasSearched);
+  const filters = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
-  const { width } = useWindowSize();
-  const { tabletM } = SCREENS;
 
   const handleDateChange = (newValue: any) => {
     setSelectedDate(newValue);
@@ -31,32 +31,40 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
     } else {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
     }
+    if (
+      setOpenAlert &&
+      filters.endpoint === ENDPOINTS.EVERYTHING &&
+      filters.q === '' &&
+      filters.sources === ''
+    ) {
+      setOpenAlert(true);
+    }
     dispatch(fetchNews());
+    if (!hasSearched) {
+      dispatch(newsActions.setHasSearched());
+    }
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        clearable={width > tabletM ? true : false}
+        clearable
         showToolbar={false}
         orientation='portrait'
         inputFormat='dd/MM/yyyy'
-        open={open}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}
+        open={isOpen}
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
         disableFuture
         value={selectedDate}
         onChange={handleDateChange}
         InputProps={{
           disableUnderline: true,
         }}
-        components={{
-          OpenPickerIcon: DateIcon,
-        }}
         PaperProps={{
           sx: {
             borderRadius: '1.25rem',
-            boxShadow: '0px 32px 64px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0px 32px 64px rgba(0, 0, 0, 0.07)',
           },
         }}
         PopperProps={{
@@ -64,7 +72,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
           sx: { paddingTop: '1rem', paddingLeft: '13%' },
         }}
         renderInput={(params) => (
-          <DatesFilterContainer onClick={() => setOpen(true)}>
+          <DatesFilterContainer onClick={() => setIsOpen(true)}>
             {selectedDate ? '' : 'Dates'}
             <TextField
               variant='standard'
@@ -80,6 +88,7 @@ const DatePickerComponent = ({ filtertype }: DatePickerProps) => {
                 },
               }}
             />
+            <DateIconStyled />
           </DatesFilterContainer>
         )}
       />

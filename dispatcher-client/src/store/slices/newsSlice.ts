@@ -12,6 +12,7 @@ import { RESPONSES } from '../../utils/constants/responseStatus';
 interface INewsState extends IResponseNews {
   page: number;
   hasMore: boolean;
+  hasSearched: boolean;
 }
 
 const initialState: INewsState = {
@@ -20,6 +21,7 @@ const initialState: INewsState = {
   articles: [],
   page: 1,
   hasMore: true,
+  hasSearched: false,
 };
 
 export const fetchNews: AsyncThunk<any, void, { state: RootState }> =
@@ -71,6 +73,10 @@ export const newsSlice = createSlice({
     },
     setHasMore(state, action: PayloadAction<boolean>) {
       state.hasMore = action.payload;
+    },
+    setHasSearched(state) {
+      const updateState = { ...state, hasSearched: true };
+      return updateState;
     },
   },
   extraReducers: {

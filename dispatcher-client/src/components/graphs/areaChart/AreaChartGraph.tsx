@@ -8,11 +8,11 @@ interface AreaProps {
 
 const AreaChartGraph = ({ data }: AreaProps) => {
   return (
-    <ResponsiveContainer width='100%' height='100%'>
+    <ResponsiveContainer width='100%' height='95%'>
       <AreaChart
         data={data}
         margin={{
-          top: 10,
+          top: 30,
           right: 0,
           left: 0,
           bottom: 0,

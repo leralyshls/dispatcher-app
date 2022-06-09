@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import useWindowSize from '../../hooks/useWindowSize';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
+import { newsActions } from '../../store/slices/newsSlice';
 import { fetchNews } from '../../store/slices/newsSlice';
 import {
   getSearchHistory,
@@ -22,6 +23,7 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
+  const hasSearched = useAppSelector((state) => state.news.hasSearched);
   const debouncedInputValue = useDebounce<string>(inputValue, 1000);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
@@ -34,8 +36,12 @@ const SearchBox: React.FC = () => {
       addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
+      handleClickOutside();
+      if (!hasSearched) {
+        dispatch(newsActions.setHasSearched());
+      }
     }
-  }, [debouncedInputValue, dispatch]);
+  }, [debouncedInputValue, dispatch, hasSearched]);
 
   const handleClickOutside = () => {
     setFocused(false);
@@ -49,11 +55,12 @@ const SearchBox: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  const handleKeyPress = (e: React.KeyboardEvent, value: string) => {
+  const handleEnterKeyPress = (e: React.KeyboardEvent, value: string) => {
     if (e.key === 'Enter') {
       addToSearchHistory(value.trim());
       setSearchHistory(getSearchHistory());
       dispatch(fetchNews());
+      setShowHistory(false);
     }
   };
   return (
@@ -64,7 +71,7 @@ const SearchBox: React.FC = () => {
           value={inputValue}
           onFocus={(e) => handleFocus(e)}
           onBlur={handleClickOutside}
-          onKeyPress={(e) => handleKeyPress(e, inputValue)}
+          onKeyPress={(e) => handleEnterKeyPress(e, inputValue)}
           startAdornment={
             <InputAdornment position='start'>
               <InputIcon

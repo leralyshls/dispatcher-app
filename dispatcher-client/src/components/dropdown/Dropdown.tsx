@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { fetchNews } from '../../store/slices/newsSlice';
+import { fetchNews, newsActions } from '../../store/slices/newsSlice';
 import { filterActions } from '../../store/slices/filterSlice';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
+import { ENDPOINTS } from '../../utils/constants/endpoints';
 
 export interface IOption {
   name: string;
@@ -15,6 +16,7 @@ export interface DropdownProps {
   options: IOption[];
   insearchbox?: any;
   filtertype: string;
+  setOpenAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Dropwdown = ({
@@ -22,11 +24,13 @@ const Dropwdown = ({
   options,
   insearchbox,
   filtertype,
+  setOpenAlert,
 }: DropdownProps) => {
   const [selectedFilterValue, setSelectedFilterValue] =
     useState<IOption | null>(null);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
+  const hasSearched = useAppSelector((state) => state.news.hasSearched);
 
   const performFilterActions = (id: string) => {
     dispatch(
@@ -35,12 +39,27 @@ const Dropwdown = ({
         value: id,
       })
     );
+    if (
+      setOpenAlert &&
+      filters.endpoint === ENDPOINTS.EVERYTHING &&
+      filters.q === '' &&
+      filters.sources === '' &&
+      filtertype !== 'sources'
+    ) {
+      setOpenAlert(true);
+    }
     dispatch(fetchNews());
+    if (!hasSearched) {
+      dispatch(newsActions.setHasSearched());
+    }
   };
 
   const performEndpointActions = (id: string) => {
     dispatch(filterActions.setEndpoint({ key: filtertype, value: id }));
     dispatch(fetchNews());
+    if (!hasSearched) {
+      dispatch(newsActions.setHasSearched());
+    }
   };
 
   const handleFilterChange = (newValue: IOption | null) => {
@@ -59,6 +78,9 @@ const Dropwdown = ({
       setSelectedFilterValue(null);
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
       dispatch(fetchNews());
+      if (!hasSearched) {
+        dispatch(newsActions.setHasSearched());
+      }
     }
   };
 
@@ -77,6 +99,12 @@ const Dropwdown = ({
         renderValue={(item: SelectOption<IOption> | null) =>
           item != null ? item.label : placeholder
         }
+        componentsProps={{
+          popper: {
+            placement: 'bottom',
+            popperOptions: { placement: 'bottom' },
+          },
+        }}
       >
         {options.map((option) => (
           <div key={option.id} onClick={() => handleUnselectFilter(option.id)}>

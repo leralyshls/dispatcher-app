@@ -9,7 +9,7 @@ export const StyledNav = styled(FlexRow)`
   align-items: center;
   padding-inline: 1.25rem;
   position: fixed;
-  z-index: 10;
+  z-index: 10000;
 
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     padding-inline: 1rem;
