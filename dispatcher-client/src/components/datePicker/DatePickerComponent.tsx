@@ -13,10 +13,10 @@ import { DatesFilterContainer, DateIconStyled } from './styles';
 
 export interface DatePickerProps {
   filtertype: string;
-  setOpenAlert?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DatePickerComponent = ({ filtertype, setOpenAlert }: DatePickerProps) => {
+const DatePickerComponent = ({ filtertype, setShowAlert }: DatePickerProps) => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const hasSearched = useAppSelector((state) => state.news.hasSearched);
@@ -32,12 +32,12 @@ const DatePickerComponent = ({ filtertype, setOpenAlert }: DatePickerProps) => {
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
     }
     if (
-      setOpenAlert &&
+      setShowAlert &&
       filters.endpoint === ENDPOINTS.EVERYTHING &&
       filters.q === '' &&
       filters.sources === ''
     ) {
-      setOpenAlert(true);
+      setShowAlert(true);
     }
     dispatch(fetchNews());
     if (!hasSearched) {

@@ -6,6 +6,7 @@ import {
   Cell,
   Label,
   ResponsiveContainer,
+  Tooltip,
 } from 'recharts';
 import {
   StyledUL,
@@ -62,7 +63,7 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           outerRadius={'75%'}
           innerRadius={'65%'}
           paddingAngle={0}
-          dataKey='value'
+          dataKey='amount'
         >
           <Label value={totalSources} position='center' />
           {data.map((entry, index) => (

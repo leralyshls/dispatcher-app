@@ -16,7 +16,7 @@ export interface DropdownProps {
   options: IOption[];
   insearchbox?: any;
   filtertype: string;
-  setOpenAlert?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Dropwdown = ({
@@ -24,13 +24,28 @@ const Dropwdown = ({
   options,
   insearchbox,
   filtertype,
-  setOpenAlert,
+  setShowAlert,
 }: DropdownProps) => {
   const [selectedFilterValue, setSelectedFilterValue] =
     useState<IOption | null>(null);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const hasSearched = useAppSelector((state) => state.news.hasSearched);
+
+  const ifShowAlert = () => {
+    if (setShowAlert) {
+      if (
+        filters.endpoint === ENDPOINTS.EVERYTHING &&
+        filters.q === '' &&
+        filters.sources === '' &&
+        filtertype !== 'sources'
+      ) {
+        setShowAlert(true);
+      } else {
+        setShowAlert(false);
+      }
+    }
+  };
 
   const performFilterActions = (id: string) => {
     dispatch(
@@ -39,15 +54,7 @@ const Dropwdown = ({
         value: id,
       })
     );
-    if (
-      setOpenAlert &&
-      filters.endpoint === ENDPOINTS.EVERYTHING &&
-      filters.q === '' &&
-      filters.sources === '' &&
-      filtertype !== 'sources'
-    ) {
-      setOpenAlert(true);
-    }
+    ifShowAlert();
     dispatch(fetchNews());
     if (!hasSearched) {
       dispatch(newsActions.setHasSearched());

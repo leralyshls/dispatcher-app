@@ -19,6 +19,7 @@ export interface IFilterState {
   sortBy: string;
   category: string;
   sources: string;
+  defaultCountry: string;
 }
 
 interface FilterItemPayload {
@@ -35,6 +36,7 @@ const initialState: IFilterState = {
   sortBy: '',
   category: '',
   sources: '',
+  defaultCountry: '',
 };
 
 export const getIPAddress: AsyncThunk<any, void, { state: RootState }> =
@@ -73,9 +75,11 @@ const filterSlice = createSlice({
   extraReducers: {
     [getIPAddress.fulfilled.type]: (state, action: PayloadAction<string>) => {
       state.country = action.payload;
+      state.defaultCountry = action.payload;
     },
     [getIPAddress.rejected.type]: (state) => {
       state.country = defaultCountry.id;
+      state.defaultCountry = defaultCountry.id;
     },
   },
 });

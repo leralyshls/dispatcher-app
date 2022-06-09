@@ -7,10 +7,10 @@ const buildAxiosParams = (
   page: number,
   pageSize: number = 10
 ) => {
-  const { endpoint, sources, country, category, q, to, sortBy, language } =
-    params;
+  const { endpoint, sources, category, q, to, sortBy, language } = params;
+  const country =
+    params.country === '' ? params.defaultCountry : params.country;
   let paramsObj;
-
   if (endpoint === ENDPOINTS.TOP && sources === '') {
     paramsObj = { country, category, q };
   } else if (endpoint === ENDPOINTS.TOP && sources !== '') {

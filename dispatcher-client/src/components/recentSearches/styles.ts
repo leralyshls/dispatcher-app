@@ -41,19 +41,18 @@ export const SearchesTitle = styled.span`
   cursor: default;
 `;
 
-export const SearchesList = styled.ul`
+export const SearchesList = styled(FlexColumn)`
   background: ${COLORS.white};
   width: 100%;
   list-style: none;
+  gap: 0.5em;
+  margin-block: 0.5em 0.3em;
 `;
 
 export const SearchesItem = styled(FlexRow)`
   justify-content: space-between;
   align-items: center;
   cursor: default;
-  &:hover {
-    background: ${COLORS.lightPurple};
-  }
 `;
 export const SearchesText = styled(FlexColumn)`
   color: ${COLORS.purple};

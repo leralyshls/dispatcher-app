@@ -12,19 +12,18 @@ export const DashboardContainer = styled(FlexColumn)`
 export const DashboardContent = styled(FlexColumn)`
   margin-top: 4.625rem;
   width: 100%;
-  padding-inline: 12.5%;
   align-self: center;
   overflow-x: hidden;
+`;
 
+export const MainContent = styled(FlexRow)<{ isPortrait: boolean }>`
+  height: ${({ isPortrait }) => (isPortrait ? 'fit-content' : '60vw')};
+  gap: 0.94rem;
+  padding-inline: 12.5%;
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
     padding-inline: 1.25rem;
   }
   @media only screen and (max-width: ${SCREENS.mobileL}px) {
     padding-inline: 1rem;
   }
-`;
-
-export const MainContent = styled(FlexRow)<{ isPortrait: boolean }>`
-  height: ${({ isPortrait }) => (isPortrait ? 'fit-content' : '60vw')};
-  gap: 0.94rem;
 `;

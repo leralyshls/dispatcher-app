@@ -1,18 +1,21 @@
 import styled from 'styled-components';
-import { FlexRow } from '../../../../styles/sharedStyles';
+import { FlexColumn, FlexRow } from '../../../../styles/sharedStyles';
 import { COLORS } from '../../../../utils/constants/colors';
 import { SCREENS } from '../../../../utils/constants/screenSizes';
-import { StyledClearIcon } from '../../../recentSearches/styles';
 
-export const AlertClearIcon = styled(StyledClearIcon)`
-  margin-left: 0.5rem;
-  cursor: pointer;
+export const FiltersWrapper = styled(FlexColumn)`
+  padding-inline: 12.5%;
+  @media only screen and (max-width: ${SCREENS.tabletM}px) {
+    padding-inline: 1.25rem;
+  }
+  @media only screen and (max-width: ${SCREENS.mobileL}px) {
+    padding-inline: 1rem;
+  }
 `;
 
 export const FilterDiv = styled(FlexRow)`
-  padding-block: 1.25rem;
+  padding-top: 1.25rem;
   align-items: center;
-  border-bottom: 1px solid ${COLORS.secondary};
   gap: min(1.25rem, 2%);
   overflow-x: hidden;
 
@@ -47,4 +50,19 @@ export const MobileEndpointFilterDiv = styled.div`
   padding-left: 2rem;
   background: ${COLORS.white};
   border-bottom: 1px solid ${COLORS.secondary};
+`;
+
+export const AlertMessage = styled.span<{ showAlert: boolean }>`
+  font-color: ${COLORS.purple};
+  font-style: italic;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-block: 2px;
+  visibility: ${({ showAlert }) => (showAlert ? 'visible' : 'hidden')};
+`;
+
+export const BottomLine = styled.div`
+  width: 100;
+  height: 1px;
+  background: ${COLORS.secondary};
 `;

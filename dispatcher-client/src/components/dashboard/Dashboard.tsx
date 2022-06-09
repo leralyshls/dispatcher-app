@@ -15,6 +15,9 @@ const Dashboard = () => {
   const [isFirstVisit, setIsFirstVisit] = useState<boolean>(true);
   const dispatch = useAppDispatch();
   const country = useAppSelector((state) => state.filters.country);
+  const defaultCountry = useAppSelector(
+    (state) => state.filters.defaultCountry
+  );
   const { width, height } = useWindowSize();
   const { laptopM } = SCREENS;
 
@@ -23,11 +26,11 @@ const Dashboard = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (country && isFirstVisit) {
+    if (country && defaultCountry && isFirstVisit) {
       dispatch(fetchNews());
       setIsFirstVisit(false);
     }
-  }, [dispatch, country, isFirstVisit]);
+  }, [dispatch, country, defaultCountry, isFirstVisit]);
   return (
     <DashboardContainer>
       <NavBar />

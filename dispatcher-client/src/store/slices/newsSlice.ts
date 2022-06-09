@@ -40,8 +40,13 @@ export const fetchNews: AsyncThunk<any, void, { state: RootState }> =
     {
       condition: (_, { getState }) => {
         const state = getState() as RootState;
-        const { country, category, q, sources } = state.filters;
-        if (country === '' && category === '' && q === '' && sources === '') {
+        const { category, q, sources, defaultCountry } = state.filters;
+        if (
+          category === '' &&
+          q === '' &&
+          sources === '' &&
+          defaultCountry === ''
+        ) {
           return false;
         }
       },

@@ -3,7 +3,7 @@ import { formatAreaChartDate } from './dateFormat';
 
 export interface IGraphItem {
   name: string;
-  value: number;
+  amount: number;
 }
 
 type dataObjType = { [key: string]: number };
@@ -11,7 +11,7 @@ type dataObjType = { [key: string]: number };
 const createArrGraphItems = (obj: dataObjType): IGraphItem[] => {
   const dataArr: IGraphItem[] = [];
   Object.entries(obj).forEach((el) => {
-    const graphItem: IGraphItem = { name: el[0], value: el[1] };
+    const graphItem: IGraphItem = { name: el[0], amount: el[1] };
     dataArr.push(graphItem);
   });
   return dataArr;
@@ -24,7 +24,7 @@ export const prepareDoughnutData = (articles: IArticle[]): IGraphItem[] => {
       ? sourcesObj[article.source.name]++
       : (sourcesObj[article.source.name] = 1);
   });
-  return createArrGraphItems(sourcesObj).sort((a, b) => b.value - a.value);
+  return createArrGraphItems(sourcesObj).sort((a, b) => b.amount - a.amount);
 };
 
 export const prepareAreaChartData = (articles: IArticle[]): IGraphItem[] => {

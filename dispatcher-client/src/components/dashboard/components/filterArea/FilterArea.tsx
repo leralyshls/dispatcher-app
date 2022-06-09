@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '../../../../store/hooks';
 import useWindowSize from '../../../../hooks/useWindowSize';
-import { Snackbar, Alert } from '@mui/material';
-import { AlertClearIcon } from './styles';
+import { FiltersWrapper, FilterDiv, BottomLine, AlertMessage } from './styles';
 import Dropdown from '../../../dropdown/Dropdown';
 import DatePickerComponent from '../../../datePicker/DatePickerComponent';
-import { FilterDiv } from './styles';
 import {
   topFilters,
   everythingFilters,
@@ -16,7 +14,7 @@ import { SCREENS } from '../../../../utils/constants/screenSizes';
 import { COLORS } from '../../../../utils/constants/colors';
 
 const FilterArea = () => {
-  const [openAlert, setOpenAlert] = useState<boolean>(false);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   const sources = useAppSelector((state) => state.sources.sources);
   const endpoint = useAppSelector((state) => state.filters.endpoint);
   const { width } = useWindowSize();
@@ -24,17 +22,8 @@ const FilterArea = () => {
   const datesFilterId = everythingFilters[1].filter.id;
 
   const alertMessageEverything =
-    'Please search for something or choose a source';
-
-  const handleCloseAlert = (
-    event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      setOpenAlert(false);
-    }
-    setOpenAlert(false);
-  };
+    'Please search for something or choose a source before filtering';
+  const alertMessageTop = 'Please choose a filter';
 
   const endpointDropdows = (
     <Dropdown
@@ -50,7 +39,7 @@ const FilterArea = () => {
       options={item?.options || sources}
       placeholder={item.filter.name}
       filtertype={item.filter.id}
-      setOpenAlert={setOpenAlert}
+      setShowAlert={setShowAlert}
     />
   ));
 
@@ -61,32 +50,24 @@ const FilterArea = () => {
         options={item?.options || sources}
         placeholder={item.filter.name}
         filtertype={item.filter.id}
-        setOpenAlert={setOpenAlert}
+        setShowAlert={setShowAlert}
       />
     ) : (
-      <DatePickerComponent
-        key={item.filter.id}
-        filtertype={item.filter.id}
-        setOpenAlert={setOpenAlert}
-      />
+      <DatePickerComponent key={item.filter.id} filtertype={item.filter.id} />
     )
   );
 
   return (
-    <FilterDiv>
-      {width <= tabletM && endpointDropdows}
-      {endpoint === ENDPOINTS.TOP ? topDropdowns : everythingDropdowns}
-      <Snackbar
-        open={openAlert}
-        autoHideDuration={3000}
-        onClose={handleCloseAlert}
-      >
-        <Alert sx={{ background: `${COLORS.white}` }}>
-          {alertMessageEverything}
-          <AlertClearIcon onClick={() => setOpenAlert(false)} />
-        </Alert>
-      </Snackbar>
-    </FilterDiv>
+    <FiltersWrapper>
+      <FilterDiv>
+        {width <= tabletM && endpointDropdows}
+        {endpoint === ENDPOINTS.TOP ? topDropdowns : everythingDropdowns}
+      </FilterDiv>
+      <AlertMessage showAlert={showAlert}>
+        {endpoint === ENDPOINTS.TOP ? alertMessageTop : alertMessageEverything}
+      </AlertMessage>
+      <BottomLine />
+    </FiltersWrapper>
   );
 };
 

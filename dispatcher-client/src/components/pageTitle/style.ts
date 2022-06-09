@@ -6,6 +6,7 @@ import { FlexRow } from '../../styles/sharedStyles';
 
 export const TitleStyled = styled(FlexRow)`
   ${({ firstVisit }: TitleProps) => `
+    padding-inline: 12.5%;
     opacity: ${firstVisit ? '1' : '0.5'};
     color: ${firstVisit ? COLORS.bluishBlack : COLORS.purple};
     font-size: ${firstVisit ? 1.5 : 0.875}rem;
@@ -13,6 +14,10 @@ export const TitleStyled = styled(FlexRow)`
 
     @media only screen and (max-width: ${SCREENS.tabletM}px) {
       padding-block: 0.5em;
+      padding-inline: 1.25rem;
+    }
+    @media only screen and (max-width: ${SCREENS.mobileL}px) {
+      padding-inline: 1rem;
     }
 
     @media only screen and (max-width: 300px) {
