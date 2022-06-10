@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import useWindowSize from '../../hooks/useWindowSize';
 import { fetchNews } from '../../store/slices/newsSlice';
 import { fetchSources } from '../../store/slices/sourcesSlice';
-import { DashboardContainer, DashboardContent, MainContent } from './styles';
 import FilterArea from './components/filterArea/FilterArea';
 import NavBar from '../navBar/NavBar';
 import NewsWidget from './components/newsWidget/NewsWidget';
 import GraphsArea from './components/graphsArea/GraphsArea';
 import PageTitle from '../pageTitle/PageTitle';
-import useWindowSize from '../../hooks/useWindowSize';
+import { DashboardContainer, DashboardContent, MainContent } from './styles';
 import { SCREENS } from '../../utils/constants/screenSizes';
 
 const Dashboard = () => {

@@ -13,8 +13,8 @@ export const TitleStyled = styled(FlexRow)`
     padding-block: 0.85em;
 
     @media only screen and (max-width: ${SCREENS.tabletM}px) {
+      padding-inline: 1.6rem;
       padding-block: 0.5em;
-      padding-inline: 1.25rem;
     }
     @media only screen and (max-width: ${SCREENS.mobileL}px) {
       padding-inline: 1rem;

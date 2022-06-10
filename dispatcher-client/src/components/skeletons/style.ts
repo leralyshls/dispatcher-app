@@ -19,26 +19,31 @@ export const SkeletonSecondaryCardContainer = styled(FlexColumn)`
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
 `;
 
 export const SkeletonPieContainer = styled.div`
   min-width: 9rem;
   min-height: 9rem;
   margin-top: 8%;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SkeletonDoughnutOuter = styled(Skeleton)`
   position: relative;
+  top: 0.85rem;
+  left: 0.85rem;
 `;
 
 export const SkeletonDoughnutInner = styled.div`
-  width: 75%;
-  height: 75%;
+  width: 65%;
+  height: 65%;
   background: ${COLORS.white};
   border-radius: 50%;
   position: relative;
-  top: -82.5%;
-  left: 7.5%;
+  top: -63%;
+  left: 17%;
 `;
 
 export const SkeletonAreaChartStyled = styled(Skeleton)`

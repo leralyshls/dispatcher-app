@@ -2,6 +2,7 @@ import React from 'react';
 import { TitleStyled } from './style';
 import { useAppSelector } from '../../store/hooks';
 import { findCountryById } from '../../utils/findCountryById';
+import { MAX_RESULTS } from '../../utils/constants/maxValues';
 
 export interface TitleProps {
   firstVisit?: boolean;
@@ -15,7 +16,10 @@ const PageTitle: React.FC = () => {
   return (
     <TitleStyled firstVisit={!hasSearched}>
       {!hasSearched && `Top Headlines In ${countryTitle}`}
-      {hasSearched && totalResults !== -1 && `${totalResults} Total results`}
+      {hasSearched &&
+        totalResults !== -1 &&
+        `${totalResults < MAX_RESULTS ? totalResults : MAX_RESULTS}
+        Total results`}
     </TitleStyled>
   );
 };

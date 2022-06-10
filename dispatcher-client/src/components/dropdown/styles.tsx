@@ -8,7 +8,7 @@ import OptionUnstyled, {
   optionUnstyledClasses,
 } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { styled } from '@mui/system';
+import styled from 'styled-components';
 import { COLORS } from '../../utils/constants/colors';
 import { SCREENS } from '../../utils/constants/screenSizes';
 import dropdownArrow from '../../assets/svgs/dropdownArrow.svg';
@@ -27,10 +27,9 @@ const disabledStyle = `
   opacity: 0.5;
 `;
 
-export const DropdownContainer = styled('div')`
+export const DropdownContainer = styled.div`
   ${({ insearchbox, filters }: DropdownContainerProps) => `
     min-width: ${insearchbox ? 'fit-content' : '10.93rem'};
-    width: fit-content;
     height: 2.94rem;
     font-weight: ${insearchbox ? 500 : 400};
     border-radius: ${!insearchbox && '0.625rem'};
@@ -42,13 +41,10 @@ export const DropdownContainer = styled('div')`
     &.sources{
       ${filters.category !== '' || filters.country !== '' ? disabledStyle : ''}
     }
-    @media only screen and (max-width: ${SCREENS.tabletM}px) {
-      width: 100%;
-    }
   `}
 `;
 
-const StyledButton = styled('button')`
+const StyledButton = styled.button`
   ${filterSharedStyles};
   font-weight: inherit;
   height: 100%;
@@ -56,17 +52,20 @@ const StyledButton = styled('button')`
   border-radius: inherit;
   padding: 0.93em;
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   &.${selectUnstyledClasses.focusVisible} {
     outline: 3px solid ${COLORS.secondary};
   }
   &.${selectUnstyledClasses.expanded} {
-    &::after {
+    &::before {
       content: url(${dropdownArrow});
       transform: rotate(180deg);
     }
   }
-  &::after {
+  &::before {
     content: url(${dropdownArrow});
     float: right;
     transition: transform 0.3s ease-out;
@@ -74,7 +73,7 @@ const StyledButton = styled('button')`
   }
 `;
 
-const StyledListbox = styled('ul')`
+const StyledListbox = styled.ul`
   ${dropdownSharedStyles}
   padding: 0.45em 0;
   margin: 0.5em 0;
@@ -100,9 +99,12 @@ const StyledListbox = styled('ul')`
     background: ${COLORS.greyPlaceholder};
   }
   @media only screen and (max-width: ${SCREENS.tabletM}px) {
-    width: 29.8vw;
+    width: 22.75vw;
   }
-  @media only screen and (max-width: ${SCREENS.mobileL}px) {
+  @media only screen and (max-width: 750px) {
+    width: 45.5vw;
+  }
+  @media only screen and (max-width: ${SCREENS.breakpoint500}px) {
     width: 91vw;
   }
 `;

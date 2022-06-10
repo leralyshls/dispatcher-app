@@ -27,7 +27,7 @@ const SearchBox: React.FC = () => {
   const debouncedInputValue = useDebounce<string>(inputValue, 1000);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
-  const { tabletM, breakpoint500 } = SCREENS;
+  const { breakpoint500 } = SCREENS;
 
   useEffect(() => {
     const searchText = debouncedInputValue.trim();
@@ -85,7 +85,7 @@ const SearchBox: React.FC = () => {
           placeholder='Search'
           disableUnderline
         />
-        {width > tabletM && (
+        {width > breakpoint500 && (
           <Dropdown
             options={endpointsFilters.options}
             insearchbox={true}

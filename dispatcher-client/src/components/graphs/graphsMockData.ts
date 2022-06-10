@@ -1,38 +1,38 @@
 export const areaChartMock = [
   {
     name: 'MAR',
-    value: 1000,
+    amount: 1000,
   },
   {
     name: 'APR',
-    value: 7300,
+    amount: 7300,
   },
   {
     name: 'MAY',
-    value: 1040,
+    amount: 1040,
   },
   {
     name: 'JUNE',
-    value: 4820,
+    amount: 4820,
   },
   {
     name: 'JUL',
-    value: 9989,
+    amount: 9989,
   },
   {
     name: 'AUG',
-    value: 2390,
+    amount: 2390,
   },
   {
     name: 'SEP',
-    value: 3490,
+    amount: 3490,
   },
 ];
 
 export const doughnutMock = [
-  { name: 'NBC', value: 400 },
-  { name: 'Vulture', value: 300 },
-  { name: 'CNN', value: 300 },
-  { name: 'ESPN', value: 200 },
-  { name: 'New York Times', value: 200 },
+  { name: 'NBC', amount: 400 },
+  { name: 'Vulture', amount: 300 },
+  { name: 'CNN', amount: 300 },
+  { name: 'ESPN', amount: 200 },
+  { name: 'New York Times', amount: 200 },
 ];
