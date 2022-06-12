@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../store/hooks';
-import { newsActions, scrollNews } from '../../../../store/slices/newsSlice';
+import { newsActions } from '../../../../store/slices/newsSlice';
+import { asyncActions } from '../../../../store/asyncAtions';
 import { IArticle } from '../../../../utils/types/APITypes';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import CardPrimary from '../../../cardPrimary/CardPrimary';
@@ -8,21 +9,23 @@ import SkeletonCardList from '../../../skeletons/SkeletonCardList';
 import NoData from '../../../noData/NoData';
 import { CardsContainer } from './styles';
 import { RESPONSES } from '../../../../utils/constants/responseStatus';
-import { MAX_NUM_PAGE } from '../../../../utils/constants/maxValues';
+import {
+  MAX_API_PAGE_NUM,
+  MAX_API_RESULTS,
+} from '../../../../utils/constants/maxValues';
 
 const NewsWidget = () => {
   const dispatch = useAppDispatch();
-  const { articles, totalResults, hasMore, page, status, hasSearched } =
-    useAppSelector((state) => state.news);
+  const { articles, totalResults, page, status, hasSearched } = useAppSelector(
+    (state) => state.news
+  );
 
   const getMoreData = () => {
-    if (hasMore && page < MAX_NUM_PAGE) {
+    if (articles.length !== MAX_API_RESULTS && page !== MAX_API_PAGE_NUM) {
       dispatch(newsActions.incrementPage());
-      dispatch(scrollNews());
-      const isMore = articles.length < totalResults && page < MAX_NUM_PAGE;
-      dispatch(newsActions.setHasMore(isMore));
+      dispatch(asyncActions.scrollNews());
       if (!hasSearched) {
-        dispatch(newsActions.setHasSearched());
+        dispatch(newsActions.setHasSearched(true));
       }
     }
   };
@@ -33,7 +36,9 @@ const NewsWidget = () => {
         <InfiniteScroll
           dataLength={articles.length}
           next={getMoreData}
-          hasMore={articles.length < totalResults && page < MAX_NUM_PAGE}
+          hasMore={
+            articles.length !== MAX_API_RESULTS || page !== MAX_API_PAGE_NUM
+          }
           loader={null}
           scrollableTarget='scrollableDiv'
         >

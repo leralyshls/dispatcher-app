@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { fetchNews, newsActions } from '../../store/slices/newsSlice';
 import { filterActions } from '../../store/slices/filterSlice';
+import { newsActions } from '../../store/slices/newsSlice';
+import { asyncActions } from '../../store/asyncAtions';
 import { SelectOption } from '@mui/base/SelectUnstyled';
 import { CustomSelect, StyledOption, DropdownContainer } from './styles';
 import { ENDPOINTS } from '../../utils/constants/endpoints';
@@ -16,7 +17,6 @@ export interface DropdownProps {
   options: IOption[];
   insearchbox?: any;
   filtertype: string;
-  setShowAlert?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Dropwdown = ({
@@ -24,59 +24,45 @@ const Dropwdown = ({
   options,
   insearchbox,
   filtertype,
-  setShowAlert,
 }: DropdownProps) => {
   const [selectedFilterValue, setSelectedFilterValue] =
     useState<IOption | null>(null);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
   const hasSearched = useAppSelector((state) => state.news.hasSearched);
-
-  const ifShowAlert = () => {
-    if (setShowAlert) {
-      if (
-        filters.endpoint === ENDPOINTS.EVERYTHING &&
-        filters.q === '' &&
-        filters.sources === '' &&
-        filtertype !== 'sources'
-      ) {
-        setShowAlert(true);
-      } else {
-        setShowAlert(false);
-      }
-    }
-  };
-
-  const performFilterActions = (id: string) => {
-    dispatch(
-      filterActions.updateFilter({
-        key: filtertype,
-        value: id,
-      })
-    );
-    ifShowAlert();
-    dispatch(fetchNews());
-    if (!hasSearched) {
-      dispatch(newsActions.setHasSearched());
-    }
-  };
-
-  const performEndpointActions = (id: string) => {
-    dispatch(filterActions.setEndpoint({ key: filtertype, value: id }));
-    dispatch(fetchNews());
-    if (!hasSearched) {
-      dispatch(newsActions.setHasSearched());
-    }
-  };
+  const defaultSearch = useAppSelector(
+    (state) => state.location.defaultCountry.name
+  );
 
   const handleFilterChange = (newValue: IOption | null) => {
     if (newValue) {
       setSelectedFilterValue(newValue);
+      dispatch(newsActions.setHasSearched(true));
+      dispatch(
+        filterActions.updateFilter({ key: filtertype, value: newValue.id })
+      );
+      dispatch(newsActions.setHasSearched(true));
       if (filtertype === 'endpoint') {
-        performEndpointActions(newValue.id);
+        dispatch(filterActions.clearFilters());
+        if (
+          newValue.id === ENDPOINTS.EVERYTHING &&
+          filters.q === '' &&
+          filters.sources === ''
+        ) {
+          dispatch(filterActions.setQuery(defaultSearch));
+        } else if (
+          newValue.id === ENDPOINTS.TOP &&
+          filters.q === defaultSearch
+        ) {
+          dispatch(filterActions.setQuery(''));
+        }
       } else {
-        performFilterActions(newValue.id);
+        if (filters.q === defaultSearch) {
+          dispatch(filterActions.setQuery(''));
+        }
       }
+      dispatch(asyncActions.fetchNews());
+      dispatch(asyncActions.fetchGraphData());
     }
   };
 
@@ -84,9 +70,17 @@ const Dropwdown = ({
     if (selectedFilterValue && id === selectedFilterValue.id && !insearchbox) {
       setSelectedFilterValue(null);
       dispatch(filterActions.updateFilter({ key: filtertype, value: '' }));
-      dispatch(fetchNews());
-      if (!hasSearched) {
-        dispatch(newsActions.setHasSearched());
+      if (
+        filters.endpoint === ENDPOINTS.EVERYTHING &&
+        filters.q !== '' &&
+        filters.sources !== ''
+      ) {
+        dispatch(asyncActions.fetchNews());
+        dispatch(asyncActions.fetchGraphData());
+      } else {
+        dispatch(filterActions.setQuery(defaultSearch));
+        dispatch(asyncActions.fetchNews());
+        dispatch(asyncActions.fetchGraphData());
       }
     }
   };

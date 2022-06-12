@@ -1,25 +1,7 @@
-import { RootState } from '../store';
-import {
-  createSlice,
-  PayloadAction,
-  createAsyncThunk,
-  AsyncThunk,
-} from '@reduxjs/toolkit';
-import { getIP } from '../../services/IPAddressService';
-import { findCountryById } from '../../utils/findCountryById';
-import defaultCountry from '../../utils/constants/defaultCountry';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IFilterState {
   [key: string]: string;
-  country: string;
-  endpoint: string;
-  q: string;
-  to: string;
-  language: string;
-  sortBy: string;
-  category: string;
-  sources: string;
-  defaultCountry: string;
 }
 
 interface FilterItemPayload {
@@ -36,50 +18,24 @@ const initialState: IFilterState = {
   sortBy: '',
   category: '',
   sources: '',
-  defaultCountry: '',
 };
 
-export const getIPAddress: AsyncThunk<any, void, { state: RootState }> =
-  createAsyncThunk('filter/getIPAddress', async (_, { rejectWithValue }) => {
-    try {
-      const response = await getIP();
-      const countryId = response.country_code.toLowerCase();
-      return findCountryById(countryId).id;
-    } catch (err) {
-      return rejectWithValue(JSON.stringify(err));
-    }
-  });
-
 const filterSlice = createSlice({
-  name: 'filter',
+  name: 'filters',
   initialState,
   reducers: {
-    setCountry(state, action: PayloadAction<string>) {
-      state.country = action.payload;
-    },
     updateFilter: (state, action: PayloadAction<FilterItemPayload>) => {
       state[action.payload.key] = action.payload.value;
     },
     setQuery(state, action: PayloadAction<string>) {
       state.q = action.payload;
     },
-    setEndpoint(state, action: PayloadAction<FilterItemPayload>) {
-      state[action.payload.key] = action.payload.value;
+    clearFilters(state) {
       state.country = '';
+      state.category = '';
       state.to = '';
       state.language = '';
       state.sortBy = '';
-      state.category = '';
-    },
-  },
-  extraReducers: {
-    [getIPAddress.fulfilled.type]: (state, action: PayloadAction<string>) => {
-      state.country = action.payload;
-      state.defaultCountry = action.payload;
-    },
-    [getIPAddress.rejected.type]: (state) => {
-      state.country = defaultCountry.id;
-      state.defaultCountry = defaultCountry.id;
     },
   },
 });

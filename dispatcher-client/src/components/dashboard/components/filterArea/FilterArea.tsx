@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppSelector } from '../../../../store/hooks';
 import useWindowSize from '../../../../hooks/useWindowSize';
 import Dropdown from '../../../dropdown/Dropdown';
@@ -13,7 +13,6 @@ import { ENDPOINTS } from '../../../../utils/constants/endpoints';
 import { SCREENS } from '../../../../utils/constants/screenSizes';
 
 const FilterArea = () => {
-  const [showAlert, setShowAlert] = useState<boolean>(false);
   const sources = useAppSelector((state) => state.sources.sources);
   const endpoint = useAppSelector((state) => state.filters.endpoint);
   const { width } = useWindowSize();
@@ -25,7 +24,6 @@ const FilterArea = () => {
       options={endpointsFilters.options}
       placeholder={endpointsFilters.options[0].name}
       filtertype={endpointsFilters.filter.id}
-      setShowAlert={setShowAlert}
     />
   );
 
@@ -35,7 +33,6 @@ const FilterArea = () => {
       options={item?.options || sources}
       placeholder={item.filter.name}
       filtertype={item.filter.id}
-      setShowAlert={setShowAlert}
     />
   ));
 
@@ -46,7 +43,6 @@ const FilterArea = () => {
         options={item?.options || sources}
         placeholder={item.filter.name}
         filtertype={item.filter.id}
-        setShowAlert={setShowAlert}
       />
     ) : (
       <DatePickerComponent key={item.filter.id} filtertype={item.filter.id} />

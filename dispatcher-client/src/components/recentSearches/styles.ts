@@ -53,6 +53,9 @@ export const SearchesItem = styled(FlexRow)`
   justify-content: space-between;
   align-items: center;
   cursor: default;
+  &:hover {
+    background: ${COLORS.lightPurple};
+  }
 `;
 export const SearchesText = styled(FlexColumn)`
   color: ${COLORS.purple};

@@ -19,35 +19,34 @@ import { IGraphItem } from '../../../utils/prepareGraphData';
 import uniqueColors from '../../../utils/uniqueColors';
 
 interface DoughnutProps {
-  data: IGraphItem[];
+  mainData: IGraphItem[];
+  others: IGraphItem[];
+  total: number;
+  concatenated: IGraphItem[];
 }
 
-const DoughnutGraph = ({ data }: DoughnutProps) => {
-  const totalSources = data.length;
-  const doughnutColors = useMemo(
-    () => uniqueColors(totalSources),
-    [totalSources]
+const renderLegend = (...props: any) => {
+  const { payload } = props[0];
+  return (
+    <StyledUL>
+      {payload.map((entry: any) => {
+        return (
+          <StyledLI color={entry.color} key={entry.value}>
+            <StyledListContainer>
+              <BlueSpan className='font-mulish'>{entry.value}</BlueSpan>
+              <GreySpan className='font-mulish'>
+                {entry.payload.amount}%
+              </GreySpan>
+            </StyledListContainer>
+          </StyledLI>
+        );
+      })}
+    </StyledUL>
   );
-  const renderLegend = (...args: any) => {
-    const { payload } = args[0];
-    return (
-      <StyledUL>
-        {payload.map((entry: any, index: number) => {
-          return (
-            <StyledLI color={entry.color} key={entry.value}>
-              <StyledListContainer>
-                <BlueSpan className='font-mulish'>{entry.value}</BlueSpan>
-                <GreySpan className='font-mulish'>
-                  {(entry.payload.percent * 100).toFixed(0)}%
-                </GreySpan>
-              </StyledListContainer>
-            </StyledLI>
-          );
-        })}
-      </StyledUL>
-    );
-  };
+};
 
+const DoughnutGraph = ({ total, concatenated }: DoughnutProps) => {
+  const doughnutColors = useMemo(() => uniqueColors(total), [total]);
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <PieChart
@@ -59,14 +58,14 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
         }}
       >
         <Pie
-          data={data}
+          data={concatenated}
           outerRadius={'75%'}
           innerRadius={'65%'}
           paddingAngle={0}
           dataKey='amount'
         >
-          <Label value={totalSources} position='center' />
-          {data.map((entry, index) => (
+          <Label position='center' value={total} />
+          {concatenated.map((_, index) => (
             <Cell
               key={`cell-${index}`}
               fill={doughnutColors[index % doughnutColors.length]}
@@ -74,6 +73,10 @@ const DoughnutGraph = ({ data }: DoughnutProps) => {
           ))}
         </Pie>
         <Legend verticalAlign='bottom' content={renderLegend} />
+        <Tooltip
+          formatter={(...props: any) => (props.value = `${props[2].value}%`)}
+          isAnimationActive={false}
+        />
       </PieChart>
     </ResponsiveContainer>
   );

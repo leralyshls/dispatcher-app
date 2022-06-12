@@ -21,7 +21,8 @@
 }
 
 .PrivatePickersSlideTransition-root {
-  min-height: 195px !important;
+  min-height: 190px !important;
+  overflow-y: hidden;
 }
 
 [data-testid] {

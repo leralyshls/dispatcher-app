@@ -77,7 +77,7 @@ const StyledListbox = styled.ul`
   ${dropdownSharedStyles}
   padding: 0.45em 0;
   margin: 0.5em 0;
-  min-width: 10.93rem;
+  width: 10.93rem;
   max-height: 10.5em;
   outline: 0px;
   background: ${COLORS.white};

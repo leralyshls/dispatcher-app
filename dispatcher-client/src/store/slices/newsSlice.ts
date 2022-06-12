@@ -6,12 +6,12 @@ import {
   AsyncThunk,
 } from '@reduxjs/toolkit';
 import { IResponseNews } from '../../utils/types/APITypes';
-import { fetchNewsData } from '../../services/newsApiService';
+import { fetchNewsData, scrollNewsData } from '../../services/newsApiService';
 import { RESPONSES } from '../../utils/constants/responseStatus';
+import { ENDPOINTS } from '../../utils/constants/endpoints';
 
 interface INewsState extends IResponseNews {
   page: number;
-  hasMore: boolean;
   hasSearched: boolean;
 }
 
@@ -20,7 +20,6 @@ const initialState: INewsState = {
   totalResults: -1,
   articles: [],
   page: 1,
-  hasMore: true,
   hasSearched: false,
 };
 
@@ -30,8 +29,9 @@ export const fetchNews: AsyncThunk<any, void, { state: RootState }> =
     async (_, { rejectWithValue, getState }) => {
       const state = getState() as RootState;
       const filters = state.filters;
+      const defaultCountry = state.location.defaultCountry.id;
       try {
-        const response = await fetchNewsData(filters);
+        const response = await fetchNewsData(filters, defaultCountry);
         return response.data;
       } catch (err) {
         return rejectWithValue(JSON.stringify(err));
@@ -40,12 +40,22 @@ export const fetchNews: AsyncThunk<any, void, { state: RootState }> =
     {
       condition: (_, { getState }) => {
         const state = getState() as RootState;
-        const { category, q, sources, defaultCountry } = state.filters;
+        const { category, q, sources, country, endpoint } = state.filters;
+        const defaultCountry = state.location.defaultCountry.id;
+        // required parameters for the API
         if (
+          endpoint === ENDPOINTS.TOP &&
           category === '' &&
-          q === '' &&
+          country === '' &&
+          defaultCountry === '' &&
           sources === '' &&
-          defaultCountry === ''
+          q === ''
+        ) {
+          return false;
+        } else if (
+          endpoint === ENDPOINTS.EVERYTHING &&
+          sources === '' &&
+          q === ''
         ) {
           return false;
         }
@@ -59,9 +69,10 @@ export const scrollNews: AsyncThunk<any, void, { state: RootState }> =
     async (_, { rejectWithValue, getState }) => {
       const state = getState() as RootState;
       const filters = state.filters;
+      const defaultCountry = state.location.defaultCountry.id;
       const page = state.news.page;
       try {
-        const response = await fetchNewsData(filters, page);
+        const response = await scrollNewsData(filters, defaultCountry, page);
         return response.data;
       } catch (err) {
         return rejectWithValue(JSON.stringify(err));
@@ -76,11 +87,8 @@ export const newsSlice = createSlice({
     incrementPage(state) {
       state.page = state.page + 1;
     },
-    setHasMore(state, action: PayloadAction<boolean>) {
-      state.hasMore = action.payload;
-    },
-    setHasSearched(state) {
-      const updateState = { ...state, hasSearched: true };
+    setHasSearched(state, action: PayloadAction<boolean>) {
+      const updateState = { ...state, hasSearched: action.payload };
       return updateState;
     },
   },

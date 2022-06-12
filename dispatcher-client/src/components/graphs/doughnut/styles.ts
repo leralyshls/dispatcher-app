@@ -14,6 +14,20 @@ export const StyledUL = styled(FlexColumn)`
   overflow-y: auto;
   margin-block: 1em 0;
   max-height: 5.5rem;
+
+  @media only screen and (min-width: ${SCREENS.desktop}px) {
+    margin-block: -0.625rem 0;
+    max-height: 6.8rem;
+  }
+
+  @media only screen and (max-width: 1650px) {
+    max-height: 3.8rem;
+  }
+
+  @media only screen and (max-width: ${SCREENS.laptopM}px) {
+    display: none;
+  }
+
   ::-webkit-scrollbar {
     width: 0.5em;
   }
@@ -29,19 +43,6 @@ export const StyledUL = styled(FlexColumn)`
   }
   ::-webkit-scrollbar-thumb:hover {
     background: ${COLORS.greyPlaceholder};
-
-  @media only screen and (max-width: ${SCREENS.laptopM}px) {
-    display: none;
-  }
-
-  @media only screen and (max-width: 1650px) {
-    max-height: 3.8rem;
-  }
-
-  @media only screen and (min-width: ${SCREENS.desktop}px) {
-    margin-block: -0.625rem 0;
-    max-height: 6.8rem;
-  }
 `;
 
 export const StyledLI = styled(FlexRow)`
