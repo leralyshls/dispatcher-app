@@ -106,7 +106,7 @@ const Dropwdown = ({
         componentsProps={{
           popper: {
             placement: 'bottom',
-            popperOptions: { placement: 'bottom' },
+            popperOptions: { placement: 'bottom', disablePortal: true },
           },
         }}
       >

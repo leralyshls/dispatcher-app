@@ -47,6 +47,7 @@ const renderLegend = (...args: any) => {
 
 const DoughnutGraph = ({ total, concatenated }: DoughnutProps) => {
   const doughnutColors = useMemo(() => uniqueColors(total), [total]);
+
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <PieChart

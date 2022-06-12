@@ -23,7 +23,6 @@ export const getIPAddress: AsyncThunk<any, void, { state: RootState }> =
     try {
       const response = await getIP();
       const countryId = response.country_code.toLowerCase();
-      const countryName = response.country_name;
       return findCountryById(countryId);
     } catch (err) {
       return rejectWithValue(JSON.stringify(err));

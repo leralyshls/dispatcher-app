@@ -32,7 +32,7 @@ const NewsWidget = () => {
   return (
     <CardsContainer id='scrollableDiv'>
       {status === RESPONSES.LOADING && <SkeletonCardList />}
-      {totalResults > 0 && (
+      {totalResults > 0 && status !== RESPONSES.ERROR && (
         <InfiniteScroll
           dataLength={articles.length}
           next={getMoreData}

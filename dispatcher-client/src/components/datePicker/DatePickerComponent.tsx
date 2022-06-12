@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
 import { asyncActions } from '../../store/asyncAtions';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';

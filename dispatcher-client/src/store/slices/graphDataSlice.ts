@@ -5,7 +5,7 @@ import {
   PayloadAction,
   AsyncThunk,
 } from '@reduxjs/toolkit';
-import { IResponseNews, IArticle } from '../../utils/types/APITypes';
+import { IResponseNews } from '../../utils/types/APITypes';
 import { fetchAllGraphData } from '../../services/newsApiService';
 import { RESPONSES } from '../../utils/constants/responseStatus';
 import { ENDPOINTS } from '../../utils/constants/endpoints';
