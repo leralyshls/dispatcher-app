@@ -1,7 +1,9 @@
+import React from 'react';
 import { useAppSelector } from '../../../store/hooks';
 import {
   prepareDoughnutData,
   prepareAreaChartData,
+  partition,
 } from '../../../utils/prepareGraphData';
 import AreaChartGraph from '../areaChart/AreaChartGraph';
 import DoughnutGraph from '../doughnut/DoughnutGraph';
@@ -11,16 +13,20 @@ export interface GraphProps {
 }
 
 const Graph = ({ type }: GraphProps) => {
-  const articles = useAppSelector((state) => state.news.articles);
+  const articles = useAppSelector((state) => state.graphs.articles);
+  const { mainData, others, total, concatenated } = partition(
+    prepareDoughnutData(articles)
+  );
   return (
     <>
       {type === 'area' ? (
-        <AreaChartGraph
-          data={articles.length ? prepareAreaChartData(articles) : []}
-        />
+        <AreaChartGraph data={prepareAreaChartData(articles)} />
       ) : (
         <DoughnutGraph
-          data={articles.length ? prepareDoughnutData(articles) : []}
+          mainData={mainData}
+          others={others}
+          total={total}
+          concatenated={concatenated}
         />
       )}
     </>

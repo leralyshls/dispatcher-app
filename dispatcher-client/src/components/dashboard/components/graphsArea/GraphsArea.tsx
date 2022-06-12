@@ -9,25 +9,25 @@ import { GraphsContainer } from './styles';
 import { RESPONSES } from '../../../../utils/constants/responseStatus';
 
 const GraphsArea: React.FC = () => {
-  const status = useAppSelector((state) => state.news.status);
-  const totalResults = useAppSelector((state) => state.news.totalResults);
+  const status = useAppSelector((state) => state.graphs.status);
+  const totalResults = useAppSelector((state) => state.graphs.totalResults);
   return (
     <GraphsContainer>
       <CardSecondary title='Sources'>
         {status === RESPONSES.LOADING && <SkeletonDoughnut />}
-        {totalResults > 0 && status !== RESPONSES.LOADING && (
-          <Graph type='doughnut' />
-        )}
-        {totalResults === 0 && status !== RESPONSES.LOADING && (
+        {totalResults > 0 &&
+          status !== RESPONSES.LOADING &&
+          status !== RESPONSES.ERROR && <Graph type='doughnut' />}
+        {(totalResults === 0 || status === RESPONSES.ERROR) && (
           <NoData type='chart' />
         )}
       </CardSecondary>
       <CardSecondary title='Dates'>
         {status === RESPONSES.LOADING && <SkeletonAreaChart />}
-        {totalResults > 0 && status !== RESPONSES.LOADING && (
-          <Graph type='area' />
-        )}
-        {totalResults === 0 && status !== RESPONSES.LOADING && (
+        {totalResults > 0 &&
+          status !== RESPONSES.LOADING &&
+          status !== RESPONSES.ERROR && <Graph type='area' />}
+        {(totalResults === 0 || status === RESPONSES.ERROR) && (
           <NoData type='chart' />
         )}
       </CardSecondary>

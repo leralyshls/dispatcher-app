@@ -18,8 +18,8 @@ const SkeletonDoughnut = () => {
       <SkeletonPieContainer>
         <SkeletonDoughnutOuter
           variant='circular'
-          width={'90%'}
-          height={'90%'}
+          width={'80%'}
+          height={'80%'}
           sx={sx}
         />
         <SkeletonDoughnutInner />

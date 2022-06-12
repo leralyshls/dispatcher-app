@@ -3,8 +3,7 @@ import useDebounce from '../../hooks/useDebounce';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { filterActions } from '../../store/slices/filterSlice';
-import { newsActions } from '../../store/slices/newsSlice';
-import { fetchNews } from '../../store/slices/newsSlice';
+import { asyncActions } from '../../store/asyncAtions';
 import {
   getSearchHistory,
   addToSearchHistory,
@@ -15,6 +14,7 @@ import { InputAdornment } from '@mui/material';
 import { SearchContainer, InputStyled, InputIcon } from './styles';
 import { endpointsFilters } from '../../utils/constants/filterStrings';
 import { SCREENS } from '../../utils/constants/screenSizes';
+import { ENDPOINTS } from '../../utils/constants/endpoints';
 
 const SearchBox: React.FC = () => {
   const [focused, setFocused] = useState<boolean>(false);
@@ -23,25 +23,39 @@ const SearchBox: React.FC = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>(
     getSearchHistory()
   );
-  const hasSearched = useAppSelector((state) => state.news.hasSearched);
+  const [firstMount, setFirstMount] = useState<boolean>(true);
+  const defaultSearch = useAppSelector(
+    (state) => state.location.defaultCountry.name
+  );
+  const filters = useAppSelector((state) => state.filters);
   const debouncedInputValue = useDebounce<string>(inputValue, 1000);
   const dispatch = useAppDispatch();
   const { width } = useWindowSize();
-  const { tabletM, breakpoint500 } = SCREENS;
+  const { breakpoint500 } = SCREENS;
 
   useEffect(() => {
-    const searchText = debouncedInputValue.trim();
-    dispatch(filterActions.setQuery(searchText));
     if (debouncedInputValue !== '') {
+      const searchText = debouncedInputValue.trim();
       addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
-      dispatch(fetchNews());
+      dispatch(filterActions.setQuery(searchText));
+      dispatch(asyncActions.fetchNews());
+      dispatch(asyncActions.fetchGraphData());
       handleClickOutside();
-      if (!hasSearched) {
-        dispatch(newsActions.setHasSearched());
+    } else if (debouncedInputValue === '' && firstMount) {
+      setFirstMount(false);
+    } else {
+      // when input was cleared fetch default news depending on the endpoint
+      if (filters.endpoint === ENDPOINTS.EVERYTHING) {
+        dispatch(filterActions.setQuery(defaultSearch));
+      } else {
+        dispatch(filterActions.setQuery(''));
       }
+      dispatch(asyncActions.fetchNews());
+      dispatch(asyncActions.fetchGraphData());
+      handleClickOutside();
     }
-  }, [debouncedInputValue, dispatch, hasSearched]);
+  }, [debouncedInputValue, dispatch]);
 
   const handleClickOutside = () => {
     setFocused(false);
@@ -57,10 +71,13 @@ const SearchBox: React.FC = () => {
   };
   const handleEnterKeyPress = (e: React.KeyboardEvent, value: string) => {
     if (e.key === 'Enter') {
-      addToSearchHistory(value.trim());
+      const searchText = value.trim();
+      addToSearchHistory(searchText);
       setSearchHistory(getSearchHistory());
-      dispatch(fetchNews());
-      setShowHistory(false);
+      dispatch(filterActions.setQuery(searchText));
+      dispatch(asyncActions.fetchNews());
+      dispatch(asyncActions.fetchGraphData());
+      handleClickOutside();
     }
   };
   return (
@@ -85,7 +102,7 @@ const SearchBox: React.FC = () => {
           placeholder='Search'
           disableUnderline
         />
-        {width > tabletM && (
+        {width > breakpoint500 && (
           <Dropdown
             options={endpointsFilters.options}
             insearchbox={true}

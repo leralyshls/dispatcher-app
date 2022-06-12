@@ -1,4 +1,4 @@
-import { AreaChart, Area, ResponsiveContainer, XAxis } from 'recharts';
+import { AreaChart, Area, ResponsiveContainer, XAxis, Tooltip } from 'recharts';
 import { COLORS } from '../../../utils/constants/colors';
 import { IGraphItem } from '../../../utils/prepareGraphData';
 
@@ -38,12 +38,13 @@ const AreaChartGraph = ({ data }: AreaProps) => {
         />
         <Area
           type='monotone'
-          dataKey='value'
+          dataKey='amount'
           strokeWidth={4}
           stroke={COLORS.primary}
           fillOpacity={0.15}
           fill='url(#gradient)'
         />
+        <Tooltip payload={data} />
       </AreaChart>
     </ResponsiveContainer>
   );
