@@ -15,13 +15,21 @@ const GraphsArea: React.FC = () => {
     <GraphsContainer>
       <CardSecondary title='Sources'>
         {status === RESPONSES.LOADING && <SkeletonDoughnut />}
-        {totalResults > 0 && <Graph type='doughnut' />}
-        {totalResults === 0 && <NoData type='chart' />}
+        {totalResults > 0 && status !== RESPONSES.LOADING && (
+          <Graph type='doughnut' />
+        )}
+        {(totalResults === 0 || status === RESPONSES.ERROR) && (
+          <NoData type='chart' />
+        )}
       </CardSecondary>
       <CardSecondary title='Dates'>
         {status === RESPONSES.LOADING && <SkeletonAreaChart />}
-        {totalResults > 0 && <Graph type='area' />}
-        {totalResults === 0 && <NoData type='chart' />}
+        {totalResults > 0 && status !== RESPONSES.LOADING && (
+          <Graph type='area' />
+        )}
+        {(totalResults === 0 || status === RESPONSES.ERROR) && (
+          <NoData type='chart' />
+        )}
       </CardSecondary>
     </GraphsContainer>
   );

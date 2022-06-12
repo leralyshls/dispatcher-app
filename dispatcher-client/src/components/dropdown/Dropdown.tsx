@@ -37,11 +37,12 @@ const Dropwdown = ({
   const handleFilterChange = (newValue: IOption | null) => {
     if (newValue) {
       setSelectedFilterValue(newValue);
-      dispatch(newsActions.setHasSearched(true));
       dispatch(
         filterActions.updateFilter({ key: filtertype, value: newValue.id })
       );
-      dispatch(newsActions.setHasSearched(true));
+      if (!hasSearched) {
+        dispatch(newsActions.setHasSearched(true));
+      }
       if (filtertype === 'endpoint') {
         dispatch(filterActions.clearFilters());
         if (
@@ -55,9 +56,7 @@ const Dropwdown = ({
           filters.q === defaultSearch
         ) {
           dispatch(filterActions.setQuery(''));
-        }
-      } else {
-        if (filters.q === defaultSearch) {
+        } else if (filters.q === defaultSearch) {
           dispatch(filterActions.setQuery(''));
         }
       }
@@ -77,11 +76,15 @@ const Dropwdown = ({
       ) {
         dispatch(asyncActions.fetchNews());
         dispatch(asyncActions.fetchGraphData());
-      } else {
+      } else if (
+        filters.endpoint === ENDPOINTS.EVERYTHING &&
+        filters.q === '' &&
+        filters.sources === ''
+      ) {
         dispatch(filterActions.setQuery(defaultSearch));
-        dispatch(asyncActions.fetchNews());
-        dispatch(asyncActions.fetchGraphData());
       }
+      dispatch(asyncActions.fetchNews());
+      dispatch(asyncActions.fetchGraphData());
     }
   };
 

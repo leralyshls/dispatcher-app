@@ -25,8 +25,8 @@ interface DoughnutProps {
   concatenated: IGraphItem[];
 }
 
-const renderLegend = (...props: any) => {
-  const { payload } = props[0];
+const renderLegend = (...args: any) => {
+  const { payload } = args[0];
   return (
     <StyledUL>
       {payload.map((entry: any) => {

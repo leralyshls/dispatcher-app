@@ -57,7 +57,9 @@ const NewsWidget = () => {
           ))}
         </InfiniteScroll>
       )}
-      {totalResults === 0 && <NoData type='search' />}
+      {(totalResults === 0 || status === RESPONSES.ERROR) && (
+        <NoData type='search' />
+      )}
     </CardsContainer>
   );
 };

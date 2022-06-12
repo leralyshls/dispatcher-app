@@ -14,7 +14,9 @@ const buildAxiosParams = (
 ) => {
   const { endpoint, category, q, to, sortBy, language, sources } = params;
   const country =
-    params.country === '' && q === '' ? defaultCountry : params.country;
+    params.country === '' && q === '' && category === ''
+      ? defaultCountry
+      : params.country;
   let paramsObj;
   if (endpoint === ENDPOINTS.TOP && sources === '') {
     paramsObj = { country, category, q };
